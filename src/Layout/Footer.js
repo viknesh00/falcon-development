@@ -1,11 +1,10 @@
 import React from "react";
 
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <div className="footer">
       <div className="footer-top">
         <div className="footer-left">
           <h3>Falcon</h3>
@@ -20,7 +19,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>© {currentYear} Falcon Finance. All rights reserved.</p>
       </div>
-    </footer>
+    </div>
   );
 };
 

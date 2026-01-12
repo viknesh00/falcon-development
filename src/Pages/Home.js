@@ -75,7 +75,14 @@ const Home = () => {
 
                                 <div class="hero-actions">
                                     <button class="btn-gold">Get Started</button>
-                                    <button class="btn-primary">How it works</button>
+                                    <button
+                                        class="btn-primary"
+                                        onClick={() =>
+                                            document.getElementById("how").scrollIntoView({ behavior: "smooth" })
+                                        }
+                                    >
+                                        How it works
+                                    </button>
                                 </div>
                             </div>
 
@@ -148,6 +155,7 @@ const Home = () => {
                         </p>
                     </div>
                 </section>
+
                 <section className="subscribe-section">
                     <div className="section-inner">
                         <div className="subscribe-container">
@@ -165,13 +173,10 @@ const Home = () => {
                                 />
                                 <button type="submit">Join Waitlist</button>
                             </form>
-
                         </div>
                     </div>
-                </section>
-                <footer className="footer">
                     <Footer />
-                </footer>
+                </section>
 
             </div>
 

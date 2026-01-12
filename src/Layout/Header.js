@@ -12,8 +12,10 @@ const Header = () => {
         {/* Left - Logo */}
         <div className="logo">
           {/* Use image OR text */}
-          <img src="/assets/images/falcon-logo.jpg" alt="Logo"/>
-          <span className="logo-text">Falcon</span>
+          <a href="/" className="logo">
+            <img src="/assets/images/falcon-logo.jpg" alt="Logo" />
+            <span className="logo-text">Falcon</span>
+          </a>
         </div>
 
         {/* Center - Navigation */}

@@ -43,11 +43,7 @@ html, body {
   padding: 0 20px;             /* horizontal padding only */
 }
 
-.scroll-container footer {
-  height: 100vh;
-  scroll-snap-align: start;
 
-}
 
 
 .section-inner {
@@ -83,6 +79,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
+   text-decoration: none;
 }
 
 .logo img {
@@ -493,12 +490,19 @@ html, body {
   line-height: 1.6;
 }
 
+/* ================= Subscribe Section ================= */
+
 .subscribe-section {
   background-color: var(--primary);
   color: var(--white);
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 0;
   font-family: var(--font-main);
+}
+
+.subscribe-container {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .subscribe-title {
@@ -525,7 +529,7 @@ html, body {
   border-radius: 50px;
   border: none;
   outline: none;
-  min-width: 250px;
+  min-width: 260px;
   font-size: 1rem;
 }
 
@@ -545,27 +549,34 @@ html, body {
   transform: translateY(-2px);
 }
 
-
+/* ================= Footer ================= */
 
 .footer {
-  background-color: var(--dark);
+  background-color: var(--dark); /* same as section */
   color: var(--white);
   font-family: var(--font-main);
-  padding: 2rem 4rem;
+
+  margin-top: 4rem;
+  padding: 2.5rem 4rem;
+
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
 }
+
 
 .footer-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   flex-wrap: wrap;
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
 
 .footer-left h3 {
-  color: var(--primary);
+  color: var(--accent);
   margin-bottom: 0.5rem;
 }
 
