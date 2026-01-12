@@ -63,6 +63,9 @@ html, body {
   width: 100%;
   background: var(--grayheader);
   padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-container {
@@ -382,21 +385,58 @@ html, body {
   padding: 2rem 0;
 }
 
+
+
+/* 1. The Vertical Line */
 .timeline::after {
   content: "";
   position: absolute;
-  width: 2px;
-  background-color: var(--accent);
+  width: 1px;
+  background-color: #d4af37; /* Use your gold color */
   top: 0;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }
-
 .timeline-item {
   padding: 1rem 2rem;
   position: relative;
   width: 50%;
+}
+/* 2. The Plot Marks (The Two Circles) */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 8px;              /* The inner solid dot size */
+  height: 8px;             /* The inner solid dot size */
+  background-color: #d4af37; /* Solid gold center */
+  border-radius: 50%;
+  
+  /* The Outer Ring: Created using a spread shadow and a border */
+  /* This creates: [Inner gold dot] + [White Gap] + [Outer gold ring] */
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px #d4af37; 
+  
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+/* 3. Exact Positioning on the line */
+.timeline-item.left::before {
+  right: -4px; /* Half of the 8px width to center it */
+}
+
+.timeline-item.right::before {
+  left: -4px; /* Half of the 8px width to center it */
+}
+
+/* 4. Content card adjustments to match image spacing */
+.timeline-content {
+  background-color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .timeline-item.left {
@@ -409,32 +449,10 @@ html, body {
   text-align: left;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background-color: var(--accent);
-  border-radius: 50%;
-  top: 1rem;
-  z-index: 1;
-}
 
-.timeline-item.left::before {
-  right: -8px;
-}
 
-.timeline-item.right::before {
-  left: -8px;
-}
 
-.timeline-content {
-  background-color: var(--white);
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+
 
 .timeline-content:hover {
   transform: translateY(-5px);
@@ -528,6 +546,7 @@ html, body {
 }
 
 
+
 .footer {
   background-color: var(--dark);
   color: var(--white);
@@ -578,40 +597,126 @@ html, body {
 
 
 
-/* ================= RESPONSIVE ================= */
+/* =========================================================
+   MOBILE + RESPONSIVE FIXES (NON-BREAKING)
+   Add ONLY – does not override desktop styles
+========================================================= */
 
+/* -------- FIX MOBILE SCROLLING -------- */
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow: auto !important;
+  }
+
+  .scroll-container {
+    height: auto;
+    scroll-snap-type: none;
+  }
+
+  .scroll-container section,
+  .scroll-container footer {
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+/* -------- HERO SECTION FIX -------- */
 @media (max-width: 900px) {
   .hero-container {
     flex-direction: column;
     text-align: center;
+    gap: 40px;
   }
 
-  .hero-visual {
-    width: 100%;
-    margin-top: 40px;
-  }
-
-  .hero-card-text {
-    margin: 0 auto 20px;
-    text-align: center;
-  }
-
-  .card-wrapper {
-    justify-content: center;
+  .hero-content {
+    max-width: 100%;
+    gap: 32px;
   }
 
   .hero-content h1 {
     font-size: 42px;
+    line-height: 1.2;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    width: 100%;
+    margin-left: 0;
+    gap: 32px;
+  }
+
+  .falcon-card {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto;
   }
 }
 
-
-
-/* ================= MOBILE ================= */
-
+/* -------- FEATURES GRID -------- */
 @media (max-width: 768px) {
-  .nav {
-    display: none;
+  .features-container {
+    gap: 16px;
+  }
+
+  .feature-card {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+/* -------- TIMELINE STACK FIX -------- */
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 8px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 40px;
+    padding-right: 16px;
+    text-align: left;
+  }
+
+  .timeline-item::before {
+    left: 0 !important;
+  }
+}
+
+/* -------- SUBSCRIBE FORM -------- */
+@media (max-width: 600px) {
+  .subscribe-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subscribe-form input,
+  .subscribe-form button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* -------- FOOTER -------- */
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-right a {
+    margin: 0 0.75rem;
   }
 }
 
