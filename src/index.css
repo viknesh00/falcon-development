@@ -73,6 +73,15 @@ html, body {
   justify-content: space-between;
 }
 
+/* Hide hamburger on desktop */
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
 /* ================= LOGO ================= */
 
 .logo {
@@ -247,21 +256,24 @@ html, body {
 
 /* GLASS CARD */
 .falcon-card {
-  width: 380px;
-  height: 240px;
+  width: 100%;
+  max-width: 340px;
   padding: 20px;
   border-radius: 18px;
+
   background: var(--glass);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow);
   color: var(--white);
+
   position: relative;
 
-  /* Tilt effect */
-  transform: rotateY(-14deg) rotateX(6deg);
-  transition: transform 0.4s ease;
+  /* ✅ IMPORTANT */
+  height: auto;          /* remove fixed height */
+  min-height: 200px;     /* keep card shape */
 }
+
 
 /* STRAIGHT ON HOVER */
 .falcon-card:hover {
@@ -277,24 +289,24 @@ html, body {
 }
 
 .card-label {
-  display: block;
-  margin-top: 20px;
+  margin-top: 16px;
   font-size: 12px;
   opacity: 0.8;
 }
 
 .falcon-card h3 {
-  font-size: 28px;
-  margin-top: 6px;
+  font-size: 26px;
+  margin: 8px 0 16px;   /* 🔑 space before number */
+  line-height: 1.2;
 }
 
 .card-number {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  letter-spacing: 2px;
+  position: static;     /* 🔑 stop absolute overlap */
   font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.85;
 }
+
 
 .card-brand {
   position: absolute;
@@ -716,6 +728,88 @@ html, body {
 
 /* -------- FOOTER -------- */
 @media (max-width: 768px) {
+
+  /* HEADER */
+  .header {
+    padding: 12px 0;
+  }
+
+  .header-container {
+    flex-wrap: nowrap;
+    height: 64px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .nav,
+  .actions {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+  }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: fixed; /* 🔑 NOT absolute */
+    top: 64px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100vh - 64px);
+
+    background: var(--grayheader);
+    padding: 24px;
+
+    z-index: 999;
+  }
+
+  .mobile-menu a {
+    color: var(--dark);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mobile-menu button {
+    width: 100%;
+  }
+
+  /* CARD */
+  .card-wrapper {
+    justify-content: center;
+    perspective: none;
+  }
+
+  .falcon-card {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 16px;
+    transform: none;
+  }
+
+  .falcon-card:hover {
+    transform: none;
+  }
+
+  /* FOOTER */
   .footer {
     padding: 2rem 1.5rem;
   }
@@ -730,6 +824,7 @@ html, body {
     margin: 0 0.75rem;
   }
 }
+
 
 /* ================= OTHER ELEMENTS ================= */
 
