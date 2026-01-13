@@ -2,27 +2,23 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import ProtectedRoute from "./services/ProtectedRoute";
 import Layout from "./Layout/Layout";
-import Home from "./Pages/Home";
-
+import { Home, Login, SignupStepper, Dashboard } from "./Pages";
 
 
 const routes = [
-    // Public Route
     { path: "/", element: <Home /> },
-    { path: "/login", element: <Home /> },
-    { path: "/sign-in", element: <Home /> },
-
-    // Protected Routes
+    { path: "/login", element: <Login /> },
+    { path: "/signup", element: <SignupStepper /> },
+    { path: "/sign-in", element: <Navigate to="/login" /> },
+    { path: "/dashboard", element: <Dashboard /> },  
     {
-        path: "/*", // Wildcard path for nested layout routes
+        path: "/*",
         element: (
             <ProtectedRoute>
                 <Layout />
             </ProtectedRoute>
         ),
-        children: [
-            { path: "dashboard", element: <Home /> },
-            
+        children: [  
         ],
     },
 
