@@ -394,8 +394,6 @@ html, body {
   padding: 2rem 0;
 }
 
-
-
 /* 1. The Vertical Line */
 .timeline::after {
   content: "";
@@ -457,11 +455,6 @@ html, body {
   left: 50%;
   text-align: left;
 }
-
-
-
-
-
 
 .timeline-content:hover {
   transform: translateY(-5px);
@@ -807,6 +800,40 @@ html, body {
 
   .falcon-card:hover {
     transform: none;
+  }
+
+  /* Timeline padding */
+  .timeline {
+    padding-left: 32px;
+  }
+
+  /* Vertical line */
+   .timeline::after {
+    width: 2px;              /* 🔑 important */
+    left: 20px;
+  }
+
+  /* Timeline items */
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    padding: 0 0 32px 40px;
+    text-align: left;
+  }
+
+  /* Dot EXACTLY centered on line */
+  .timeline-item::before {
+    left: 20px;
+    top: 28px;
+
+    /* KEY FIX 👇 */
+    transform: translate(-200%);
+  }
+
+  /* Remove desktop alignment */
+  .timeline-item.left,
+  .timeline-item.right {
+    text-align: left;
   }
 
   /* FOOTER */
