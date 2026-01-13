@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from './AuthLayout';
 import OtpModal from './OtpModal';
 import { 
-  FiChevronRight, FiCheck, FiMail, FiLock, FiSmartphone, FiUser, FiActivity, FiArrowRight
+  FiChevronRight, FiCheck, FiMail, FiLock, FiSmartphone, FiUser, FiActivity, FiArrowRight, FiUpload, FiCamera, FiRefreshCw
 } from 'react-icons/fi';
 import { ToastSuccess } from '../../services/ToastMsg';
 
@@ -19,6 +19,12 @@ const SignupStepper = () => {
     lastName: '',
     mobileNumber: '',
   });
+  const [docType, setDocType] = useState('passport'); // passport, id_card, driving_license
+  const [docFile, setDocFile] = useState(null);
+  const [selfieFile, setSelfieFile] = useState(null);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const videoRef = useRef(null);
+  const docInputRef = useRef(null);
   const navigate = useNavigate();
 
   const totalSteps = 4;
@@ -33,6 +39,10 @@ const SignupStepper = () => {
   };
 
   const startKYC = () => {
+    if (!docFile || !selfieFile) {
+      alert("Please upload your document and take a selfie first.");
+      return;
+    }
     setLoading(true);
     setKycProgress(1);
     // Simulate ID scanning
@@ -44,6 +54,40 @@ const SignupStepper = () => {
         setLoading(false);
       }, 2000);
     }, 2000);
+  };
+
+  const handleDocUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setDocFile(URL.createObjectURL(file));
+    }
+  };
+
+  const openCamera = async () => {
+    setIsCameraOpen(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      // Fallback for demo
+    }
+  };
+
+  const captureSelfie = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
+    canvas.getContext('2d').drawImage(videoRef.current, 0, 0);
+    setSelfieFile(canvas.toDataURL('image/png'));
+
+    // Stop stream
+    const stream = videoRef.current.srcObject;
+    const tracks = stream.getTracks();
+    tracks.forEach(track => track.stop());
+    setIsCameraOpen(false);
   };
 
   const handleFinalSubmit = () => {
@@ -152,44 +196,120 @@ const SignupStepper = () => {
           <div className="auth-step">
             <div className="auth-header">
               <h1>Identity Check</h1>
-              <p>We need a quick verify to keep things safe and secure.</p>
+              <p>We need to verify your identity to comply with ethical banking regulations.</p>
             </div>
-            
-            <div className="kyc-visual-container">
-              {kycProgress === 0 && (
-                <div className="kyc-initial pulse">
-                  <FiUser style={{ fontSize: '48px', color: 'var(--primary)', opacity: 0.5 }} />
-                  <p>Ready for verification</p>
+
+            {kycProgress === 0 ? (
+              <div className="verification-flow">
+                {/* Document Selection */}
+                <div className="form-group-modern">
+                  <label>Select Document Type</label>
+                  <div className="verification-options">
+                    <div
+                      className={`verify-card ${docType === 'passport' ? 'active' : ''}`}
+                      onClick={() => setDocType('passport')}
+                    >
+                      <FiActivity />
+                      <p>Passport</p>
+                    </div>
+                    <div
+                      className={`verify-card ${docType === 'id_card' ? 'active' : ''}`}
+                      onClick={() => setDocType('id_card')}
+                    >
+                      <FiUser />
+                      <p>ID Card</p>
+                    </div>
+                  </div>
                 </div>
-              )}
-              {kycProgress === 1 && (
-                <div className="kyc-scanning">
-                  <div className="scan-line"></div>
-                  <FiActivity />
-                  <p>Scanning Document...</p>
+
+                <div style={{ display: 'flex', gap: '20px', marginBottom: '32px' }}>
+                  {/* Doc Upload */}
+                  <div style={{ flex: 1 }}>
+                    <div
+                      className="kyc-visual-container"
+                      style={{ height: '180px', cursor: 'pointer' }}
+                      onClick={() => docInputRef.current.click()}
+                    >
+                      {docFile ? (
+                        <img src={docFile} alt="Doc Preview" className="doc-upload-preview" />
+                      ) : (
+                        <div className="kyc-initial">
+                          <FiUpload style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }} />
+                          <p style={{ fontSize: '13px' }}>Upload {docType.replace('_', ' ')}</p>
+                        </div>
+                      )}
+                      <input
+                        type="file"
+                        ref={docInputRef}
+                        style={{ display: 'none' }}
+                        accept="image/*"
+                        onChange={handleDocUpload}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Selfie Capture */}
+                  <div style={{ flex: 1 }}>
+                    <div
+                      className="kyc-visual-container"
+                      style={{ height: '180px', cursor: 'pointer' }}
+                      onClick={openCamera}
+                    >
+                      {selfieFile ? (
+                        <img src={selfieFile} alt="Selfie" className="doc-upload-preview" />
+                      ) : (
+                        <div className="kyc-initial">
+                          <FiCamera style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }} />
+                          <p style={{ fontSize: '13px' }}>Take a Selfie</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              )}
-              {kycProgress === 2 && (
-                <div className="kyc-scanning face">
-                  <div className="scan-line horizontal"></div>
-                  <FiUser />
-                  <p>Verifying Face...</p>
+
+                {isCameraOpen && (
+                  <div className="modal-overlay">
+                    <div className="otp-modal" style={{ maxWidth: '500px', padding: '20px' }}>
+                      <div className="camera-container" style={{ height: '350px', background: '#000', borderRadius: '16px', overflow: 'hidden' }}>
+                        <video ref={videoRef} autoPlay className="camera-video" />
+                        <button className="capture-btn" onClick={captureSelfie}></button>
+                      </div>
+                      <button className="btn-text" style={{ marginTop: '16px' }} onClick={() => setIsCameraOpen(false)}>Cancel</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="kyc-visual-container">
+                  {kycProgress === 1 && (
+                    <div className="kyc-scanning">
+                      <div className="scan-line"></div>
+                      <FiActivity />
+                      <p>Scanning {docType.replace('_', ' ')}...</p>
+                    </div>
+                  )}
+                  {kycProgress === 2 && (
+                    <div className="kyc-scanning face">
+                      <div className="scan-line"></div>
+                      <FiUser />
+                      <p>Verifying Face Match...</p>
+                    </div>
+                  )}
+                  {kycProgress === 3 && (
+                    <div className="kyc-success">
+                      <div className="check-circle"><FiCheck /></div>
+                      <p>Verification Successful!</p>
+                    </div>
+                  )}
                 </div>
-              )}
-              {kycProgress === 3 && (
-                <div className="kyc-success">
-                  <div className="check-circle"><FiCheck /></div>
-                  <p>Everything looks perfect!</p>
-                </div>
-              )}
-            </div>
+            )}
 
             <button 
               className="btn-primary-modern" 
               onClick={kycProgress === 3 ? handleNext : startKYC}
-              disabled={loading}
+              disabled={loading || (kycProgress === 0 && (!docFile || !selfieFile))}
             >
-              {kycProgress === 3 ? "Continue" : (loading ? "Verifying..." : "Start KYC Verify")}
+              {kycProgress === 3 ? "Continue" : (loading ? "Processing..." : "Verify Identity")}
             </button>
           </div>
         );

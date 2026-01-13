@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiShield, FiTrendingUp, FiCheckCircle } from 'react-icons/fi';
 import './Auth.css';
+import Logo from '../../assets/falcon-logo.jpg'
 
 const AuthLayout = ({ children, title, subtitle }) => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -39,7 +40,7 @@ const AuthLayout = ({ children, title, subtitle }) => {
         {/* Left Panel - Visual & Info */}
         <div className="auth-left-panel">
           <div className="auth-brand-overlay">
-            <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
+            <img src={Logo} alt="Falcon" />
             <span>Falcon</span>
           </div>
 
