@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 /* ================= ROOT VARIABLES ================= */
 :root {
   --primary-dark: #071f17;
@@ -17,7 +18,9 @@
   --transition-fast: 0.3s ease;
   --transition-slow: 0.6s ease;
 
-  --font-main: "Inter", system-ui, "Urbanist";
+  /* --font-main: "Inter", system-ui, "Urbanist"; */
+  --font-main: 'Urbanist', system-ui, sans-serif;
+
 }
 
 /* ================= GLOBAL RESET ================= */
@@ -28,15 +31,19 @@
 }
 
 .scroll-container {
-  height: 100vh; /* full viewport */
+  height: 100vh;
+  /* full viewport */
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
-
+body {
+  font-family: var(--font-main);
+}
 /* Sections take full viewport minus fixed header */
 .scroll-container section {
-  height: calc(100vh - 72px); /* 72px = header height */
+  height: calc(100vh - 72px);
+  /* 72px = header height */
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -56,12 +63,20 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
+  background: transparent;
+  padding: 18px 0;
+  animation: slideDown 0.8s ease forwards;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Scrolled state - colored background */
+.header.scrolled {
   background: linear-gradient(90deg,
       var(--primary-dark),
       var(--primary),
       var(--primary-light));
-  padding: 18px 0;
-  animation: slideDown 0.8s ease forwards;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Bottom glowing border */
@@ -80,6 +95,10 @@ body {
       #3bd28d,
       transparent);
   box-shadow: 0 0 12px rgba(40, 179, 111, 0.6);
+}
+
+.header.scrolled::after {
+  opacity: 1;
 }
 
 .header-inner {
@@ -449,7 +468,8 @@ body {
 
 /* Single image inside connector */
 .icon-image {
-  width: 42px; /* adjust as needed */
+  width: 42px;
+  /* adjust as needed */
   height: 42px;
   object-fit: contain;
   opacity: 0.9;
@@ -469,9 +489,11 @@ body {
   0% {
     box-shadow: 0 0 0 0 rgba(31, 162, 95, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 10px rgba(31, 162, 95, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(31, 162, 95, 0);
   }
@@ -579,7 +601,6 @@ body {
 .step-card img {
   width: 54px;
   height: 54px;
-  background: #e6f4ec;
   color: #1fa25f;
   display: flex;
   align-items: center;
@@ -614,8 +635,10 @@ body {
   min-height: 100vh;
   padding: 120px 20px;
   display: flex;
-  justify-content: center;      /* Horizontal center */
-  align-items: center;          /* Vertical center */
+  justify-content: center;
+  /* Horizontal center */
+  align-items: center;
+  /* Vertical center */
   background: #ffffff;
 }
 
@@ -633,7 +656,7 @@ body {
   background-image: radial-gradient(#ccc 1px, transparent 1px);
   background-size: 20px 20px;
   border-radius: 24px;
-  padding: 40px;
+  padding: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -645,10 +668,7 @@ body {
   max-width: 100%;
 }
 
-/* Hover effect for image */
-.loan-image:hover {
-  transform: scale(1.05);
-}
+
 
 /* RIGHT CONTENT */
 .loan-content h2 {
@@ -717,7 +737,7 @@ body {
 
 /* ================= SECURITY SECTION ================= */
 .security-section {
-   min-height: 100vh;
+  min-height: 100vh;
   color: #ffffff;
   padding: 80px 20px;
   text-align: center;
@@ -726,7 +746,8 @@ body {
 .security-section h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #ecff00; /* bright yellow */
+  color: #ecff00;
+  /* bright yellow */
   margin-bottom: 16px;
 }
 
@@ -788,15 +809,16 @@ body {
 .card .icon svg {
   position: relative;
   z-index: 1;
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
 }
 
 
 /* Card text */
 .card p {
   font-size: 0.95rem;
-  color: #000000; /* dark green */
+  color: #000000;
+  /* dark green */
 }
 
 /* Hover effect for cards */
@@ -807,7 +829,7 @@ body {
 
 /* Section */
 .features-section {
-   min-height: 100vh;
+  min-height: 100vh;
   padding: 80px 20px;
   background: #ffffff;
   text-align: center;
@@ -885,10 +907,13 @@ body {
 }
 
 .cta-wrapper {
-  min-height: 100vh;            /* Full screen height */
+  min-height: 100vh;
+  /* Full screen height */
   display: flex;
-  justify-content: center;      /* Horizontal center */
-  align-items: center;          /* Vertical center */
+  justify-content: center;
+  /* Horizontal center */
+  align-items: center;
+  /* Vertical center */
   padding: 20px;
   background: #ffffff;
 }
@@ -902,12 +927,10 @@ body {
   text-align: center;
   border-radius: 32px;
 
-  background: linear-gradient(
-    135deg,
-    #0e1f1c 0%,
-    #132a25 50%,
-    #0b1916 100%
-  );
+  background: linear-gradient(135deg,
+      #0e1f1c 0%,
+      #132a25 50%,
+      #0b1916 100%);
 
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 }
@@ -1050,10 +1073,12 @@ body {
 }
 
 .footer-app {
-  background: #141E23; /* dark background similar to screenshot */
+  background: #141E23;
+  /* dark background similar to screenshot */
   padding: 20px;
   border-radius: 16px;
-  width: 220px; /* same width as screenshot */
+  width: 220px;
+  /* same width as screenshot */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1071,7 +1096,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  background:#263034;
+  background: #263034;
   border: none;
   border-radius: 12px;
   padding: 10px 12px;
@@ -1160,6 +1185,7 @@ body {
     scroll-snap-align: none;
   }
 }
+
 /* =====================================================
    HEADER – MOBILE CLEAN VERSION
 ===================================================== */
@@ -1168,6 +1194,15 @@ body {
   /* Header spacing */
   .header {
     padding: 14px 0;
+  }
+
+  .header.scrolled {
+    background: linear-gradient(90deg,
+        var(--primary-dark),
+        var(--primary),
+        var(--primary-light)) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Hamburger visible */
@@ -1313,7 +1348,7 @@ body {
   }
 
   .loan-image {
-    padding: 24px;
+    padding: 44px;
   }
 
   .loan-image img {
@@ -1425,5 +1460,3 @@ body {
     text-align: center;
   }
 }
-
-
