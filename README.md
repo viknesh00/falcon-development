@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# Falcon Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A high-fidelity, modular, and secure frontend architecture for the Falcon financial platform. This repository is built with scalability, maintainability, and developer experience in top priority.
 
-## Available Scripts
+## 🚀 Project Overview
 
-In the project directory, you can run:
+Falcon is a modern financial dashboard and authentication platform designed with a focus on:
+- **Security**: Robust authentication flows including multi-step signup, OTP verification, and KYC integration.
+- **Performance**: Optimized asset loading, code splitting, and containerized deployment.
+- **Architecture**: Domain-driven feature modules and component-based UI design.
+- **Compliance**: Adherence to FCA & PRA standards with Shariah-compliant workflows.
 
-### `npm start`
+## 🛠 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Core
+- **React 19**: Leveraging the latest concurrent features and server components compatibility.
+- **React Router v6**: Declarative routing with nested layouts.
+- **Formik & Yup**: Enterprise-grade form state management and schema validation.
+- **Axios**: Interceptor-based HTTP client for secure API communication.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Styling & UI
+- **Modular CSS**: Scoped CSS modules for component isolation (`*.module.css`) combined with global utility variables.
+- **React Icons**: Optimized icon sets for uniform UI iconography.
+- **Responsive Design**: Mobile-first approach targeting all viewports.
 
-### `npm test`
+### Quality & DevOps
+- **Husky & Lint-staged**: Pre-commit hooks to enforce code quality (`ESLint`, `Prettier`).
+- **Jest & Testing Library**: Unit and integration testing suites.
+- **Docker**: Multi-stage builds for development and production environments.
+- **CI/CD Ready**: Configured for automated pipelines with rigorous checks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🏗 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js >= 18.x
+- npm >= 9.x
+- Docker (optional, for containerized run)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Local Development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd FalconFrontend
+   ```
 
-### `npm run eject`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Set up Environment Variables**
+   Create a `.env` file in the root directory:
+   ```env
+   REACT_APP_API_URL=http://localhost:5000/api
+   REACT_APP_ENV=development
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Start the Development Server**
+   ```bash
+   npm start
+   ```
+   Runs on `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🐳 Docker Support
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Run the application in a consistent containerized environment.
 
-## Learn More
+**Development Mode:**
+```bash
+docker-compose up --build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Production Build:**
+```bash
+docker build -t falcon-frontend .
+docker run -p 80:80 falcon-frontend
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📂 Project Architecture
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The codebase follows a clear separation of concerns, grouping files by feature and resource type.
 
-### Analyzing the Bundle Size
+```
+src/
+├── api/             # API integration & interceptors
+├── assets/          # Static assets (Images, Icons, Fonts)
+├── components/      # Shared UI components
+│   ├── common/      # Generic atoms (Buttons, Inputs, Loaders)
+│   └── layout/      # Layout composites (Header, Footer)
+├── features/        # Business logic & complex state slices
+├── hooks/           # Custom React hooks
+├── pages/           # Route views
+│   ├── auth/        # Authentication screens (Login, Signup, OTP)
+│   ├── dashboard/   # Protected application views
+│   └── landingPage/ # Public marketing pages
+├── styles/          # Global styles, variables, and typography
+├── tests/           # Integration & E2E tests
+├── types/           # TypeScript definitions (if migrating to TS)
+└── utils/           # Helper functions & formatters
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🛡 Code Quality & Workflows
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+We strictly enforce code quality standards to prevent technical debt.
 
-### Advanced Configuration
+### Pre-commit Hooks (Husky)
+Before every commit, `lint-staged` runs to ensure:
+- **Linting**: No ESLint errors.
+- **Formatting**: Code is auto-formatted with Prettier.
+- **Testing**: Related tests pass.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Available Scripts
+- `npm run lint`: Manually run ESLint.
+- `npm run format`: Manually run Prettier.
+- `npm test`: Run the test suite.
+- `npm run build`: Compile the production bundle.
 
-### Deployment
+### Git Flow
+- **Feature Branches**: `feature/feature-name`
+- **Bug Fixes**: `fix/bug-description`
+- **Main/Master**: Production-ready code.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We use **Jest** and **React Testing Library**.
+
+**Run all tests:**
+```bash
+npm test
+```
+
+**Run in CI mode:**
+```bash
+CI=true npm test
+```
+
+### Key Testing Areas
+- **Unit Tests**: Utility functions and simple components.
+- **Integration Tests**: authentication flows, complex forms, and page interactions.
+
+---
+
+## 🤝 Contribution Guidelines
+
+1. Ensure your code passes all linting and test checks.
+2. Follow the established folder structure.
+3. Update documentation for major changes.
+4. Open a Pull Request with a clear description of changes.
+
+---
+
+**© 2026 Falcon Platform. All rights reserved.**

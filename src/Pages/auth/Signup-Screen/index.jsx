@@ -201,6 +201,7 @@ const SignupScreen = () => {
   return (
     <>
       <div className={Styles.authContainer}>
+        {/* ========================== Header Section ========================== */}
         <header className={Styles.header}>
           <div className={Styles.logo}>
             <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
@@ -215,6 +216,7 @@ const SignupScreen = () => {
           </nav>
         </header>
 
+        {/* ========================== Main Section ========================== */}
         <main className={Styles.mainContent}>
           <section className={`${Styles.formSection} ${Styles.fadeIn}`}>
             <div
@@ -255,6 +257,7 @@ const SignupScreen = () => {
               </div>
             </div>
 
+            {/* ========================== Form Section ========================== */}
             <Formik
               initialValues={initialValues}
               validate={getValidationSchema()}
@@ -443,7 +446,11 @@ const SignupScreen = () => {
             </Formik>
           </section>
 
+          {/* ========================== Illustration Section ========================== */}
           <section className={Styles.illustrationContainer}>
+            <div className={Styles.stepIndicatorContainer}>
+              <StepIndicator currentStep={step} totalSteps={3} />
+            </div>
             <div className={Styles.illustrationSection}>
               <img
                 src={OnBoardingVector}

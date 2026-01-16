@@ -109,7 +109,6 @@
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 20px;
   color: #ffffff;
 }
 
@@ -137,7 +136,7 @@
   padding: 18px 24px;
   transition: all 0.3s;
 }
-
+/* .rowStepIndicator removed from here to follow "display: none" default request */
 .inputWrapper:focus-within {
   border-color: #48bb78;
   background: #ffffff0d;
@@ -363,6 +362,9 @@
   }
 }
 
+.rowStepIndicator {
+  display: none;
+}
 @media (max-width: 1024px) {
   .nav {
     display: none;
@@ -376,6 +378,17 @@
     display: block;
   }
 
+  .illustrationContainer {
+    display: none;
+  }
+
+  .rowStepIndicator {
+    display: flex;
+    /* Enable on mobile */
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+  }
   .mainContent {
     grid-template-columns: 1fr;
     padding: 40px 24px;
@@ -401,10 +414,6 @@
   .title {
     font-size: 36px;
   }
-}
-
-.rowStepIndicator {
-  display: block;
 }
 
 .loadingDot {
