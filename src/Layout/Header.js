@@ -1,100 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FiLogIn, FiUserPlus } from "react-icons/fi";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState } from "react";
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const scrollContainer = document.querySelector(".scroll-container");
-
-    const handleScroll = () => {
-      if (scrollContainer && scrollContainer.scrollTop > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll);
-    }
-
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener("scroll", handleScroll);
-      }
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-    <header className={`header ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
-      <div className="header-container">
+    <header className="header">
+      <div className="header-inner">
 
-        {/* Left - Logo */}
-        <Link to="/" className="logo">
-          <img src="/assets/images/falcon-logo.jpg" alt="Logo" />
-          <span className="logo-text">Falcon</span>
-        </Link>
+        {/* Logo */}
+        <div className="logo">
+          <img src="/assets/images/falcon-logo.jpg" alt="Falcon logo" />
+          <span>Falcon</span>
+        </div>
 
-        {/* Desktop Nav */}
-        <nav className="nav">
-          <a href="#how">How it Works</a>
+        {/* Navigation */}
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#how">How it Works?</a>
           <a href="#features">Features</a>
           <a href="#compliance">Compliance</a>
         </nav>
 
-        {/* Desktop Actions */}
-        <div className="actions desktop-only">
-          <Link to="/login" className="btn-outline">
-            <FiLogIn />
-            Sign In
-          </Link>
-          <Link to="/signup" className="btn-primary">
-            <FiUserPlus />
-            Sign Up
-          </Link>
+        {/* Actions (IMPORTANT: open class added) */}
+        <div className={`actions ${menuOpen ? "open" : ""}`}>
+          <button className="btn-outline">Sign in</button>
+          <button className="btn-solid">Register</button>
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Hamburger */}
         <button
-          className="mobile-menu-btn"
+          className={`hamburger ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          <span />
+          <span />
+          <span />
         </button>
 
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
-        <nav className="mobile-nav">
-          <a href="#how" onClick={() => setMenuOpen(false)}>How it Works</a>
-          <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
-          <a href="#compliance" onClick={() => setMenuOpen(false)}>Compliance</a>
-        </nav>
-        <div className="mobile-actions">
-          <Link to="/login" className="btn-outline" onClick={() => setMenuOpen(false)}>
-            <FiLogIn />
-            Sign In
-          </Link>
-          <Link to="/signup" className="btn-primary" onClick={() => setMenuOpen(false)}>
-            <FiUserPlus />
-            Sign Up
-          </Link>
-        </div>
       </div>
     </header>
   );

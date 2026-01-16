@@ -1,75 +1,100 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaLinkedin, FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaGooglePlay, FaApple } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer-section">
-      <div className="section-inner">
-        <div className="footer-grid">
-          {/* Brand Info */}
-          <div className="footer-col brand-col">
-            <Link to="/" className="logo">
-              <img src="/assets/images/falcon-logo.jpg" alt="Logo" />
-              <span className="logo-text">Falcon</span>
-            </Link>
-            <p className="footer-desc">
-              Money that aligns with your values. Ethical returns,
-              Sharia-compliant, and fair for everyone.
-            </p>
-            <div className="social-links">
-              <a href="#" className="social-icon" aria-label="Twitter">
-                <FaTwitter />
-              </a>
-              <a href="#" className="social-icon" aria-label="LinkedIn">
-                <FaLinkedin />
-              </a>
-              <a href="#" className="social-icon" aria-label="Instagram">
-                <FaInstagram />
-              </a>
-            </div>
+    <footer className="footer">
+      <div className="footer-container">
+        {/* Brand */}
+        <div className="footer-brand">
+          <div className="brand">
+            <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
+            <span>Falcon</span>
           </div>
 
-          {/* Links: Company */}
-          <div className="footer-col">
-            <h4>Company</h4>
-            <ul className="footer-links">
-              <li><a href="#how">How it Works</a></li>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#compliance">Compliance</a></li>
-              <li><Link to="/signup">Get Started</Link></li>
-            </ul>
+
+          <div className="socials">
+            <a href="#" aria-label="Facebook">
+              <FaFacebook />
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <FaLinkedin />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <FaInstagram />
+            </a>
+            <a href="#" aria-label="Twitter">
+              <FaTwitter />
+            </a>
           </div>
 
-          {/* Links: Legal */}
-          <div className="footer-col">
-            <h4>Legal</h4>
-            <ul className="footer-links">
-              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-              <li><Link to="/terms-of-service">Terms of Service</Link></li>
-              <li><Link to="/cookie-policy">Cookie Policy</Link></li>
-            </ul>
+        </div>
+
+        {/* Links */}
+        <div className="footer-links">
+          <div>
+            <h4>Home</h4>
+            <a>About</a>
+            <a>How it works</a>
+            <a>Features</a>
+            <a>Pricing</a>
+            <a>Testimonials</a>
+            <a>FAQ’s</a>
           </div>
 
-          {/* Contact Info */}
-          <div className="footer-col">
-            <h4>Contact</h4>
-            <ul className="footer-links contact-links">
-              <li>Email: support@falcon.finance</li>
-              <li>Phone: +44 20 1234 5678</li>
-              <li>Address: London, United Kingdom</li>
-            </ul>
+          <div>
+            <h4>Wallet</h4>
+            <a>Financing</a>
+            <a>Credit monitor</a>
+            <a>Payments</a>
+          </div>
+
+          <div>
+            <h4>Legal & Compliance & Support</h4>
+            <a>Shariah compliance</a>
+            <a>Privacy policy</a>
+            <a>Terms of service</a>
+            <a>Complaints process</a>
+            <a>Contact Us</a>
+            <a>Help centre</a>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="footer-bottom">
-          <p>
-            © {currentYear} Falcon Finance. All rights reserved. A Sharia-compliant financial service.
-          </p>
-        </div>
+        {/* App download */}
+      <div className="footer-app">
+  <h4>Download our App</h4>
+
+  <button className="store-btn">
+    <FaGooglePlay className="store-icon" />
+    <div className="store-text">
+      <small>Get it on</small>
+      <strong>Google Play</strong>
+    </div>
+  </button>
+
+  <button className="store-btn">
+    <FaApple className="store-icon" />
+    <div className="store-text">
+      <small>Download on the</small>
+      <strong>App Store</strong>
+    </div>
+  </button>
+</div>
+
+
+      </div>
+
+      {/* Bottom bar */}
+      <div className="footer-bottom">
+        <p>
+          © Falcon. All rights reserved.<br />
+          Shariah-compliant financial services. No interest charged. Terms apply.
+        </p>
+
+        <a>Terms of Services</a>
       </div>
     </footer>
   );
