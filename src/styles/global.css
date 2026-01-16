@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--primary-dark);
+}
+
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scroll-container section {
+  height: calc(100vh - 72px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+/* =====================================================
+   GLOBAL MOBILE FIXES
+===================================================== */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .scroll-container {
+    height: auto;
+    scroll-snap-type: none;
+    overflow-y: auto;
+  }
+
+  .scroll-container section {
+    height: auto;
+    min-height: unset;
+    padding: 80px 16px;
+    scroll-snap-align: none;
+  }
+}

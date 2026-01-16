@@ -5,7 +5,7 @@ import OtpModal from './OtpModal';
 import { 
   FiChevronRight, FiCheck, FiMail, FiLock, FiSmartphone, FiUser, FiActivity, FiArrowRight, FiUpload, FiCamera, FiRefreshCw
 } from 'react-icons/fi';
-import { ToastSuccess } from '../../services/ToastMsg';
+import { ToastSuccess } from '../../api/ToastMsg';
 
 const SignupStepper = () => {
   const [step, setStep] = useState(1);

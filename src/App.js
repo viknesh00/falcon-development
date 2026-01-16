@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import routes from "./routes";
 import { ToastContainer, Zoom } from "react-toastify";

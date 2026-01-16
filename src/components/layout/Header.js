@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './Header.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       // Check scroll position from multiple sources
@@ -83,8 +86,8 @@ const Header = () => {
 
         {/* Actions */}
         <div className={`actions ${menuOpen ? "open" : ""}`}>
-          <button className="btn-outline">Sign in</button>
-          <button className="btn-solid">Register</button>
+          <button onClick={() => navigate("/login")} className="btn-outline">Sign in</button>
+          <button onClick={() => navigate("/signup")} className="btn-solid">Register</button>
         </div>
 
         {/* Hamburger */}

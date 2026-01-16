@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --primary-dark: #071f17;
+  --primary: #0f4c3a;
+  --primary-light: #1f6b52;
+
+  --primary-gradient: linear-gradient(90deg,
+      transparent,
+      #3bd28d,
+      #28b36f,
+      #3bd28d,
+      transparent);
+
+  --accent: #1D9B5E;
+  --accent-light: #6cff9a;
+
+  --white: #ffffff;
+  --muted: #cfd8d3;
+  --dark: #0b1f19;
+
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  --transition-fast: 0.3s ease;
+  --transition-slow: 0.6s ease;
+
+  /* --font-main: "Inter", system-ui, "Urbanist"; */
+  --font-main: 'Urbanist', system-ui, sans-serif;
+}
