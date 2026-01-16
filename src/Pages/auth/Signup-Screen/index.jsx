@@ -24,6 +24,7 @@ import Footer from '../../../components/layout/Footer';
 import { validateStep1, validateStep2, validateOTP } from './helpers/validationSchemas';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import Webcam from 'react-webcam';
 
 const InputField = ({
   icon,
@@ -97,6 +98,9 @@ const SignupScreen = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loadingIndex, setLoadingIndex] = useState(0);
+  const [showCamera, setShowCamera] = useState(false);
+  const webcamRef = React.useRef(null);
+  const fileInputRef = React.useRef(null);
   const navigate = useNavigate();
 
   const dynamicContent = [
@@ -110,6 +114,9 @@ const SignupScreen = () => {
   useEffect(() => {
     let interval;
     if (step === 4) {
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 5000);
       interval = setInterval(() => {
         setLoadingIndex((prev) => (prev + 1) % dynamicContent.length);
       }, 3000);
@@ -130,6 +137,8 @@ const SignupScreen = () => {
     employmentStatus: '',
     incomeRange: '',
     monthlyCommitments: '',
+    photoId: null,
+    selfie: null,
   };
 
   const handleNext = async (values, actions) => {
@@ -418,28 +427,101 @@ const SignupScreen = () => {
                     <>
                       <p className={Styles.subTitle}>Required by financial regulations.</p>
 
-                      <div className={Styles.uploadWrapper}>
+                      {/* Photo ID Upload */}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={(event) => {
+                          const file = event.currentTarget.files[0];
+                          if (file) {
+                            setFieldValue('photoId', file);
+                          }
+                        }}
+                      />
+                      <div
+                        className={`${Styles.uploadWrapper} ${values.photoId ? Styles.uploaded : ''}`}
+                        onClick={() => fileInputRef.current.click()}
+                      >
                         <img src={UploadIcon} alt="" className={Styles.uploadIcon} />
                         <p className={Styles.uploadText}>
-                          Photo ID upload (Passport / Driving licence)
+                          {values.photoId
+                            ? 'Photo ID Uploaded'
+                            : 'Photo ID upload (Passport / Driving licence)'}
                         </p>
-                        <img
-                          src={UploadIcon}
-                          alt=""
-                          className={Styles.uploadActionIcon}
-                          style={{ transform: 'rotate(0deg)' }}
-                        />
+                        {values.photoId ? (
+                          <span className={Styles.fileName}>{values.photoId.name}</span>
+                        ) : (
+                          <img
+                            src={UploadIcon}
+                            alt=""
+                            className={Styles.uploadActionIcon}
+                            style={{ transform: 'rotate(0deg)' }}
+                          />
+                        )}
                       </div>
 
-                      <div className={Styles.uploadWrapper}>
+                      {/* Live Selfie Check */}
+                      <div
+                        className={`${Styles.uploadWrapper} ${values.selfie ? Styles.uploaded : ''}`}
+                        onClick={() => !values.selfie && setShowCamera(true)}
+                      >
                         <img src={CameraIcon} alt="" className={Styles.uploadIcon} />
-                        <p className={Styles.uploadText}>Live selfie check</p>
+                        <p className={Styles.uploadText}>
+                          {values.selfie ? 'Selfie Verified' : 'Live selfie check'}
+                        </p>
+                        {values.selfie && (
+                          <img
+                            src={values.selfie}
+                            alt="Selfie"
+                            className={Styles.previewThumbnail}
+                          />
+                        )}
                       </div>
 
                       <button type="submit" className={Styles.continueBtn} disabled={isSubmitting}>
                         {isSubmitting ? 'Finalizing...' : 'Finish'}
                       </button>
                     </>
+                  )}
+                  {/* Webcam Modal - Moved inside Formik to access setFieldValue */}
+                  {showCamera && (
+                    <div className={Styles.webcamOverlay}>
+                      <div className={Styles.webcamContainer}>
+                        <div className={Styles.webcamFrame}>
+                          <Webcam
+                            audio={false}
+                            ref={webcamRef}
+                            screenshotFormat="image/jpeg"
+                            width="100%"
+                            videoConstraints={{ facingMode: 'user' }}
+                          />
+                        </div>
+                        <div className={Styles.webcamControls}>
+                          <button
+                            className={Styles.cancelBtn}
+                            onClick={() => setShowCamera(false)}
+                            type="button"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className={Styles.captureBtn}
+                            onClick={() => {
+                              const imageSrc = webcamRef.current.getScreenshot();
+                              if (imageSrc) {
+                                setFieldValue('selfie', imageSrc);
+                                setShowCamera(false);
+                              }
+                            }}
+                            type="button"
+                          >
+                            Capture
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </Form>
               )}

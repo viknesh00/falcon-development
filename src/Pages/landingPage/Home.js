@@ -2,8 +2,10 @@ import React from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const securityCards = [
     {
       icon: '/assets/images/checklist.png', // directly use URL
@@ -56,7 +58,7 @@ const Home = () => {
               </p>
 
               <div className="hero-actions">
-                <button className="btn-primary">
+                <button onClick={() => navigate('/signup')} className="btn-primary">
                   Open an account <span>→</span>
                 </button>
                 <button className="btn-secondary">How Falcon works?</button>
