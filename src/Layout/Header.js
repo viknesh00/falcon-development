@@ -3,6 +3,12 @@ import React, { useState } from "react";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="header-inner">
@@ -15,14 +21,14 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#how">How it Works?</a>
-          <a href="#features">Features</a>
-          <a href="#compliance">Compliance</a>
+          <button onClick={() => scrollToSection("about")}>About</button>
+          <button onClick={() => scrollToSection("services")}>Services</button>
+          <button onClick={() => scrollToSection("how")}>How it Works?</button>
+          <button onClick={() => scrollToSection("features")}>Features</button>
+          <button onClick={() => scrollToSection("compliance")}>Compliance</button>
         </nav>
 
-        {/* Actions (IMPORTANT: open class added) */}
+        {/* Actions */}
         <div className={`actions ${menuOpen ? "open" : ""}`}>
           <button className="btn-outline">Sign in</button>
           <button className="btn-solid">Register</button>

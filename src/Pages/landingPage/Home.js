@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 
@@ -51,7 +51,7 @@ const Home = () => {
     <div>
       <Header />
       <div className="scroll-container">
-        <section className="hero">
+        <section className="hero" id="about">
           <div className="section-inner">
             {/* TEXT */}
             <div className="hero-content">
@@ -119,13 +119,13 @@ const Home = () => {
               </div>
 
               <div className="connector right">
-                <img src="assets/images/dollar.png" alt="Connector" className="icon-image" />
+                <img src="/assets/images/dollar.png" alt="Connector" className="icon-image" />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="how-it-works" id="how-it-works">
+        <section className="how-it-works" id="how">
           <div className="section-inner">
             <h2 className="section-title">How Falcon works?</h2>
 
@@ -167,7 +167,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="loan-process">
+        <section className="loan-process" id="services">
           <div className="section-inner">
             {/* LEFT IMAGE */}
             <div className="loan-image animate-fade-in-left">
@@ -215,7 +215,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="security-section">
+        <section className="security-section" id="compliance">
           <div className="section-inner">
             <h2 className="fade-up">Security, Compliance & Trust</h2>
             <p className="fade-up">
@@ -245,7 +245,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="features-section">
+        <section className="features-section" id="features">
           <div className="section-inner">
             <h2>Features</h2>
             <p className="subtitle">Everything you need. Nothing you don’t.</p>

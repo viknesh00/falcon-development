@@ -111,17 +111,25 @@ body {
 .nav {
   display: flex;
   gap: 28px;
+  background: transparent;
 }
 
-.nav a {
+.nav button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+
   color: var(--muted);
-  text-decoration: none;
   font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+
   position: relative;
   transition: var(--transition-fast);
 }
 
-.nav a::after {
+.nav button::after {
   content: "";
   position: absolute;
   left: 0;
@@ -132,13 +140,16 @@ body {
   transition: var(--transition-fast);
 }
 
-.nav a:hover {
+.nav button:hover,
+.nav button:focus-visible {
   color: var(--white);
 }
 
-.nav a:hover::after {
+.nav button:hover::after,
+.nav button:focus-visible::after {
   width: 100%;
 }
+
 
 /* Header Buttons */
 .actions {
@@ -1204,7 +1215,7 @@ body {
   }
 
   /* Nav links */
-  .nav a {
+  .nav button {
     font-size: 1rem;
   }
 
