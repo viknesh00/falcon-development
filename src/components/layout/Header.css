@@ -8,32 +8,27 @@
   background: transparent;
   padding: 18px 0;
   animation: slideDown 0.8s ease forwards;
-  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    background 0.4s ease,
+    backdrop-filter 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .header.scrolled {
-  background: linear-gradient(90deg,
-      var(--primary-dark),
-      var(--primary),
-      var(--primary-light));
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--primary-light));
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header::after {
-  content: "";
+  content: '';
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 1000;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg,
-      transparent,
-      #3bd28d,
-      #28b36f,
-      #3bd28d,
-      transparent);
+  background: linear-gradient(90deg, transparent, #3bd28d, #28b36f, #3bd28d, transparent);
   box-shadow: 0 0 12px rgba(40, 179, 111, 0.6);
 }
 
@@ -85,7 +80,7 @@
 }
 
 .nav button::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -6px;
@@ -161,7 +156,9 @@
   height: 2px;
   background: currentColor;
   transform-origin: center;
-  transition: transform 0.3s ease, opacity 0.2s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
 }
 
 .hamburger span:nth-child(1) {
@@ -200,10 +197,12 @@
   }
 
   .header.scrolled {
-    background: linear-gradient(90deg,
-        var(--primary-dark),
-        var(--primary),
-        var(--primary-light)) !important;
+    background: linear-gradient(
+      90deg,
+      var(--primary-dark),
+      var(--primary),
+      var(--primary-light)
+    ) !important;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }

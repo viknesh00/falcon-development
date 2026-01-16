@@ -1,20 +1,19 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { getCookie } from "./Cookies";
-
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { getCookie } from './Cookies';
 
 const RoleBasedRedirect = () => {
-    const role = getCookie("role"); // or get from localStorage if you store it there
+  const role = getCookie('role'); // or get from localStorage if you store it there
 
-    const roleDefaultRoute = {
-        "Admin": "/employees",
-        "Manager": "/employees",
-        "Employee": "/timesheet",
-    };
+  const roleDefaultRoute = {
+    Admin: '/employees',
+    Manager: '/employees',
+    Employee: '/timesheet',
+  };
 
-    const defaultRoute = roleDefaultRoute[role] || "/dashboard";
+  const defaultRoute = roleDefaultRoute[role] || '/dashboard';
 
-    return <Navigate to={defaultRoute} replace />;
+  return <Navigate to={defaultRoute} replace />;
 };
 
 export default RoleBasedRedirect;

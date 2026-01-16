@@ -1,8 +1,8 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-export const ToastSuccess = (msg = "") => {
+export const ToastSuccess = (msg = '') => {
   toast.success(msg, {
-    position: "top-center",
+    position: 'top-center',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -11,9 +11,9 @@ export const ToastSuccess = (msg = "") => {
     progress: undefined,
   });
 };
-export const ToastError = (msg = "") => {
+export const ToastError = (msg = '') => {
   toast.error(msg, {
-    position: "top-center",
+    position: 'top-center',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,

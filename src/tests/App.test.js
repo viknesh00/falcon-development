@@ -3,6 +3,6 @@ import App from '../App';
 
 test('renders Falcon brand name', () => {
   render(<App />);
-  const brandElement = screen.getByText(/Falcon/i);
-  expect(brandElement).toBeInTheDocument();
+  const brandElements = screen.getAllByText(/Falcon/i);
+  expect(brandElements.length).toBeGreaterThan(0);
 });

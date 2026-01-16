@@ -1,5 +1,5 @@
 .footer-section {
-  background: #0A151A;
+  background: #0a151a;
   min-height: 100vh;
   scroll-snap-align: start;
 }
@@ -48,7 +48,9 @@
   justify-content: center;
   color: #ffffff;
   font-size: 0.95rem;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .socials a:hover {
@@ -80,7 +82,7 @@
 }
 
 .footer-app {
-  background: #141E23;
+  background: #141e23;
   padding: 20px;
   border-radius: 16px;
   width: 220px;
@@ -106,7 +108,9 @@
   border-radius: 12px;
   padding: 10px 12px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
   width: 100%;
 }
 

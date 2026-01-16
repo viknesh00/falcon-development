@@ -1,6 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaGooglePlay, FaApple } from "react-icons/fa";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+  FaGooglePlay,
+  FaApple,
+} from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -16,7 +23,6 @@ const Footer = () => {
             <span>Falcon</span>
           </div>
 
-
           <div className="socials">
             <a href="#" aria-label="Facebook">
               <FaFacebook />
@@ -31,7 +37,6 @@ const Footer = () => {
               <FaTwitter />
             </a>
           </div>
-
         </div>
 
         {/* Links */}
@@ -65,33 +70,32 @@ const Footer = () => {
         </div>
 
         {/* App download */}
-      <div className="footer-app">
-  <h4>Download our App</h4>
+        <div className="footer-app">
+          <h4>Download our App</h4>
 
-  <button className="store-btn">
-    <FaGooglePlay className="store-icon" />
-    <div className="store-text">
-      <small>Get it on</small>
-      <strong>Google Play</strong>
-    </div>
-  </button>
+          <button className="store-btn">
+            <FaGooglePlay className="store-icon" />
+            <div className="store-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </div>
+          </button>
 
-  <button className="store-btn">
-    <FaApple className="store-icon" />
-    <div className="store-text">
-      <small>Download on the</small>
-      <strong>App Store</strong>
-    </div>
-  </button>
-</div>
-
-
+          <button className="store-btn">
+            <FaApple className="store-icon" />
+            <div className="store-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Bottom bar */}
       <div className="footer-bottom">
         <p>
-          © Falcon. All rights reserved.<br />
+          © Falcon. All rights reserved.
+          <br />
           Shariah-compliant financial services. No interest charged. Terms apply.
         </p>
 

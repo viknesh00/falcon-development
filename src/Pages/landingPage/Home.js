@@ -1,50 +1,43 @@
-import React from "react";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import React from 'react';
+import Header from '../../components/layout/Header';
+import Footer from '../../components/layout/Footer';
 import './Home.css';
 
-
 const Home = () => {
-
-
   const securityCards = [
     {
-      icon: "/assets/images/checklist.png", // directly use URL
-      description:
-        "We operate under FCA and PRA guidelines for Collective Investment Schemes.",
+      icon: '/assets/images/checklist.png', // directly use URL
+      description: 'We operate under FCA and PRA guidelines for Collective Investment Schemes.',
     },
     {
-      icon: "/assets/images/evaluation.png",
-      description:
-        "Managed using strict security, governance, and risk controls.",
+      icon: '/assets/images/evaluation.png',
+      description: 'Managed using strict security, governance, and risk controls.',
     },
     {
-      icon: "/assets/images/cash_flow.png",
-      description:
-        "Financial practices follow clear, transparent, and responsible standards.",
+      icon: '/assets/images/cash_flow.png',
+      description: 'Financial practices follow clear, transparent, and responsible standards.',
     },
     {
-      icon: "/assets/images/auditing.png",
-      description:
-        "Every transaction is recorded and auditable for full transparency.",
+      icon: '/assets/images/auditing.png',
+      description: 'Every transaction is recorded and auditable for full transparency.',
     },
   ];
 
   const features = [
     {
-      title: "No Credit Score",
-      text: "We look at your savings history, not a credit file. Perfect for the unbanked.",
-      icon: "/assets/images/credit_score.png",
+      title: 'No Credit Score',
+      text: 'We look at your savings history, not a credit file. Perfect for the unbanked.',
+      icon: '/assets/images/credit_score.png',
     },
     {
-      title: "Pure & Compliant",
-      text: "100% Sharia-compliant Mudarabah structure. No interest, ever.",
-      icon: "/assets/images/enforcement.png",
+      title: 'Pure & Compliant',
+      text: '100% Sharia-compliant Mudarabah structure. No interest, ever.',
+      icon: '/assets/images/enforcement.png',
     },
     {
-      title: "Your Wealth, Shared",
-      text: "Profit-sharing that grows with you. Ethical returns on your deposits.",
-      icon: "/assets/images/profit.png",
+      title: 'Your Wealth, Shared',
+      text: 'Profit-sharing that grows with you. Ethical returns on your deposits.',
+      icon: '/assets/images/profit.png',
     },
   ];
 
@@ -58,23 +51,20 @@ const Home = () => {
             <div className="hero-content">
               <h1>Ethical financing, built to be simple.</h1>
               <p>
-                Falcon is a secure digital platform that helps you manage your wallet,
-                apply for financing, and repay transparently — without interest.
+                Falcon is a secure digital platform that helps you manage your wallet, apply for
+                financing, and repay transparently — without interest.
               </p>
 
               <div className="hero-actions">
                 <button className="btn-primary">
                   Open an account <span>→</span>
                 </button>
-                <button className="btn-secondary">
-                  How Falcon works?
-                </button>
+                <button className="btn-secondary">How Falcon works?</button>
               </div>
             </div>
 
             {/* DASHBOARD */}
             <div className="dashboard">
-
               {/* LEFT */}
               <div className="stat left top">
                 <span>Total balance</span>
@@ -181,7 +171,7 @@ const Home = () => {
               <p className="subtext">Financing designed to be fair and transparent</p>
 
               <ul className="loan-steps">
-                <li className="animate-step" style={{ animationDelay: "0.2s" }}>
+                <li className="animate-step" style={{ animationDelay: '0.2s' }}>
                   <span className="step-number">1</span>
                   <div className="step-text">
                     <strong>Clear loan application</strong>
@@ -189,7 +179,7 @@ const Home = () => {
                   </div>
                 </li>
 
-                <li className="animate-step" style={{ animationDelay: "0.4s" }}>
+                <li className="animate-step" style={{ animationDelay: '0.4s' }}>
                   <span className="step-number">2</span>
                   <div className="step-text">
                     <strong>Approval & contract</strong>
@@ -197,7 +187,7 @@ const Home = () => {
                   </div>
                 </li>
 
-                <li className="animate-step" style={{ animationDelay: "0.6s" }}>
+                <li className="animate-step" style={{ animationDelay: '0.6s' }}>
                   <span className="step-number">3</span>
                   <div className="step-text">
                     <strong>Instant disbursal</strong>
@@ -205,7 +195,7 @@ const Home = () => {
                   </div>
                 </li>
 
-                <li className="animate-step" style={{ animationDelay: "0.8s" }}>
+                <li className="animate-step" style={{ animationDelay: '0.8s' }}>
                   <span className="step-number">4</span>
                   <div className="step-text">
                     <strong>Flexible lifecycle</strong>
@@ -220,9 +210,8 @@ const Home = () => {
           <div className="section-inner">
             <h2 className="fade-up">Security, Compliance & Trust</h2>
             <p className="fade-up">
-              We operate under strict FCA/PRA guidelines for Collective Investment
-              Schemes (CIS). Your funds are managed with the highest standards of
-              security and ethics.
+              We operate under strict FCA/PRA guidelines for Collective Investment Schemes (CIS).
+              Your funds are managed with the highest standards of security and ethics.
             </p>
 
             <div className="cards-container">
@@ -233,9 +222,7 @@ const Home = () => {
                   style={{ animationDelay: `${0.3 + idx * 0.2}s` }}
                 >
                   <div className="icon">
-
                     <span className="icon-bg"></span>
-
 
                     <img src={card.icon} alt={`Security icon ${idx + 1}`} />
                   </div>
@@ -280,7 +267,6 @@ const Home = () => {
             <Footer />
           </div>
         </section>
-
       </div>
     </div>
   );

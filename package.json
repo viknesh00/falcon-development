@@ -13,7 +13,7 @@
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
     "react-phone-number-input": "^3.4.14",
-    "react-router-dom": "^7.12.0",
+    "react-router-dom": "^6.30.3",
     "react-scripts": "5.0.1",
     "react-toastify": "^11.0.5",
     "web-vitals": "^2.1.4"
@@ -23,18 +23,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md,json}\""
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,css,scss}": [
-      "npm test -- --watchAll=false",
-      "npm run build"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+    "src/**/*.{js,jsx,ts,tsx,css,scss,md,json}": [
+      "prettier --write"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "npm test -- --watchAll=false"
     ]
   },
   "browserslist": {
@@ -50,7 +49,13 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.0"
   }
 }

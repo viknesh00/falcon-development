@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import './Auth.css';
+import './OtpModal.css';
+import './GeneralAuth.css';
 
 const OtpModal = ({ isOpen, onVerify, onClose }) => {
   const [otp, setOtp] = useState(['', '', '', '', '']);
@@ -45,24 +46,24 @@ const OtpModal = ({ isOpen, onVerify, onClose }) => {
             />
           ))}
         </div>
-        <button 
-          className="btn-primary-modern" 
+        <button
+          className="btn-primary-modern"
           onClick={() => onVerify(otp.join(''))}
           disabled={otp.join('').length < 5}
         >
           Verify OTP
         </button>
-        <button 
-          className="btn-text" 
-          style={{ 
-            marginTop: '16px', 
-            color: 'var(--gray)', 
-            fontSize: '14px', 
-            border: 'none', 
-            background: 'none', 
+        <button
+          className="btn-text"
+          style={{
+            marginTop: '16px',
+            color: 'var(--gray)',
+            fontSize: '14px',
+            border: 'none',
+            background: 'none',
             cursor: 'pointer',
-            fontWeight: 600
-          }} 
+            fontWeight: 600,
+          }}
           onClick={onClose}
         >
           Cancel

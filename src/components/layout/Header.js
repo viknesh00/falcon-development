@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Check scroll position from multiple sources
-      const scrollContainer = document.querySelector(".scroll-container");
+      const scrollContainer = document.querySelector('.scroll-container');
       const body = document.body;
       const html = document.documentElement;
 
@@ -32,14 +32,14 @@ const Header = () => {
     };
 
     // Add listeners to all possible scroll sources
-    const scrollContainer = document.querySelector(".scroll-container");
+    const scrollContainer = document.querySelector('.scroll-container');
 
     if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll);
+      scrollContainer.addEventListener('scroll', handleScroll);
     }
 
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('scroll', handleScroll);
 
     // Check initial state
     handleScroll();
@@ -47,25 +47,21 @@ const Header = () => {
     // Cleanup
     return () => {
       if (scrollContainer) {
-        scrollContainer.removeEventListener("scroll", handleScroll);
+        scrollContainer.removeEventListener('scroll', handleScroll);
       }
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
   return (
-    <header
-      className={`header ${scrolled ? "scrolled" : ""} ${
-        menuOpen ? "menu-open" : ""
-      }`}
-    >
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <div className="header-inner">
         {/* Logo */}
         <div className="logo">
@@ -74,25 +70,27 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <button onClick={() => scrollToSection("about")}>About</button>
-          <button onClick={() => scrollToSection("services")}>Services</button>
-          <button onClick={() => scrollToSection("how")}>How it Works?</button>
-          <button onClick={() => scrollToSection("features")}>Features</button>
-          <button onClick={() => scrollToSection("compliance")}>
-            Compliance
-          </button>
+        <nav className={`nav ${menuOpen ? 'open' : ''}`}>
+          <button onClick={() => scrollToSection('about')}>About</button>
+          <button onClick={() => scrollToSection('services')}>Services</button>
+          <button onClick={() => scrollToSection('how')}>How it Works?</button>
+          <button onClick={() => scrollToSection('features')}>Features</button>
+          <button onClick={() => scrollToSection('compliance')}>Compliance</button>
         </nav>
 
         {/* Actions */}
-        <div className={`actions ${menuOpen ? "open" : ""}`}>
-          <button onClick={() => navigate("/login")} className="btn-outline">Sign in</button>
-          <button onClick={() => navigate("/signup")} className="btn-solid">Register</button>
+        <div className={`actions ${menuOpen ? 'open' : ''}`}>
+          <button onClick={() => navigate('/login')} className="btn-outline">
+            Sign in
+          </button>
+          <button onClick={() => navigate('/signup')} className="btn-solid">
+            Register
+          </button>
         </div>
 
         {/* Hamburger */}
         <button
-          className={`hamburger ${menuOpen ? "active" : ""}`}
+          className={`hamburger ${menuOpen ? 'active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}

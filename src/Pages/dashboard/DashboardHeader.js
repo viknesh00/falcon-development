@@ -10,24 +10,33 @@ const DashboardHeader = () => {
           <span>Falcon Finance</span>
         </div>
         <nav className="dash-main-nav">
-          <a href="#" className="active">Home</a>
+          <a href="#" className="active">
+            Home
+          </a>
           <a href="#">Accounts</a>
           <a href="#">Send Money</a>
           <a href="#">Cards</a>
           <a href="#">Loans</a>
         </nav>
       </div>
-      
+
       <div className="header-right">
         <div className="search-bar">
           <FiSearch className="search-icon" />
           <input type="text" placeholder="Search account, transactions..." />
         </div>
-        
+
         <div className="header-actions">
-          <button className="icon-btn" title="Help"><FiHelpCircle /></button>
-          <button className="icon-btn" title="Notifications"><FiBell /><span className="badge">3</span></button>
-          <button className="icon-btn" title="Logout"><FiPower /></button>
+          <button className="icon-btn" title="Help">
+            <FiHelpCircle />
+          </button>
+          <button className="icon-btn" title="Notifications">
+            <FiBell />
+            <span className="badge">3</span>
+          </button>
+          <button className="icon-btn" title="Logout">
+            <FiPower />
+          </button>
           <div className="profile-pill">
             <div className="avatar">DT</div>
             <span>Dineshkumar</span>
@@ -82,7 +91,8 @@ const DashboardHeader = () => {
           border-bottom: 2px solid transparent;
           transition: all 0.2s;
         }
-        .dash-main-nav a.active, .dash-main-nav a:hover {
+        .dash-main-nav a.active,
+        .dash-main-nav a:hover {
           color: var(--white);
           border-bottom-color: var(--accent);
         }

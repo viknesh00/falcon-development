@@ -5,14 +5,9 @@
   --primary: #0f4c3a;
   --primary-light: #1f6b52;
 
-  --primary-gradient: linear-gradient(90deg,
-      transparent,
-      #3bd28d,
-      #28b36f,
-      #3bd28d,
-      transparent);
+  --primary-gradient: linear-gradient(90deg, transparent, #3bd28d, #28b36f, #3bd28d, transparent);
 
-  --accent: #1D9B5E;
+  --accent: #1d9b5e;
   --accent-light: #6cff9a;
 
   --white: #ffffff;

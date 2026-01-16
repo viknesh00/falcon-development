@@ -1,21 +1,34 @@
 import React from 'react';
 import DashboardHeader from './DashboardHeader';
-import { FiCreditCard, FiArrowUpRight, FiLayers, FiShield, FiTrendingUp, FiUser, FiInfo, FiDollarSign } from 'react-icons/fi';
+import {
+  FiCreditCard,
+  FiArrowUpRight,
+  FiLayers,
+  FiShield,
+  FiTrendingUp,
+  FiUser,
+  FiInfo,
+  FiDollarSign,
+} from 'react-icons/fi';
 
 const Dashboard = () => {
   return (
     <div className="dashboard-layout">
       <DashboardHeader />
-      
+
       <main className="dash-content">
         <div className="dash-hero-row">
           <div className="dash-hero">
-              <h1>Welcome back, Dineshkumar Thiruppathi</h1>
-              <p>Last logged in at 12/01/26, 08:50 AM</p>
+            <h1>Welcome back, Dineshkumar Thiruppathi</h1>
+            <p>Last logged in at 12/01/26, 08:50 AM</p>
           </div>
           <div className="hero-actions-dash">
-            <button className="btn-primary-dash"><FiDollarSign /> Apply for a Loan</button>
-            <button className="btn-outline-dash"><FiCreditCard /> Loan Payment</button>
+            <button className="btn-primary-dash">
+              <FiDollarSign /> Apply for a Loan
+            </button>
+            <button className="btn-outline-dash">
+              <FiCreditCard /> Loan Payment
+            </button>
           </div>
         </div>
 
@@ -56,22 +69,34 @@ const Dashboard = () => {
 
             <div className="services-grid">
               <div className="service-card">
-                <div className="icon-wrapper blue"><FiTrendingUp /></div>
+                <div className="icon-wrapper blue">
+                  <FiTrendingUp />
+                </div>
                 <h3>Investment Portfolio</h3>
                 <p>Track your Sharia-compliant wealth growth.</p>
-                <button className="link-btn">Explore <FiArrowUpRight /></button>
+                <button className="link-btn">
+                  Explore <FiArrowUpRight />
+                </button>
               </div>
               <div className="service-card">
-                <div className="icon-wrapper green"><FiShield /></div>
+                <div className="icon-wrapper green">
+                  <FiShield />
+                </div>
                 <h3>Protection Plans</h3>
                 <p>Secure your family's future with Takaful plans.</p>
-                <button className="link-btn">View Plans <FiArrowUpRight /></button>
+                <button className="link-btn">
+                  View Plans <FiArrowUpRight />
+                </button>
               </div>
               <div className="service-card">
-                <div className="icon-wrapper gold"><FiLayers /></div>
+                <div className="icon-wrapper gold">
+                  <FiLayers />
+                </div>
                 <h3>Fixed Deposits</h3>
                 <p>Earn high ethical returns on your idle funds.</p>
-                <button className="link-btn">Open Now <FiArrowUpRight /></button>
+                <button className="link-btn">
+                  Open Now <FiArrowUpRight />
+                </button>
               </div>
             </div>
           </div>
@@ -79,7 +104,9 @@ const Dashboard = () => {
           {/* Right: Quick Links or Sidebar */}
           <div className="dash-side-pane">
             <div className="side-card profile-info-card">
-              <h3><FiUser /> Account Details</h3>
+              <h3>
+                <FiUser /> Account Details
+              </h3>
               <div className="detail-row">
                 <span className="label">Account Holder</span>
                 <span className="value">Dineshkumar Thiruppathi</span>
@@ -96,16 +123,26 @@ const Dashboard = () => {
                 <span className="label">IBAN</span>
                 <span className="value">GB82 FALC 6016 1324 8824</span>
               </div>
-              <button className="btn-text-sm"><FiInfo /> Manage Identity</button>
+              <button className="btn-text-sm">
+                <FiInfo /> Manage Identity
+              </button>
             </div>
 
             <div className="side-card">
               <h3>Quick Actions</h3>
               <div className="action-links">
-                <a href="#"><FiArrowUpRight /> Send Money</a>
-                <a href="#"><FiArrowUpRight /> Add Beneficiary</a>
-                <a href="#"><FiArrowUpRight /> Download Statement</a>
-                <a href="#"><FiArrowUpRight /> Reward Points</a>
+                <a href="#">
+                  <FiArrowUpRight /> Send Money
+                </a>
+                <a href="#">
+                  <FiArrowUpRight /> Add Beneficiary
+                </a>
+                <a href="#">
+                  <FiArrowUpRight /> Download Statement
+                </a>
+                <a href="#">
+                  <FiArrowUpRight /> Reward Points
+                </a>
               </div>
             </div>
           </div>
@@ -272,10 +309,19 @@ const Dashboard = () => {
           font-size: 24px;
           margin-bottom: 20px;
         }
-        .icon-wrapper.blue { background: #eef2ff; color: #4f46e5; }
-        .icon-wrapper.green { background: #ecfdf5; color: #10b981; }
-        .icon-wrapper.gold { background: #fffbeb; color: #d97706; }
-        
+        .icon-wrapper.blue {
+          background: #eef2ff;
+          color: #4f46e5;
+        }
+        .icon-wrapper.green {
+          background: #ecfdf5;
+          color: #10b981;
+        }
+        .icon-wrapper.gold {
+          background: #fffbeb;
+          color: #d97706;
+        }
+
         .service-card h3 {
           font-size: 16px;
           margin-bottom: 8px;

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { getCookie } from "./Cookies";
-import { cookieKeys } from "./Cookies";
-import { cookieObj } from "../models/cookieObj";
+import axios from 'axios';
+import { getCookie } from './Cookies';
+import { cookieKeys } from './Cookies';
+import { cookieObj } from '../models/cookieObj';
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -13,7 +13,7 @@ function getHeaders(token) {
 }
 
 export const getRequest = async (endpoint) => {
-  const token = getCookie("token");
+  const token = getCookie('token');
   const url = `${BASE_URL}${endpoint}`;
 
   try {
@@ -22,32 +22,32 @@ export const getRequest = async (endpoint) => {
   } catch (error) {
     if (error.response?.status === 401) {
       cookieKeys(cookieObj, 0);
-      window.location.href = "/sign-in";
+      window.location.href = '/sign-in';
     }
     throw error;
   }
 };
 
 export const postRequest = async (endpoint, data, isBlob = false) => {
-  const token = getCookie("token");
+  const token = getCookie('token');
   const url = `${BASE_URL}${endpoint}`;
   const options = token ? { headers: getHeaders(token) } : {};
 
-  if (isBlob) options.responseType = "blob";
+  if (isBlob) options.responseType = 'blob';
 
   try {
     return await axios.post(url, data, options);
   } catch (error) {
     if (error.response?.status === 401) {
       cookieKeys(cookieObj, 0);
-      window.location.href = "/sign-in";
+      window.location.href = '/sign-in';
     }
     throw error;
   }
 };
 
 export const putRequest = async (endpoint, data) => {
-  const token = getCookie("token");
+  const token = getCookie('token');
   const url = `${BASE_URL}${endpoint}`;
   const options = token ? { headers: getHeaders(token) } : {};
 
@@ -56,14 +56,14 @@ export const putRequest = async (endpoint, data) => {
   } catch (error) {
     if (error.response?.status === 401) {
       cookieKeys(cookieObj, 0);
-      window.location.href = "/sign-in";
+      window.location.href = '/sign-in';
     }
     throw error;
   }
 };
 
 export const deleteRequest = async (endpoint) => {
-  const token = getCookie("token");
+  const token = getCookie('token');
   const url = `${BASE_URL}${endpoint}`;
   const options = token ? { headers: getHeaders(token) } : {};
 
@@ -72,7 +72,7 @@ export const deleteRequest = async (endpoint) => {
   } catch (error) {
     if (error.response?.status === 401) {
       cookieKeys(cookieObj, 0);
-      window.location.href = "/sign-in";
+      window.location.href = '/sign-in';
     }
     throw error;
   }

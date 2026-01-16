@@ -1,39 +1,39 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles"; // If using MUI v5, @mui/styles is separate
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles'; // If using MUI v5, @mui/styles is separate
 
 const useStyles = makeStyles({
   mask: {
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    background: "rgba(255, 255, 255, 0.7)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    background: 'rgba(255, 255, 255, 0.7)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     zIndex: 9999,
   },
   balls: {
-    display: "flex",
-    gap: "10px",
+    display: 'flex',
+    gap: '10px',
   },
   ball: {
-    width: "15px",
-    height: "15px",
-    borderRadius: "50%",
-    backgroundColor: "#3f51b5",
-    animation: "$bounce 0.6s infinite alternate",
-    "&:nth-child(2)": {
-      animationDelay: "0.2s",
+    width: '15px',
+    height: '15px',
+    borderRadius: '50%',
+    backgroundColor: '#3f51b5',
+    animation: '$bounce 0.6s infinite alternate',
+    '&:nth-child(2)': {
+      animationDelay: '0.2s',
     },
-    "&:nth-child(3)": {
-      animationDelay: "0.4s",
+    '&:nth-child(3)': {
+      animationDelay: '0.4s',
     },
   },
-  "@keyframes bounce": {
-    "0%": { transform: "translateY(0)" },
-    "100%": { transform: "translateY(-20px)" },
+  '@keyframes bounce': {
+    '0%': { transform: 'translateY(0)' },
+    '100%': { transform: 'translateY(-20px)' },
   },
 });
 

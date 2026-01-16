@@ -2,10 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from './AuthLayout';
 import OtpModal from './OtpModal';
-import { 
-  FiChevronRight, FiCheck, FiMail, FiLock, FiSmartphone, FiUser, FiActivity, FiArrowRight, FiUpload, FiCamera, FiRefreshCw
+import {
+  FiChevronRight,
+  FiCheck,
+  FiMail,
+  FiLock,
+  FiSmartphone,
+  FiUser,
+  FiActivity,
+  FiArrowRight,
+  FiUpload,
+  FiCamera,
+  FiRefreshCw,
 } from 'react-icons/fi';
 import { ToastSuccess } from '../../api/ToastMsg';
+import './SignupStepper.css';
+import './GeneralAuth.css';
 
 const SignupStepper = () => {
   const [step, setStep] = useState(1);
@@ -40,7 +52,7 @@ const SignupStepper = () => {
 
   const startKYC = () => {
     if (!docFile || !selfieFile) {
-      alert("Please upload your document and take a selfie first.");
+      alert('Please upload your document and take a selfie first.');
       return;
     }
     setLoading(true);
@@ -71,7 +83,7 @@ const SignupStepper = () => {
         videoRef.current.srcObject = stream;
       }
     } catch (err) {
-      console.error("Error accessing camera:", err);
+      console.error('Error accessing camera:', err);
       // Fallback for demo
     }
   };
@@ -86,12 +98,12 @@ const SignupStepper = () => {
     // Stop stream
     const stream = videoRef.current.srcObject;
     const tracks = stream.getTracks();
-    tracks.forEach(track => track.stop());
+    tracks.forEach((track) => track.stop());
     setIsCameraOpen(false);
   };
 
   const handleFinalSubmit = () => {
-    ToastSuccess("Account created successfully!");
+    ToastSuccess('Account created successfully!');
     navigate('/dashboard');
   };
 
@@ -106,32 +118,34 @@ const SignupStepper = () => {
             </div>
             <div className="form-group-modern">
               <label>Email address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 className="modern-input"
                 placeholder="name@example.com"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
             <div className="form-group-modern">
               <label>Set a quick passcode</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 className="modern-input"
                 placeholder="5-digit code"
                 maxLength="5"
                 value={formData.passcode}
-                onChange={(e) => setFormData({...formData, passcode: e.target.value.replace(/\D/g, '')})}
+                onChange={(e) =>
+                  setFormData({ ...formData, passcode: e.target.value.replace(/\D/g, '') })
+                }
               />
               <p className="passcode-hint">You'll use this to log in securely.</p>
             </div>
-            <button 
-              className="btn-primary-modern" 
+            <button
+              className="btn-primary-modern"
               onClick={handleNext}
               disabled={!formData.email || formData.passcode.length < 5 || loading}
             >
-              {loading ? "Processing..." : "Continue"}
+              {loading ? 'Processing...' : 'Continue'}
             </button>
           </div>
         );
@@ -145,44 +159,46 @@ const SignupStepper = () => {
             <div style={{ display: 'flex', gap: '16px' }}>
               <div className="form-group-modern" style={{ flex: 1 }}>
                 <label>First Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   className="modern-input"
                   placeholder="John"
                   value={formData.firstName}
-                  onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 />
               </div>
               <div className="form-group-modern" style={{ flex: 1 }}>
                 <label>Last Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   className="modern-input"
                   placeholder="Doe"
                   value={formData.lastName}
-                  onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 />
               </div>
             </div>
             <div className="form-group-modern">
               <label>Mobile Number</label>
-              <input 
-                type="tel" 
+              <input
+                type="tel"
                 className="modern-input"
                 placeholder="+44 7123 456789"
                 value={formData.mobileNumber}
-                onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
               />
             </div>
-            <button 
-              className="btn-primary-modern" 
+            <button
+              className="btn-primary-modern"
               onClick={() => setOtpModalOpen(true)}
-              disabled={!formData.firstName || !formData.lastName || !formData.mobileNumber || loading}
+              disabled={
+                !formData.firstName || !formData.lastName || !formData.mobileNumber || loading
+              }
             >
               Verify Mobile <FiSmartphone style={{ marginLeft: '8px' }} />
             </button>
-            <OtpModal 
-              isOpen={otpModalOpen} 
+            <OtpModal
+              isOpen={otpModalOpen}
               onClose={() => setOtpModalOpen(false)}
               onVerify={(otp) => {
                 setOtpModalOpen(false);
@@ -234,7 +250,9 @@ const SignupStepper = () => {
                         <img src={docFile} alt="Doc Preview" className="doc-upload-preview" />
                       ) : (
                         <div className="kyc-initial">
-                          <FiUpload style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }} />
+                          <FiUpload
+                            style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }}
+                          />
                           <p style={{ fontSize: '13px' }}>Upload {docType.replace('_', ' ')}</p>
                         </div>
                       )}
@@ -259,7 +277,9 @@ const SignupStepper = () => {
                         <img src={selfieFile} alt="Selfie" className="doc-upload-preview" />
                       ) : (
                         <div className="kyc-initial">
-                          <FiCamera style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }} />
+                          <FiCamera
+                            style={{ fontSize: '32px', color: 'var(--primary)', opacity: 0.5 }}
+                          />
                           <p style={{ fontSize: '13px' }}>Take a Selfie</p>
                         </div>
                       )}
@@ -270,46 +290,62 @@ const SignupStepper = () => {
                 {isCameraOpen && (
                   <div className="modal-overlay">
                     <div className="otp-modal" style={{ maxWidth: '500px', padding: '20px' }}>
-                      <div className="camera-container" style={{ height: '350px', background: '#000', borderRadius: '16px', overflow: 'hidden' }}>
+                      <div
+                        className="camera-container"
+                        style={{
+                          height: '350px',
+                          background: '#000',
+                          borderRadius: '16px',
+                          overflow: 'hidden',
+                        }}
+                      >
                         <video ref={videoRef} autoPlay className="camera-video" />
                         <button className="capture-btn" onClick={captureSelfie}></button>
                       </div>
-                      <button className="btn-text" style={{ marginTop: '16px' }} onClick={() => setIsCameraOpen(false)}>Cancel</button>
+                      <button
+                        className="btn-text"
+                        style={{ marginTop: '16px' }}
+                        onClick={() => setIsCameraOpen(false)}
+                      >
+                        Cancel
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
             ) : (
               <div className="kyc-visual-container">
-                  {kycProgress === 1 && (
-                    <div className="kyc-scanning">
-                      <div className="scan-line"></div>
-                      <FiActivity />
-                      <p>Scanning {docType.replace('_', ' ')}...</p>
+                {kycProgress === 1 && (
+                  <div className="kyc-scanning">
+                    <div className="scan-line"></div>
+                    <FiActivity />
+                    <p>Scanning {docType.replace('_', ' ')}...</p>
+                  </div>
+                )}
+                {kycProgress === 2 && (
+                  <div className="kyc-scanning face">
+                    <div className="scan-line"></div>
+                    <FiUser />
+                    <p>Verifying Face Match...</p>
+                  </div>
+                )}
+                {kycProgress === 3 && (
+                  <div className="kyc-success">
+                    <div className="check-circle">
+                      <FiCheck />
                     </div>
-                  )}
-                  {kycProgress === 2 && (
-                    <div className="kyc-scanning face">
-                      <div className="scan-line"></div>
-                      <FiUser />
-                      <p>Verifying Face Match...</p>
-                    </div>
-                  )}
-                  {kycProgress === 3 && (
-                    <div className="kyc-success">
-                      <div className="check-circle"><FiCheck /></div>
-                      <p>Verification Successful!</p>
-                    </div>
-                  )}
-                </div>
+                    <p>Verification Successful!</p>
+                  </div>
+                )}
+              </div>
             )}
 
-            <button 
-              className="btn-primary-modern" 
+            <button
+              className="btn-primary-modern"
               onClick={kycProgress === 3 ? handleNext : startKYC}
               disabled={loading || (kycProgress === 0 && (!docFile || !selfieFile))}
             >
-              {kycProgress === 3 ? "Continue" : (loading ? "Processing..." : "Verify Identity")}
+              {kycProgress === 3 ? 'Continue' : loading ? 'Processing...' : 'Verify Identity'}
             </button>
           </div>
         );
@@ -321,10 +357,7 @@ const SignupStepper = () => {
               <h1>You're All Set!</h1>
               <p>Your ethical finance journey starts here. Welcome to the future of banking.</p>
             </div>
-            <button 
-              className="btn-primary-modern success-btn" 
-              onClick={handleFinalSubmit}
-            >
+            <button className="btn-primary-modern success-btn" onClick={handleFinalSubmit}>
               Go to Dashboard <FiArrowRight />
             </button>
           </div>
@@ -339,17 +372,23 @@ const SignupStepper = () => {
       <div className="modern-progress-bar">
         <div className="modern-progress-fill" style={{ width: `${progress}%` }}></div>
       </div>
-      
-      <div className="auth-form-container">
-        {renderStep()}
-      </div>
+
+      <div className="auth-form-container">{renderStep()}</div>
 
       {step === 1 && (
-        <div className="auth-footer-text" style={{ textAlign: 'center', marginTop: '32px', fontSize: '14px', color: 'var(--gray)' }}>
-          Already have an account? <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 600, textDecoration: 'none' }}>Sign In</Link>
+        <div
+          className="auth-footer-text"
+          style={{ textAlign: 'center', marginTop: '32px', fontSize: '14px', color: 'var(--gray)' }}
+        >
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            style={{ color: 'var(--primary)', fontWeight: 600, textDecoration: 'none' }}
+          >
+            Sign In
+          </Link>
         </div>
       )}
-
     </AuthLayout>
   );
 };

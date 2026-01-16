@@ -1,13 +1,13 @@
 export const getCookie = (cname) => {
-  const name = cname + "=";
+  const name = cname + '=';
   const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(";");
+  const ca = decodedCookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) === " ") c = c.substring(1);
+    while (c.charAt(0) === ' ') c = c.substring(1);
     if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
   }
-  return "";
+  return '';
 };
 
 export const setCookie = (name, value, expires) => {
@@ -18,7 +18,7 @@ export const setCookie = (name, value, expires) => {
     cookieData += `expires=${d.toGMTString()};`;
   }
 
-  cookieData += "path=/;";
+  cookieData += 'path=/;';
   document.cookie = cookieData;
 };
 
@@ -27,5 +27,5 @@ export const cookieKeys = (user, time) => {
   userList.forEach((item) => {
     setCookie(item, user[item], time);
   });
-  console.log("Cookies set:", userList);
+  console.log('Cookies set:', userList);
 };
