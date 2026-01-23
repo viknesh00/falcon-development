@@ -33,16 +33,31 @@ export const validateStep1 = (values) => {
 export const validateStep2 = (values) => {
   const errors = {};
 
-  if (!values.fullName) {
-    errors.fullName = 'Full name is required';
+  if (!values.firstName) {
+    errors.firstName = 'First Name is required';
+  }
+  if (!values.lastName) {
+    errors.lastName = 'Last Name is required';
   }
 
   if (!values.dob) {
     errors.dob = 'Date of birth is required';
   }
 
-  if (!values.homeAddress) {
-    errors.homeAddress = 'Home address is required';
+  if (!values.buildingNumber) {
+    errors.buildingNumber = 'Building No is required';
+  }
+  if (!values.flatNumber) {
+    errors.flatNumber = 'Flat No is required';
+  }
+  if (!values.street) {
+    errors.street = 'Street is required';
+  }
+  if (!values.city) {
+    errors.city = 'City is required';
+  }
+  if (!values.postalCode) {
+    errors.postalCode = 'Postal Code is required';
   }
 
   if (!values.employmentStatus) {

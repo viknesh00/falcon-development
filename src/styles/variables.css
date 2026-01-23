@@ -4,6 +4,7 @@
   --primary-dark: #071f17;
   --primary: #0f4c3a;
   --primary-light: #1f6b52;
+  --primary-darker: #143423;
 
   --primary-gradient: linear-gradient(90deg, transparent, #3bd28d, #28b36f, #3bd28d, transparent);
 
@@ -11,8 +12,22 @@
   --accent-light: #6cff9a;
 
   --white: #ffffff;
+  --muted-light: #dfdfdf;
   --muted: #cfd8d3;
   --dark: #0b1f19;
+  --error: #e02424;
+  --error-light: #ff6b6b;
+  --warning: #ffb700;
+  --success: #28a745;
+  --success-light: #6cff9a;
+  --info: #17a2b8;
+  --info-light: #63e6f3;
+  --background: #0a1f19;
+  --background-light: #0f2a23;
+  --border-color: #1c3b32;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 12px;
 
   --radius-lg: 20px;
   --radius-full: 999px;

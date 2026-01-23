@@ -1,0 +1,296 @@
+/* Calendar Popup */
+.calendarPopup {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 1000;
+  background: #f7f7f7;
+  border-radius: 16px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 426px;
+  max-width: 90vw;
+  height: 396px;
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 4px;
+}
+
+.navButton {
+  background: #ffffff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1a202c;
+  box-shadow: 0px 1px 1px 0px rgba(0, 14, 51, 0.05);
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.navButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.navIcon.rotate {
+  transform: rotate(180deg);
+}
+
+.headerTitle {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.selectorButton {
+  background: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.selectorButton:hover {
+  background: #fdfdfd;
+}
+
+.dropdownCarret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #10b981; /* Green triangle pointing up/angle */
+  /* Or use a clip-path for an angled triangle corner? 
+      The image shows a small green triangle in the corner. 
+      Let's simulate a small green triangle accent. */
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* For now, let's keep the triangle simple or use an SVG similar to the image 
+   The image shows text "April" and a small green triangle ^ next to it? 
+   Actually, it looks like a small green triangle in the text flow. */
+.greenTriangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #10b981; /* Points down? */
+  border-radius: 2px;
+}
+
+/* Grids */
+.weekDaysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.weekDay {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px; /* Space between the "cards" */
+}
+
+.dayCell {
+  height: 40px;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a202c;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dayCell:hover:not(.selected):not(.disabled):not(.empty) {
+  background: #edf2f7;
+}
+
+.selected {
+  background: #10b981 !important; /* Green */
+  color: #ffffff !important;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);
+}
+
+.otherMonth {
+  color: #cbd5e0;
+  background: #ffffff; /* Still white card */
+}
+
+.empty {
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* Months/Years Grid */
+.monthsGrid,
+.yearsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.monthCell,
+.yearCell {
+  padding: 16px;
+  background: #ffffff;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.monthCell:hover,
+.yearCell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.monthCell.selected,
+.yearCell.selected {
+  background: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Input Wrapper (matches authStyles) */
+.datePickerContainer {
+  position: relative;
+  width: 426px;
+  height: auto;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.inputLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  justify-content: space-between;
+}
+
+.inputWrapper:hover {
+  border-color: #cbd5e0;
+  background: #ffffff;
+}
+
+.inputWrapper.active {
+  border-color: #48bb78;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+}
+
+.inputWrapper.error {
+  border-color: #e53e3e;
+  background: #fff5f5;
+}
+
+.leftIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  opacity: 0.6;
+  object-fit: contain;
+}
+
+.inputWrapper.active .leftIcon {
+  opacity: 1;
+}
+
+.inputText {
+  flex: 1;
+  font-size: 16px;
+  color: #2d3748;
+  font-weight: 500;
+  user-select: none;
+}
+
+.placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.rightIcon {
+  width: 20px;
+  height: 20px;
+  color: #a0aec0;
+  opacity: 1;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 6px;
+  padding-left: 4px;
+  font-weight: 500;
+}

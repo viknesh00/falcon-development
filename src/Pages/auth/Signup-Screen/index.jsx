@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Styles from './Styles/authStyles.module.css';
 import {
   LockIcon,
@@ -8,23 +8,27 @@ import {
   PhoneIcon,
   OnBoardingVector,
   UploadIcon,
-  ImageIcon,
   CameraIcon,
   CalendarIcon,
   UserIcon,
   LocationIcon,
   WorkIcon,
   CurrencyIcon,
-  FalconLogo,
   SignUpLoading,
   FinalStepVector,
+  EyeIcon,
+  EyeOffIcon,
+  SignUpRightImage,
 } from '../../../assets';
 import StepIndicator from './Components/StepIndicator';
+import Dropdown from './Components/Dropdown';
 import Footer from '../../../components/layout/Footer';
 import { validateStep1, validateStep2, validateOTP } from './helpers/validationSchemas';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import Webcam from 'react-webcam';
+import VirtualKeyboard from './Components/VirtualKeyboard';
+import DatePicker from './Components/DatePicker';
 
 const InputField = ({
   icon,
@@ -35,6 +39,14 @@ const InputField = ({
   touched,
   isReactIcon = false,
   iconAsset,
+  showPasswordToggle = false,
+  isPasswordVisible,
+  onTogglePassword,
+  useVirtualKeyboard = false,
+  onVirtualKeyPress,
+  activeField,
+  setActiveField,
+  required = false,
 }) => (
   <div className={Styles.formGroup}>
     <div className={`${Styles.inputWrapper} ${error && touched ? Styles.error : ''}`}>
@@ -53,12 +65,22 @@ const InputField = ({
         name={name}
         placeholder={placeholder}
         className={Styles.input}
+        readOnly={useVirtualKeyboard}
+        onFocus={() => setActiveField && setActiveField(name)}
         style={{
           placeholderColor: '#FFFFFFB2',
         }}
       />
+      {showPasswordToggle && (
+        <div className={Styles.eyeIcon} onClick={onTogglePassword}>
+          <img src={isPasswordVisible ? EyeIcon : EyeOffIcon} alt="Toggle Password" />
+        </div>
+      )}
     </div>
     {error && touched && <div className={Styles.errorText}>{error}</div>}
+    {useVirtualKeyboard && activeField === name && (
+      <VirtualKeyboard onKeyPress={(key) => onVirtualKeyPress(name, key)} />
+    )}
   </div>
 );
 
@@ -73,9 +95,7 @@ const PhoneInputField = ({
   onBlur,
 }) => (
   <div className={Styles.formGroup}>
-    <div
-      className={`${Styles.inputWrapper} ${Styles.phoneInputWrapper} ${error && touched ? Styles.error : ''}`}
-    >
+    <div className={`${Styles.inputWrapper} ${error && touched ? Styles.error : ''}`}>
       <div className={Styles.icon}>
         <img src={iconAsset} alt="" className={Styles.iconAsset} />
       </div>
@@ -94,14 +114,37 @@ const PhoneInputField = ({
   </div>
 );
 
+// Dropdown options
+const EMPLOYMENT_STATUS_OPTIONS = [
+  'Full-time',
+  'Part-time',
+  'Contract / Temporary',
+  'Self-Employed',
+];
+
+const INCOME_RANGE_OPTIONS = ['5000-10000', '10000-50000', '50000-100000', 'Above 100000'];
+
 const SignupScreen = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loadingIndex, setLoadingIndex] = useState(0);
+  const [loadingIndex, setLoadingIndex] = useState(1);
   const [showCamera, setShowCamera] = useState(false);
   const webcamRef = React.useRef(null);
   const fileInputRef = React.useRef(null);
   const navigate = useNavigate();
+
+  // Password Visibility States
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [activeVirtualField, setActiveVirtualField] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const handleScroll = (e) => {
+    if (e.target.scrollTop > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
 
   const dynamicContent = [
     'Wallet creation...',
@@ -131,9 +174,14 @@ const SignupScreen = () => {
     confirmPassword: '',
     emailOtp: '',
     mobileOtp: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
     dob: '',
-    homeAddress: '',
+    buildingNumber: '',
+    flatNumber: '',
+    street: '',
+    city: '',
+    postalCode: '',
     employmentStatus: '',
     incomeRange: '',
     monthlyCommitments: '',
@@ -143,17 +191,53 @@ const SignupScreen = () => {
 
   const handleNext = async (values, actions) => {
     setIsSubmitting(true);
+
+    // Log the form data as JSON for verification
+    console.log(`📋 Step ${step} Form Data (JSON):`, JSON.stringify(values, null, 2));
+
     // Simulate API calls for each step
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     try {
       if (step === 1) {
+        // Send Step 1 data to backend
+        console.log('Step 1 submitted:', {
+          email: values.email,
+          mobileNumber: values.mobileNumber,
+        });
         setStep(1.5);
       } else if (step === 1.5) {
+        // Send OTP verification to backend
+        console.log('Step 1.5 submitted:', {
+          emailOtp: values.emailOtp,
+          mobileOtp: values.mobileOtp,
+        });
         setStep(2);
       } else if (step === 2) {
+        // Send personal details to backend
+        console.log('Step 2 submitted:', {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          dob: values.dob,
+          address: {
+            building: values.buildingNumber,
+            flat: values.flatNumber,
+            street: values.street,
+            city: values.city,
+            postalCode: values.postalCode,
+          },
+          financial: {
+            employmentStatus: values.employmentStatus,
+            incomeRange: values.incomeRange,
+            monthlyCommitments: values.monthlyCommitments,
+          },
+        });
         setStep(3);
       } else if (step === 3) {
+        console.log('Step 3 submitted:', {
+          photoId: values.photoId?.name,
+          selfie: values.selfie ? 'uploaded' : 'not uploaded',
+        });
         setStep(4);
       }
     } catch (error) {
@@ -174,12 +258,14 @@ const SignupScreen = () => {
   if (step === 4) {
     return (
       <div className={Styles.authContainer}>
+        {/* ========================== Header Section ========================== */}
         <header className={Styles.header}>
-          <div className={Styles.logo}>
+          <div onClick={() => navigate('/')} className={Styles.logo}>
             <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
             <span className={Styles.logoSpan}>Falcon</span>
           </div>
         </header>
+        {/* ========================== Main Section ========================== */}
         <main
           className={Styles.mainContent}
           style={{ gridTemplateColumns: '1fr', justifyContent: 'center' }}
@@ -211,8 +297,8 @@ const SignupScreen = () => {
     <>
       <div className={Styles.authContainer}>
         {/* ========================== Header Section ========================== */}
-        <header className={Styles.header}>
-          <div className={Styles.logo}>
+        <header className={`${Styles.header} ${isScrolled ? Styles.scrolled : ''}`}>
+          <div onClick={() => navigate('/')} className={Styles.logo}>
             <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
             <span className={Styles.logoSpan}>Falcon</span>
           </div>
@@ -227,39 +313,47 @@ const SignupScreen = () => {
 
         {/* ========================== Main Section ========================== */}
         <main className={Styles.mainContent}>
-          <section className={`${Styles.formSection} ${Styles.fadeIn}`}>
+          <section className={`${Styles.formSection} ${Styles.fadeIn}`} onScroll={handleScroll}>
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
                 width: '100%',
-                marginBottom: '40px',
+                marginBottom: '19px',
               }}
             >
               <div>
                 {step === 1 && (
-                  <h1 className={Styles.title}>
-                    Create your Falcon
-                    <br />
-                    account
-                  </h1>
+                  <>
+                    <h1 className={Styles.title}>Create your Falcon account</h1>
+                    <p className={Styles.subTitle}>
+                      Set up your account to start using Shariah-compliant financial services.
+                    </p>
+                  </>
                 )}
                 {step === 1.5 && (
-                  <h1 className={Styles.title}>
-                    Create your Falcon
-                    <br />
-                    account
-                  </h1>
+                  <>
+                    <h1 className={Styles.title}>Create your Falcon account</h1>
+                    <p className={Styles.subTitle}>
+                      Set up your account to start using Shariah-compliant financial services.
+                    </p>
+                  </>
                 )}
                 {step === 2 && (
-                  <h1 className={Styles.title}>
-                    Personal & financial
-                    <br />
-                    details
-                  </h1>
+                  <>
+                    <h1 className={Styles.title}>Personal and Financial Details</h1>
+                    <p className={Styles.subTitle}>
+                      Tell us a bit about yourself. This helps us serve you responsibly.
+                    </p>
+                  </>
                 )}
-                {step === 3 && <h1 className={Styles.title}>Verify your identity</h1>}
+                {step === 3 && (
+                  <>
+                    <h1 className={Styles.title}>Verify your identity</h1>
+                    <p className={Styles.subTitle}>Required by financial regulations.</p>
+                  </>
+                )}
               </div>
               <div className={Styles.rowStepIndicator}>
                 <StepIndicator currentStep={step} totalSteps={3} />
@@ -272,56 +366,104 @@ const SignupScreen = () => {
               validate={getValidationSchema()}
               onSubmit={handleNext}
             >
-              {({ errors, touched, values, setFieldValue }) => (
+              {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
                 <Form className={Styles.formGrid}>
                   {step === 1 && (
                     <>
-                      <p className={Styles.subTitle}>
-                        Set up your account to start using Shariah-compliant financial services.
-                      </p>
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Email Address
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={MailIcon}
+                          type="email"
+                          name="email"
+                          placeholder="Email Address"
+                          error={errors.email}
+                          touched={touched.email}
+                        />
+                      </div>
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Mobile Number
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <PhoneInputField
+                          iconAsset={PhoneIcon}
+                          name="mobileNumber"
+                          placeholder="Mobile Number"
+                          error={errors.mobileNumber}
+                          touched={touched.mobileNumber}
+                          value={values.mobileNumber}
+                          onChange={(val) => setFieldValue('mobileNumber', val)}
+                        />
+                      </div>
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Password
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={LockIcon}
+                          type={showPassword ? 'text' : 'password'}
+                          name="password"
+                          placeholder="Create Your Password"
+                          error={errors.password}
+                          touched={touched.password}
+                          showPasswordToggle={true}
+                          isPasswordVisible={showPassword}
+                          onTogglePassword={() => setShowPassword(!showPassword)}
+                          useVirtualKeyboard={true}
+                          activeField={activeVirtualField}
+                          setActiveField={setActiveVirtualField}
+                          onVirtualKeyPress={(fieldName, key) => {
+                            const currentVal = values[fieldName] || '';
+                            if (key === 'BACKSPACE') {
+                              setFieldValue(fieldName, currentVal.slice(0, -1));
+                            } else {
+                              setFieldValue(fieldName, currentVal + key);
+                            }
+                          }}
+                        />
+                      </div>
 
-                      <InputField
-                        iconAsset={MailIcon}
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        error={errors.email}
-                        touched={touched.email}
-                      />
-                      <PhoneInputField
-                        iconAsset={PhoneIcon}
-                        name="mobileNumber"
-                        placeholder="Mobile Number"
-                        error={errors.mobileNumber}
-                        touched={touched.mobileNumber}
-                        value={values.mobileNumber}
-                        onChange={(val) => setFieldValue('mobileNumber', val)}
-                      />
-                      <InputField
-                        iconAsset={LockIcon}
-                        type="password"
-                        name="password"
-                        placeholder="Create Your Password"
-                        error={errors.password}
-                        touched={touched.password}
-                      />
-                      <InputField
-                        iconAsset={LockIcon}
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Your Password"
-                        error={errors.confirmPassword}
-                        touched={touched.confirmPassword}
-                      />
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Confirm Password
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={LockIcon}
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          name="confirmPassword"
+                          placeholder="Confirm Your Password"
+                          error={errors.confirmPassword}
+                          touched={touched.confirmPassword}
+                          showPasswordToggle={true}
+                          isPasswordVisible={showConfirmPassword}
+                          onTogglePassword={() => setShowConfirmPassword(!showConfirmPassword)}
+                          useVirtualKeyboard={true}
+                          activeField={activeVirtualField}
+                          setActiveField={setActiveVirtualField}
+                          onVirtualKeyPress={(fieldName, key) => {
+                            const currentVal = values[fieldName] || '';
+                            if (key === 'BACKSPACE') {
+                              setFieldValue(fieldName, currentVal.slice(0, -1));
+                            } else {
+                              setFieldValue(fieldName, currentVal + key);
+                            }
+                          }}
+                        />
+                      </div>
 
                       <button type="submit" className={Styles.continueBtn} disabled={isSubmitting}>
                         {isSubmitting ? 'Processing...' : 'Continue'}
                       </button>
 
                       <p className={Styles.termsText}>
-                        By continuing, you agree to Falcon's <a href="#">Terms and Conditions</a>.{' '}
-                        <br />
-                        We'll handle your data in line with our <a href="#">Privacy Policy</a>.
+                        By continuing, you agree to Falcon’s Terms and Conditions. We’ll handle your
+                        data in line with our Privacy Policy.
                       </p>
                     </>
                   )}
@@ -333,7 +475,10 @@ const SignupScreen = () => {
                       </p>
 
                       <div className={Styles.otpSection}>
-                        <p className={Styles.otpTitle}>Enter the Otp Sent to your Email</p>
+                        <p className={Styles.otpTitle}>
+                          Enter the Otp Sent to your Email
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </p>
                         <InputField
                           iconAsset={null} // Design shows no icon inside the input for OTP in some views, but let's see
                           type="text"
@@ -345,7 +490,10 @@ const SignupScreen = () => {
                       </div>
 
                       <div className={Styles.otpSection}>
-                        <p className={Styles.otpTitle}>Enter the Otp Sent to your Mobile</p>
+                        <p className={Styles.otpTitle}>
+                          Enter the Otp Sent to your Mobile
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </p>
                         <InputField
                           iconAsset={null}
                           type="text"
@@ -364,58 +512,189 @@ const SignupScreen = () => {
 
                   {step === 2 && (
                     <>
-                      <p className={Styles.subTitle}>
-                        Tell us a bit about yourself. This helps us serve you responsibly.
-                      </p>
+                      <div style={{ flex: 1 }}>
+                        <label className={Styles.inputLabel}>
+                          First Name
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={UserIcon}
+                          type="text"
+                          name="firstName"
+                          placeholder="Enter first name (as per ID)"
+                          error={errors.firstName}
+                          touched={touched.firstName}
+                          required
+                        />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <label className={Styles.inputLabel}>
+                          Last Name
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={UserIcon}
+                          type="text"
+                          name="lastName"
+                          placeholder="Enter last name (as per ID)"
+                          error={errors.lastName}
+                          touched={touched.lastName}
+                          required
+                        />
+                      </div>
 
-                      <InputField
-                        iconAsset={UserIcon}
-                        type="text"
-                        name="fullName"
-                        placeholder="Full name (as per ID)"
-                        error={errors.fullName}
-                        touched={touched.fullName}
-                      />
-                      <InputField
-                        iconAsset={CalendarIcon}
-                        type="date"
-                        name="dob"
-                        placeholder="Date of birth"
-                        error={errors.dob}
-                        touched={touched.dob}
-                      />
-                      <InputField
-                        iconAsset={LocationIcon}
-                        type="text"
-                        name="homeAddress"
-                        placeholder="Home address"
-                        error={errors.homeAddress}
-                        touched={touched.homeAddress}
-                      />
-                      <InputField
-                        iconAsset={WorkIcon}
-                        type="text"
-                        name="employmentStatus"
-                        placeholder="Employment status"
-                        error={errors.employmentStatus}
-                        touched={touched.employmentStatus}
-                      />
-                      <InputField
-                        iconAsset={CurrencyIcon}
-                        type="text"
-                        name="incomeRange"
-                        placeholder="Income range"
-                        error={errors.incomeRange}
-                        touched={touched.incomeRange}
-                      />
-                      <InputField
-                        iconAsset={CurrencyIcon}
-                        type="text"
-                        name="monthlyCommitments"
-                        placeholder="Monthly commitments"
-                        error={errors.monthlyCommitments}
-                        touched={touched.monthlyCommitments}
-                      />
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Date of Birth
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <DatePicker
+                          name="dob"
+                          value={values.dob}
+                          onChange={setFieldValue}
+                          setFieldTouched={setFieldTouched}
+                          error={errors.dob}
+                          touched={touched.dob}
+                          placeholder="Pick your date of birth"
+                        />
+                      </div>
+
+                      <h3 className={Styles.sectionTitle}>
+                        Residential Address
+                        <span className={Styles.requiredIndicator}>*</span>
+                      </h3>
+
+                      <div className={Styles.formRow}>
+                        <div style={{ flex: 1 }}>
+                          <label className={Styles.inputLabel}>
+                            Building No
+                            <span className={Styles.requiredIndicator}>*</span>
+                          </label>
+                          <InputField
+                            iconAsset={LocationIcon}
+                            type="text"
+                            name="buildingNumber"
+                            placeholder="Enter here"
+                            error={errors.buildingNumber}
+                            touched={touched.buildingNumber}
+                            required
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <label className={Styles.inputLabel}>
+                            Flat No
+                            <span className={Styles.requiredIndicator}>*</span>
+                          </label>
+                          <InputField
+                            iconAsset={LocationIcon}
+                            type="text"
+                            name="flatNumber"
+                            placeholder="Enter here"
+                            error={errors.flatNumber}
+                            touched={touched.flatNumber}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className={Styles.formRow}>
+                        <div style={{ flex: 1 }}>
+                          <label className={Styles.inputLabel}>
+                            Area/Street
+                            <span className={Styles.requiredIndicator}>*</span>
+                          </label>
+                          <InputField
+                            iconAsset={LocationIcon}
+                            type="text"
+                            name="street"
+                            placeholder="Enter here"
+                            error={errors.street}
+                            touched={touched.street}
+                            required
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <label className={Styles.inputLabel}>
+                            City
+                            <span className={Styles.requiredIndicator}>*</span>
+                          </label>
+                          <InputField
+                            iconAsset={LocationIcon}
+                            type="text"
+                            name="city"
+                            placeholder="Enter here"
+                            error={errors.city}
+                            touched={touched.city}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Postal Code
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={LocationIcon}
+                          type="text"
+                          name="postalCode"
+                          placeholder="Enter here"
+                          error={errors.postalCode}
+                          touched={touched.postalCode}
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Employment Status
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <Dropdown
+                          iconAsset={WorkIcon}
+                          name="employmentStatus"
+                          placeholder="Select employment status"
+                          options={EMPLOYMENT_STATUS_OPTIONS}
+                          error={errors.employmentStatus}
+                          touched={touched.employmentStatus}
+                          value={values.employmentStatus}
+                          onChange={(value) => setFieldValue('employmentStatus', value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Income Range
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <Dropdown
+                          iconAsset={CurrencyIcon}
+                          name="incomeRange"
+                          placeholder="Select income range"
+                          options={INCOME_RANGE_OPTIONS}
+                          error={errors.incomeRange}
+                          touched={touched.incomeRange}
+                          value={values.incomeRange}
+                          onChange={(value) => setFieldValue('incomeRange', value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label className={Styles.inputLabel}>
+                          Monthly Commitments
+                          <span className={Styles.requiredIndicator}>*</span>
+                        </label>
+                        <InputField
+                          iconAsset={CurrencyIcon}
+                          type="text"
+                          name="monthlyCommitments"
+                          placeholder="Enter your monthly commitments in Euros"
+                          error={errors.monthlyCommitments}
+                          touched={touched.monthlyCommitments}
+                          required
+                        />
+                      </div>
 
                       <button type="submit" className={Styles.continueBtn} disabled={isSubmitting}>
                         {isSubmitting ? 'Saving...' : 'Continue'}
@@ -530,12 +809,9 @@ const SignupScreen = () => {
 
           {/* ========================== Illustration Section ========================== */}
           <section className={Styles.illustrationContainer}>
-            <div className={Styles.stepIndicatorContainer}>
-              <StepIndicator currentStep={step} totalSteps={3} />
-            </div>
             <div className={Styles.illustrationSection}>
               <img
-                src={OnBoardingVector}
+                src={SignUpRightImage}
                 alt="Falcon Illustration"
                 className={Styles.illustration}
               />
@@ -543,6 +819,7 @@ const SignupScreen = () => {
           </section>
         </main>
 
+        {/* ========================== Footer Section ========================== */}
         <div className={Styles.featureFooter}>
           <span className={Styles.footerItem}>FCA & PRA aligned processes</span>
           <span className={Styles.footerItem}>Secure identity verification</span>
