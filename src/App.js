@@ -12,7 +12,12 @@ const AppRoutes = () => {
 function App() {
   return (
     <React.Fragment>
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <AppRoutes />
       </BrowserRouter>
       <ToastContainer transition={Zoom} />

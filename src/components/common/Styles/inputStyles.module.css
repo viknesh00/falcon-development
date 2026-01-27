@@ -1,0 +1,213 @@
+.formGroup {
+  margin-bottom: 0px; /* Adjusted to match likely layout usage, as formGrid handles gaps */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+.inputWrapper:focus-within {
+  border-color: #48bb78;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+}
+
+.inputWrapper.error {
+  border-color: #e53e3e;
+  background: #fff5f5;
+}
+
+.icon,
+.reactIconWrapper {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+}
+
+.iconAsset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.inputWrapper:focus-within .icon,
+.inputWrapper:focus-within .reactIconWrapper {
+  color: #48bb78;
+}
+
+.inputWrapper:focus-within .iconAsset {
+  opacity: 1;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  color: #2d3748;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.input::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 6px;
+  padding-left: 4px;
+  font-weight: 500;
+}
+
+/* Eye Icon */
+.eyeIcon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.eyeIcon:hover {
+  opacity: 1;
+}
+
+.eyeIcon img {
+  width: 100%;
+  height: 100%;
+}
+
+.keyboardToggle {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  color: var(--accent);
+}
+
+.keyboardToggle:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.keyboardToggle.active {
+  opacity: 1;
+  color: var(--accent);
+  transform: scale(1.15);
+}
+
+.keyboardToggle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Phone Input */
+.phoneInputWrapper {
+  gap: 0 !important;
+  padding: 16px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+}
+
+.phoneInputWrapper.error {
+  border-color: #e53e3e;
+  background: #fff5f5;
+}
+
+.phoneInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+  flex-direction: row-reverse;
+}
+
+:global(.PhoneInputInput) {
+  background: transparent !important;
+  border: none !important;
+  color: #2d3748 !important;
+  font-size: 16px !important;
+  flex: 1 !important;
+  outline: none !important;
+  font-family: inherit !important;
+  padding: 0 !important;
+  font-weight: 500 !important;
+}
+
+:global(.PhoneInputInput::placeholder) {
+  color: #a0aec0 !important;
+  font-weight: 400 !important;
+}
+
+:global(.PhoneInputCountry) {
+  margin-left: 12px !important;
+  margin-right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 16px !important;
+  border-left: 1px solid #e2e8f0 !important;
+  gap: 12px !important;
+  pointer-events: none !important;
+}
+
+:global(.PhoneInputCountrySelect) {
+  cursor: pointer !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #4a5568 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+:global(.PhoneInputCountrySelect:hover) {
+  opacity: 0.8 !important;
+}
+
+:global(.PhoneInputCountryIcon) {
+  width: 24px !important;
+  height: 16px !important;
+  border-radius: 2px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  object-fit: contain !important;
+}

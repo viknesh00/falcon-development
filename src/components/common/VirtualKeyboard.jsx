@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Styles from '../Styles/VirtualKeyboard.module.css';
+import Styles from './Styles/VirtualKeyboard.module.css';
 
 const VirtualKeyboard = ({ onKeyPress }) => {
   const [keys, setKeys] = useState([]);

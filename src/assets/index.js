@@ -16,11 +16,14 @@ import FalconLogo from './falcon-logo.jpg';
 import FinalStepVector from './icons/finalStep-vector.svg';
 import EyeIcon from './icons/eye.svg';
 import EyeOffIcon from './icons/eye-off.svg';
+import KeyboardIcon from './icons/keyboard-icon.svg';
 import SignUpRightImage from './images/Signup_rigntside.jpg';
 import FalconCalenderArrow from './icons/falcon-calander-arrow.svg';
+import EllipseIcon from './icons/Ellipse.svg';
 
 export {
   LockIcon,
+  EllipseIcon,
   FalconCalenderArrow,
   MailIcon,
   PhoneIcon,
@@ -39,5 +42,6 @@ export {
   FinalStepVector,
   EyeIcon,
   EyeOffIcon,
+  KeyboardIcon,
   SignUpRightImage,
 };

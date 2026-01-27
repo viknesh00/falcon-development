@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Styles from '../Styles/authStyles.module.css';
+import Styles from './Styles/authStyles.module.css';
 
 const Dropdown = ({
   iconAsset,

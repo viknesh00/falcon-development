@@ -1,3 +1,4 @@
+import { isValidPhoneNumber } from 'react-phone-number-input';
 export const validateStep1 = (values) => {
   const errors = {};
 
@@ -9,7 +10,7 @@ export const validateStep1 = (values) => {
 
   if (!values.mobileNumber) {
     errors.mobileNumber = 'Mobile number is required';
-  } else if (!/^\+?[0-9]{10,14}$/.test(values.mobileNumber)) {
+  } else if (!isValidPhoneNumber(values.mobileNumber)) {
     errors.mobileNumber = 'Invalid mobile number';
   }
 
@@ -44,11 +45,8 @@ export const validateStep2 = (values) => {
     errors.dob = 'Date of birth is required';
   }
 
-  if (!values.buildingNumber) {
-    errors.buildingNumber = 'Building No is required';
-  }
-  if (!values.flatNumber) {
-    errors.flatNumber = 'Flat No is required';
+  if (!values.buildingAddress) {
+    errors.buildingAddress = 'Building / Flat address is required';
   }
   if (!values.street) {
     errors.street = 'Street is required';

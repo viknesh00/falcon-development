@@ -1,0 +1,86 @@
+.lookupContainer {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-top: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.2s ease forwards;
+}
+
+.option {
+  padding: 14px 16px;
+  color: #1a202c;
+  cursor: pointer;
+  border-bottom: 1px solid #f7fafc;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background: #f8f9fa;
+}
+
+.manualOption {
+  color: #48bb78;
+  font-weight: 600;
+  border-top: 1px solid #e2e8f0;
+  background: #f0fff4;
+}
+
+.manualOption:hover {
+  background: #c6f6d5;
+}
+
+.loading {
+  padding: 14px 16px;
+  color: #718096;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styles to match the other dropdown */
+.dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dropdown::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}

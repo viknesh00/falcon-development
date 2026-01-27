@@ -229,7 +229,7 @@
 .inputWrapper {
   display: flex;
   align-items: center;
-  background: #f7fafc;
+  /* background: #f7fafc; */
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 16px 20px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Styles from '../Styles/DatePicker.module.css';
-import { CalendarIcon, CalendarPlusIcon, CalendarArrowIcon } from '../../../../assets';
+import Styles from './Styles/DatePicker.module.css';
+import { CalendarIcon, CalendarPlusIcon, CalendarArrowIcon } from '../../assets';
 import moment from 'moment/moment';
 
 const DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];

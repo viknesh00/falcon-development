@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from '../Styles/authStyles.module.css';
+import Styles from './Styles/authStyles.module.css';
 
 const StepIndicator = ({ currentStep, totalSteps = 3 }) => {
   return (
