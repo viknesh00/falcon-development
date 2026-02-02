@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Styles from './Styles/authStyles.module.css';
 import {
   LockIcon,
   MailIcon,
   PhoneIcon,
-  UploadIcon,
-  CameraIcon,
   UserIcon,
   WorkIcon,
   CurrencyIcon,
@@ -18,7 +16,6 @@ import {
   EllipseIcon,
 } from '../../../assets';
 import Footer from '../../../components/layout/Footer';
-import { validateStep1, validateStep2, validateOTP } from './helpers/validationSchemas';
 import {
   Button,
   StepIndicator,
@@ -37,7 +34,6 @@ import {
   processFormData,
   validateFormStep,
   isStepValid,
-  isFormComplete,
   getNextStep,
   FORM_METADATA,
 } from '../../../config/formConfig';
@@ -53,7 +49,7 @@ const EMPLOYMENT_STATUS_OPTIONS = [
 const INCOME_RANGE_OPTIONS = ['5000-10000', '10000-50000', '50000-100000', 'Above 100000'];
 
 const SignupScreen = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loadingIndex, setLoadingIndex] = useState(1);
   const navigate = useNavigate();

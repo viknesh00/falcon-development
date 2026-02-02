@@ -575,35 +575,36 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
+  z-index: 10000;
+  backdrop-filter: blur(10px);
 }
 
 .webcamContainer {
   background: #ffffff;
-  padding: 24px;
-  border-radius: 24px;
+  padding: 32px;
+  border-radius: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  max-width: 90%;
-  width: 100%;
-  max-width: 700px;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  gap: 24px;
+  width: 90%;
+  max-width: 640px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .webcamFrame {
   width: 100%;
-  border-radius: 16px;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
   overflow: hidden;
   background: #000;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .webcamControls {
@@ -624,10 +625,14 @@
   transition: all 0.2s;
 }
 
-.captureBtn:hover {
+.captureBtn:hover:not(:disabled) {
   background: #38a169;
 }
 
+.captureBtn:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}
 .cancelBtn {
   flex: 1;
   background: transparent;
@@ -845,4 +850,158 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
+}
+
+.feedbackContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.faceGuide {
+  width: 280px;
+  height: 350px;
+  border: 3px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 150px / 180px;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease;
+}
+
+.faceGuideOk {
+  border-color: #48bb78;
+  border-style: solid;
+}
+
+.faceBox {
+  position: absolute;
+  z-index: 25;
+  border: 3px solid #ecc94b;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  transition:
+    border-color 0.18s ease,
+    transform 0.12s ease;
+}
+
+.faceDot {
+  position: absolute;
+  z-index: 30;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition:
+    background 0.14s ease,
+    transform 0.08s ease;
+}
+
+.warningOverlay {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(229, 62, 62, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease;
+  z-index: 20;
+}
+
+.accessoryOverlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(229, 62, 62, 0.95);
+  color: white;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  z-index: 40;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.successOverlay {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(72, 187, 120, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease;
+  z-index: 20;
+}
+
+.loadingOverlay {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(44, 62, 80, 0.9);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeIn 0.4s ease;
+  z-index: 30;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loadingOverlay::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -103,7 +103,14 @@ const AuthLayout = ({ children, title, subtitle }) => {
             {(title || subtitle) && (
               <div className="auth-header" style={{ marginBottom: '32px' }}>
                 {title && (
-                  <h1 style={{ fontSize: '32px', fontWeight: 800, marginBottom: '8px' }}>
+                  <h1
+                    style={{
+                      fontSize: '32px',
+                      fontWeight: 800,
+                      marginBottom: '8px',
+                      color: 'var(--accent)',
+                    }}
+                  >
                     {title}
                   </h1>
                 )}

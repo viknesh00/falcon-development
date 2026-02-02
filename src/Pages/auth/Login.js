@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from './AuthLayout';
-import { FiMail, FiLock, FiEye, FiEyeOff, FiChevronRight } from 'react-icons/fi';
+import { Formik, Form } from 'formik';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import './GeneralAuth.css';
 import { ToastSuccess } from '../../api/ToastMsg';
+import { Button, InputField } from '../../components/index';
+import { MailIcon, LockIcon } from '../../assets/index';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const initialValues = { email: '', password: '' };
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email || values.email.trim() === '') {
+      errors.email = 'Required';
+    } else if (values.email.trim().length < 3) {
+      errors.email = 'Please enter a valid email or username';
+    }
+
+    if (!values.password) {
+      errors.password = 'Required';
+    } else if (values.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    setSubmitting(true);
     setTimeout(() => {
-      setLoading(false);
+      setSubmitting(false);
       ToastSuccess('Logged in successfully!');
       navigate('/dashboard');
     }, 1000);
@@ -26,58 +45,56 @@ const Login = () => {
       title="Welcome back!"
       subtitle="Enter your credentials to access your ethical banking portal."
     >
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <div className="form-group-custom">
-          <label>Email Address / Username</label>
-          <div className="input-with-icon">
-            <FiMail className="input-icon" />
-            <input
-              type="text"
-              placeholder="e.g. name@example.com or username"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
-            />
-          </div>
-        </div>
+      <Formik initialValues={initialValues} validate={validate} onSubmit={handleSubmit}>
+        {({ isSubmitting, errors, touched }) => (
+          <Form className="auth-form">
+            <div className="form-group-custom">
+              <label>Email Address / Username</label>
+              <InputField
+                name="email"
+                type="text"
+                placeholder="e.g. name@example.com or username"
+                iconAsset={MailIcon}
+                error={errors.email}
+                touched={touched?.email}
+              />
+            </div>
 
-        <div className="form-group-custom">
-          <div className="label-row">
-            <label>Passcode</label>
-            <Link
-              to="/forgot-password"
-              style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: 600 }}
-            >
-              Forgot?
-            </Link>
-          </div>
-          <div className="input-with-icon">
-            <FiLock className="input-icon" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              required
-            />
-            <button
-              type="button"
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FiEyeOff /> : <FiEye />}
-            </button>
-          </div>
-        </div>
+            <div className="form-group-custom">
+              <div className="label-row">
+                <label>Passcode</label>
+                <Link
+                  to="/forgot-password"
+                  style={{ fontSize: '13px', color: 'var(--primary)', fontWeight: 600 }}
+                >
+                  Forgot?
+                </Link>
+              </div>
+              <InputField
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="••••••••"
+                iconAsset={LockIcon}
+                showPasswordToggle
+                isPasswordVisible={showPassword}
+                onTogglePassword={() => setShowPassword(!showPassword)}
+                passwordToggleReactIcon={<FiEye />}
+                passwordToggleReactIconOff={<FiEyeOff />}
+                error={errors.password}
+                touched={touched?.password}
+              />
+            </div>
 
-        <button type="submit" className="btn-primary-custom" disabled={loading}>
-          {loading ? 'Signing in...' : 'Sign In'} <FiChevronRight />
-        </button>
+            <Button variant="primary" type="submit" disabled={isSubmitting} fullWidth>
+              {isSubmitting ? 'Signing in...' : 'Sign In'}
+            </Button>
 
-        <div className="auth-footer-text">
-          New to Falcon? <Link to="/signup">Create an account</Link>
-        </div>
-      </form>
+            <div className="auth-footer-text">
+              New to Falcon? <Link to="/signup">Create an account</Link>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </AuthLayout>
   );
 };
