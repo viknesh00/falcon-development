@@ -49,7 +49,7 @@ const EMPLOYMENT_STATUS_OPTIONS = [
 const INCOME_RANGE_OPTIONS = ['5000-10000', '10000-50000', '50000-100000', 'Above 100000'];
 
 const SignupScreen = () => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loadingIndex, setLoadingIndex] = useState(1);
   const navigate = useNavigate();
