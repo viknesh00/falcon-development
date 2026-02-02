@@ -505,99 +505,105 @@ const SignupScreen = () => {
                           Postal Code
                           <span className={Styles.requiredIndicator}>*</span>
                         </label>
-                        <AddressLookup
-                          value={values.postalCode}
-                          onAddressSelect={(addr) => {
-                            setFieldValue('buildingAddress', addr.buildingAddress);
-                            setFieldValue('street', addr.street);
-                            setFieldValue('city', addr.city);
-                            setFieldValue('postalCode', addr.postalCode);
-                            setShowAddressFields(true);
-                          }}
-                          onManualEntry={(term) => {
-                            if (term) setFieldValue('postalCode', term);
-                            setShowManualModal(true);
-                          }}
+                        <InputField
+                          iconAsset={LocationIcon}
+                          type="text"
+                          name="postalCode"
+                          placeholder="Enter Postal Code"
                           error={errors.postalCode}
                           touched={touched.postalCode}
+                          required
                         />
                       </div>
-
-                      {/* Manual Modal */}
-                      {showManualModal && (
-                        <ManualAddressModal
-                          initialValues={{
-                            buildingAddress: values.buildingAddress,
-                            street: values.street,
-                            city: values.city,
-                            postalCode: values.postalCode,
-                          }}
-                          onClose={() => setShowManualModal(false)}
-                          onSave={(data) => {
-                            setFieldValue('buildingAddress', data.buildingAddress);
-                            setFieldValue('street', data.street);
-                            setFieldValue('city', data.city);
-                            setFieldValue('postalCode', data.postalCode);
-                            setShowAddressFields(true);
-                            setShowManualModal(false);
-                          }}
-                        />
+                      {values.postalCode && values.postalCode.length >= 3 && (
+                        <div style={{ marginTop: '20px' }}>
+                          <label className={Styles.inputLabel}>
+                            Select Your Address
+                            <span className={Styles.requiredIndicator}>*</span>
+                          </label>
+                          <AddressLookup
+                            value={values.postalCode}
+                            disabled={!values.postalCode || values.postalCode.length < 3}
+                            onAddressSelect={(addr) => {
+                              setFieldValue('buildingAddress', addr.buildingAddress);
+                              setFieldValue('street', addr.street);
+                              setFieldValue('city', addr.city);
+                              setFieldValue('postalCode', addr.postalCode);
+                              setFieldValue('country', addr.country);
+                              setShowAddressFields(true);
+                            }}
+                            onManualEntry={() => {
+                              setShowAddressFields(true);
+                            }}
+                          />
+                        </div>
                       )}
-
-                      {(showAddressFields || values.buildingAddress) && (
-                        <>
-                          <div className={Styles.formRow}>
-                            <div style={{ flex: 1 }}>
-                              <label className={Styles.inputLabel}>
-                                Building / Flat No
-                                <span className={Styles.requiredIndicator}>*</span>
-                              </label>
-                              <InputField
-                                iconAsset={LocationIcon}
-                                type="text"
-                                name="buildingAddress"
-                                placeholder="Enter here"
-                                error={errors.buildingAddress}
-                                touched={touched.buildingAddress}
-                                required
-                              />
-                            </div>
-                            <div style={{ flex: 1 }}>
-                              <label className={Styles.inputLabel}>
-                                Area/Street
-                                <span className={Styles.requiredIndicator}>*</span>
-                              </label>
-                              <InputField
-                                iconAsset={LocationIcon}
-                                type="text"
-                                name="street"
-                                placeholder="Enter here"
-                                error={errors.street}
-                                touched={touched.street}
-                                required
-                              />
-                            </div>
+                      <>
+                        <div className={Styles.formRow}>
+                          <div style={{ flex: 1 }}>
+                            <label className={Styles.inputLabel}>
+                              CONTACT
+                              <span className={Styles.requiredIndicator}>*</span>
+                            </label>
+                            <InputField
+                              iconAsset={LocationIcon}
+                              type="text"
+                              name="buildingAddress"
+                              placeholder="Enter here"
+                              error={errors.buildingAddress}
+                              touched={touched.buildingAddress}
+                              required
+                            />
                           </div>
-
-                          <div className={Styles.formRow}>
-                            <div style={{ flex: 1 }}>
-                              <label className={Styles.inputLabel}>
-                                City
-                                <span className={Styles.requiredIndicator}>*</span>
-                              </label>
-                              <InputField
-                                iconAsset={LocationIcon}
-                                type="text"
-                                name="city"
-                                placeholder="Enter here"
-                                error={errors.city}
-                                touched={touched.city}
-                                required
-                              />
-                            </div>
+                          <div style={{ flex: 1 }}>
+                            <label className={Styles.inputLabel}>
+                              HOUSE NUMBER AND STREET
+                              <span className={Styles.requiredIndicator}>*</span>
+                            </label>
+                            <InputField
+                              iconAsset={LocationIcon}
+                              type="text"
+                              name="street"
+                              placeholder="Enter here"
+                              error={errors.street}
+                              touched={touched.street}
+                              required
+                            />
                           </div>
-                        </>
-                      )}
+                        </div>
+                        <div className={Styles.formRow}>
+                          <div style={{ flex: 1 }}>
+                            <label className={Styles.inputLabel}>
+                              CITY
+                              <span className={Styles.requiredIndicator}>*</span>
+                            </label>
+                            <InputField
+                              iconAsset={LocationIcon}
+                              type="text"
+                              name="city"
+                              placeholder="Enter here"
+                              error={errors.city}
+                              touched={touched.city}
+                              required
+                            />
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <label className={Styles.inputLabel}>
+                              COUNTRY
+                              <span className={Styles.requiredIndicator}>*</span>
+                            </label>
+                            <InputField
+                              iconAsset={LocationIcon}
+                              type="text"
+                              name="country"
+                              placeholder="Enter here"
+                              error={errors.country}
+                              touched={touched.country}
+                              required
+                            />
+                          </div>
+                        </div>
+                      </>
 
                       <div>
                         <label className={Styles.inputLabel}>

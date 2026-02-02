@@ -46,8 +46,9 @@ const fetchAddresses = async (term) => {
           street: streetAddress,
           city: p.city || p.town || p.state || '',
           postalCode: p.postcode || '',
+          country: p.country || 'UK', // Default to UK if missing, or empty
           // Keep raw for display if needed
-          displayName: [buildingName, streetAddress, p.city || p.town, p.postcode]
+          displayName: [buildingName, streetAddress, p.city || p.town, p.postcode, p.country]
             .filter(Boolean)
             .join(', '),
         };
@@ -59,7 +60,7 @@ const fetchAddresses = async (term) => {
   }
 };
 
-const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }) => {
+const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value, disabled }) => {
   const [searchTerm, setSearchTerm] = useState(value || '');
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState([]);
@@ -77,11 +78,26 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Effect to handle external value changes (e.g. from Postal Code input)
   useEffect(() => {
-    if (typeof value === 'string') {
+    // Only update if value is different and valid
+    if (typeof value === 'string' && value !== searchTerm) {
       setSearchTerm(value);
+
+      if (value.length >= 3 && !disabled) {
+        setIsOpen(true);
+        setIsLoading(true);
+
+        const timer = setTimeout(async () => {
+          const foundAddresses = await fetchAddresses(value);
+          setResults(foundAddresses);
+          setIsLoading(false);
+        }, 800);
+
+        return () => clearTimeout(timer);
+      }
     }
-  }, [value]);
+  }, [value, disabled]);
 
   const handleSearch = async (e) => {
     const term = e.target.value;
@@ -130,6 +146,72 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }
     }
   };
 
+  const handleUseCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+      setIsLoading(false);
+      onManualEntry(searchTerm);
+      return;
+    }
+
+    setIsLoading(true);
+    setIsOpen(false); // Close dropdown while loading
+    setSearchTerm('Fetching location...');
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          );
+          const data = await response.json();
+
+          if (data && data.address) {
+            const addr = data.address;
+            const formattedAddress = {
+              buildingAddress: addr.house_number || addr.building || '',
+              street: addr.road || addr.pedestrian || '',
+              city: addr.city || addr.town || addr.village || addr.state_district || '',
+              postalCode: addr.postcode || '',
+              country: addr.country || '',
+            };
+
+            // Format for display
+            const displayName = [
+              formattedAddress.buildingAddress,
+              formattedAddress.street,
+              formattedAddress.city,
+              formattedAddress.postalCode,
+              formattedAddress.country,
+            ]
+              .filter(Boolean)
+              .join(', ');
+
+            setSearchTerm(formattedAddress.postalCode || displayName); // Set search term to postcode if available
+            onAddressSelect(formattedAddress);
+          } else {
+            // No address found for location
+            onManualEntry(searchTerm);
+          }
+        } catch (error) {
+          console.error('Reverse geocoding error:', error);
+          onManualEntry(searchTerm);
+        } finally {
+          setIsLoading(false);
+        }
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+        setIsLoading(false);
+        setSearchTerm(value || ''); // Reset search term
+        onManualEntry(searchTerm);
+        // Optional: Show error alert based on error.code
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  };
+
   return (
     <div className={Styles.inputWrapper} ref={wrapperRef}>
       <div
@@ -137,6 +219,9 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
+          opacity: disabled ? 0.6 : 1,
+          backgroundColor: disabled ? '#f5f5f5' : 'transparent',
+          cursor: disabled ? 'not-allowed' : 'text',
         }}
         className={`${Styles.inputContainer} ${error && touched ? Styles.errorBorder : ''}`}
       >
@@ -146,10 +231,11 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }
         <input
           type="text"
           className={Styles.input}
-          placeholder="Enter Postal Code"
+          placeholder="Search"
           value={searchTerm}
           onChange={handleSearch}
-          onFocus={() => setIsOpen(true)}
+          onFocus={() => !disabled && setIsOpen(true)}
+          disabled={disabled}
         />
       </div>
       {error && touched && <div className={Styles.errorMessage}>{error}</div>}
@@ -178,11 +264,10 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value }
               <div
                 className={`${LookupStyles.option} ${LookupStyles.manualOption}`}
                 onClick={() => {
-                  setIsOpen(false);
-                  onManualEntry(searchTerm);
+                  handleUseCurrentLocation();
                 }}
               >
-                Is your address not listed? Enter manually
+                Is your address not listed? Use Current Location or Enter manually
               </div>
             </>
           )}
