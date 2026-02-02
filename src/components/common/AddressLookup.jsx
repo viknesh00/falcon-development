@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Styles from './Styles/inputStyles.module.css';
 import LookupStyles from './Styles/AddressLookup.module.css';
-import { LocationIcon } from '../../assets';
+import { SearchIcon } from '../../assets';
 
 // Free Open API for Postcode Validation & Address Lookup
 // Using postcodes.io for validation and Nominatim (OSM) for address details
@@ -226,7 +226,7 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value, 
         className={`${Styles.inputContainer} ${error && touched ? Styles.errorBorder : ''}`}
       >
         <div className={Styles.iconWrapper}>
-          <img src={LocationIcon} alt="" className={Styles.icon} />
+          <img src={SearchIcon} alt="" className={Styles.icon} />
         </div>
         <input
           type="text"

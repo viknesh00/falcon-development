@@ -20,8 +20,10 @@ import KeyboardIcon from './icons/keyboard-icon.svg';
 import SignUpRightImage from './images/Signup_rigntside.jpg';
 import FalconCalenderArrow from './icons/falcon-calander-arrow.svg';
 import EllipseIcon from './icons/Ellipse.svg';
+import SearchIcon from './icons/seatch-icon.svg';
 
 export {
+  SearchIcon,
   LockIcon,
   EllipseIcon,
   FalconCalenderArrow,
