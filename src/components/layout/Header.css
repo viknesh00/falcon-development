@@ -186,7 +186,7 @@
 }
 
 .header.menu-open .hamburger {
-  border-color: var(--primary);
+  border: 2px solid var(--white);
   color: var(--primary);
 }
 

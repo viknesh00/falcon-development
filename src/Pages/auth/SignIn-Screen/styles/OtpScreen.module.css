@@ -1,0 +1,101 @@
+.signInContainer {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.leftContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.rightContainer {
+  flex: 1;
+  background-image: url('../../../../assets/images/person_working_laptop.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .rightContainer {
+    display: block;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a9c5e;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: -12px;
+  margin-bottom: 12px;
+}
+
+.resendContainer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.resendLink {
+  color: #ef5844; /* Or the green if preferred, but screenshot shows red/orange for timer? No, screenshot shows 'Resend code in 00:30' in orange/red. 'Resend' button is greyed out or active. */
+  font-weight: 500;
+}
+
+.resendButton {
+  background: #f3f4f6;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 25px;
+  color: #9ca3af;
+  font-size: 16px;
+  cursor: default;
+  margin-top: 8px;
+}
+
+.resendButtonActive {
+  background-color: #e5e7eb; /* Slightly darker grey or keep it looking enabled */
+  color: #374151;
+  cursor: pointer;
+}

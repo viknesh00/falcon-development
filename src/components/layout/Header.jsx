@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
+import { FiMenu, FiX } from 'react-icons/fi';
 
-const Header = () => {
+const Header = ({ scrolled: forceScrolled, actionButtonDisable = false }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(forceScrolled || false);
 
   const navigate = useNavigate();
   useEffect(() => {
+    if (forceScrolled !== undefined && forceScrolled !== null) {
+      setScrolled(forceScrolled);
+      return;
+    }
+
     const handleScroll = () => {
       // Check scroll position from multiple sources
       const scrollContainer = document.querySelector('.scroll-container');
@@ -52,7 +58,7 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [forceScrolled]);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -64,7 +70,7 @@ const Header = () => {
     <header className={`header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <div className="header-inner">
         {/* Logo */}
-        <div className="logo">
+        <div onClick={() => navigate('/')} style={{ cursor: 'pointer' }} className="logo">
           <img src="/assets/images/falcon-logo.jpg" alt="Falcon logo" />
           <span>Falcon</span>
         </div>
@@ -77,17 +83,21 @@ const Header = () => {
           <button onClick={() => scrollToSection('features')}>Features</button>
           <button onClick={() => scrollToSection('compliance')}>Compliance</button>
         </nav>
-
-        {/* Actions */}
-        <div className={`actions ${menuOpen ? 'open' : ''}`}>
-          <button onClick={() => navigate('/login')} className="btn-outline">
-            Sign in
-          </button>
-          <button onClick={() => navigate('/signup')} className="btn-solid">
-            Register
-          </button>
-        </div>
-
+        {actionButtonDisable ? (
+          <></>
+        ) : (
+          <>
+            {/* Actions */}
+            <div className={`actions ${menuOpen ? 'open' : ''}`}>
+              <button onClick={() => navigate('/login')} className="btn-outline">
+                Sign in
+              </button>
+              <button onClick={() => navigate('/signup')} className="btn-solid">
+                Register
+              </button>
+            </div>
+          </>
+        )}
         {/* Hamburger */}
         <button
           className={`hamburger ${menuOpen ? 'active' : ''}`}
@@ -95,9 +105,7 @@ const Header = () => {
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
         >
-          <span />
-          <span />
-          <span />
+          {menuOpen ? <FiX size={24} color="white" /> : <FiMenu size={24} color="white" />}
         </button>
       </div>
     </header>

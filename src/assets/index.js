@@ -21,8 +21,10 @@ import SignUpRightImage from './images/Signup_rigntside.jpg';
 import FalconCalenderArrow from './icons/falcon-calander-arrow.svg';
 import EllipseIcon from './icons/Ellipse.svg';
 import SearchIcon from './icons/seatch-icon.svg';
+import PersonWorkingLaptop from './images/person_working_laptop.jpg';
 
 export {
+  PersonWorkingLaptop,
   SearchIcon,
   LockIcon,
   EllipseIcon,

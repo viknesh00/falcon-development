@@ -1,0 +1,144 @@
+.signInContainer {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.leftContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center horizontally */
+  padding: 40px;
+  /* overflow-y: auto;
+  padding-top: 50px; */
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 480px; /* Constrain width for better readability */
+}
+
+.rightContainer {
+  flex: 1;
+  background-image: url('../../../../assets/images/person_working_laptop.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none; /* Hidden on mobile by default */
+}
+
+@media (min-width: 768px) {
+  .rightContainer {
+    display: block;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a9c5e; /* Green color from screenshot */
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666666;
+  margin-bottom: 32px;
+}
+
+/* Switch (Personal | Business) */
+.switchContainer {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 32px;
+  width: fit-content;
+}
+
+.switchOption {
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.activeOption {
+  background-color: #2ea368; /* Green active state */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.orDivider {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  margin: -10px 0; /* Adjust spacing around OR */
+  position: relative;
+}
+
+.forgotPassword {
+  text-align: right;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.securityNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #999;
+}
+
+.securityIcon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+}
+
+.submitButtonWrapper {
+  margin-top: 10px;
+}
+
+.createAccount {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+.createLink {
+  color: #2ea368;
+  font-weight: 600;
+  cursor: pointer;
+}

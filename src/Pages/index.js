@@ -1,6 +1,6 @@
 import Home from './landingPage/Home';
-import Login from './auth/Login';
 import Dashboard from './dashboard/Dashboard';
 import SignupScreen from './auth/Signup-Screen';
+import SignInScreen from './auth/SignIn-Screen/index';
 
-export { Home, Login, Dashboard, SignupScreen };
+export { Home, Dashboard, SignupScreen, SignInScreen };
