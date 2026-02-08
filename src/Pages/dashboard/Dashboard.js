@@ -43,7 +43,7 @@ const Dashboard = () => {
                 </div>
                 <div className="card-balance">
                   <span className="currency">£</span>
-                  <span className="amount">12,450.00</span>
+                  <span className="amount">xx,xx.xx</span>
                 </div>
                 <div className="card-bottom">
                   <span className="acc-number">Acc: ****8824</span>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                 </div>
                 <div className="card-balance">
                   <span className="currency">£</span>
-                  <span className="amount">2,100.00</span>
+                  <span className="amount">x,xxx.xx</span>
                 </div>
                 <div className="card-bottom">
                   <span className="acc-number">Limit: £5,000</span>
@@ -82,8 +82,8 @@ const Dashboard = () => {
                 <div className="icon-wrapper green">
                   <FiShield />
                 </div>
-                <h3>Protection Plans</h3>
-                <p>Secure your family's future with Takaful plans.</p>
+                <h3>Placeholder 2</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <button className="link-btn">
                   View Plans <FiArrowUpRight />
                 </button>
@@ -92,8 +92,8 @@ const Dashboard = () => {
                 <div className="icon-wrapper gold">
                   <FiLayers />
                 </div>
-                <h3>Fixed Deposits</h3>
-                <p>Earn high ethical returns on your idle funds.</p>
+                <h3>Placeholder 3</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                 <button className="link-btn">
                   Open Now <FiArrowUpRight />
                 </button>
