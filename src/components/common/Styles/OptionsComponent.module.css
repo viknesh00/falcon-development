@@ -1,0 +1,26 @@
+/* Switch (Personal | Business) */
+.switchContainer {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 32px;
+  width: fit-content;
+}
+
+.switchOption {
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.activeOption {
+  background-color: #2ea368;
+  /* Green active state */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

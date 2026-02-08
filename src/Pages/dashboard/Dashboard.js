@@ -39,7 +39,7 @@ const Dashboard = () => {
               <div className="card-item primary shadow-glow">
                 <div className="card-top">
                   <FiLayers className="card-icon" />
-                  <span>Savings Account</span>
+                  <span>Current Account</span>
                 </div>
                 <div className="card-balance">
                   <span className="currency">£</span>
@@ -54,7 +54,7 @@ const Dashboard = () => {
               <div className="card-item accent">
                 <div className="card-top">
                   <FiCreditCard className="card-icon" />
-                  <span>Credit Card</span>
+                  <span>Current Passbook Loan</span>
                 </div>
                 <div className="card-balance">
                   <span className="currency">£</span>
@@ -72,8 +72,8 @@ const Dashboard = () => {
                 <div className="icon-wrapper blue">
                   <FiTrendingUp />
                 </div>
-                <h3>Investment Portfolio</h3>
-                <p>Track your Sharia-compliant wealth growth.</p>
+                <h3>Placeholder 1</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                 <button className="link-btn">
                   Explore <FiArrowUpRight />
                 </button>

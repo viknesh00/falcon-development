@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './styles/SignIn.module.css';
 import { Formik } from 'formik';
-import { Button, InputField, PhoneInputField } from '../../../components';
+import { Button, InputField, PhoneInputField, SwitchOptions } from '../../../components';
 import { LockIcon, MailIcon, PhoneIcon } from '../../../assets';
 import { useNavigate } from 'react-router-dom';
 import SignInHelper from './helpers/sign-in.helper';
@@ -19,10 +19,9 @@ const SignInScreen = () => {
   const [selectedOption, setSelectedOption] = React.useState('personal');
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const navigation = useNavigate();
-  // Removed instantiation of SignInHelper as methods are static
   const [activeVirtualField, setActiveVirtualField] = React.useState('');
   const [showVirtualKeyboard, setShowVirtualKeyboard] = React.useState(false);
-  const [step, setStep] = React.useState('credentials'); // credentials | otp
+  const [step, setStep] = React.useState('credentials');
 
   if (step === 'otp') {
     return <OtpScreen onBack={() => setStep('credentials')} />;
@@ -49,20 +48,11 @@ const SignInScreen = () => {
                 <p className={Styles.subtitle}>Sign in to manage your account securely.</p>
               </div>
               {/* Switch Options */}
-              <div className={Styles.switchContainer}>
-                <div
-                  className={`${Styles.switchOption} ${selectedOption === 'personal' ? Styles.activeOption : ''}`}
-                  onClick={() => setSelectedOption('personal')}
-                >
-                  Personal
-                </div>
-                <div
-                  className={`${Styles.switchOption} ${selectedOption === 'business' ? Styles.activeOption : ''}`}
-                  onClick={() => setSelectedOption('business')}
-                >
-                  Business
-                </div>
-              </div>
+              <SwitchOptions
+                options={['personal', 'business']}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
             </div>
 
             {/* Form */}
@@ -153,6 +143,9 @@ const SignInScreen = () => {
                     <Button
                       type={'submit'}
                       onClick={handleSubmit}
+                      className={Styles.loginButton}
+                      variant="primary"
+                      disabled={!values.email && !values.mobile}
                       style={{ width: '100%', backgroundColor: '#2ea368' }}
                     >
                       <p>Log In</p>
@@ -175,7 +168,7 @@ const SignInScreen = () => {
         </section>
 
         {/* right container */}
-        <section className={Styles.rightContainer}></section>
+        <section className={Styles.rightContainer} />
       </div>
       <Footer />
     </>

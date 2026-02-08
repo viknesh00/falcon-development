@@ -27,7 +27,7 @@ import {
   SelfieCheck,
   PhotoIdUpload,
   AddressLookup,
-  ManualAddressModal,
+  // ManualAddressModal,
 } from '../../../components';
 import {
   getInitialValues,
@@ -37,6 +37,7 @@ import {
   getNextStep,
   FORM_METADATA,
 } from '../../../config/formConfig';
+import Header from '../../../components/layout/Header';
 
 // Dropdown options
 const EMPLOYMENT_STATUS_OPTIONS = [
@@ -54,7 +55,6 @@ const SignupScreen = () => {
   const [loadingIndex, setLoadingIndex] = useState(1);
   const navigate = useNavigate();
 
-  // Password Visibility States
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [activeVirtualField, setActiveVirtualField] = useState(null);
@@ -62,11 +62,6 @@ const SignupScreen = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showManualModal, setShowManualModal] = useState(false);
   const [showAddressFields, setShowAddressFields] = useState(false);
-
-  // Initialize showAddressFields if entering step with data
-  useEffect(() => {
-    // Logic could go here, but simple boolean state is safe enough for now
-  }, []);
 
   const handleScroll = (e) => {
     if (e.target.scrollTop > 50) {
@@ -146,19 +141,7 @@ const SignupScreen = () => {
           style={{ height: 'auto', minHeight: '80vh', paddingBottom: '10px' }}
         >
           {/* ========================== Header Section ========================== */}
-          <header className={Styles.header}>
-            <div onClick={() => navigate('/')} className={Styles.logo}>
-              <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
-              <span className={Styles.logoSpan}>Falcon</span>
-            </div>
-            <nav className={Styles.nav}>
-              <a href="#about">About</a>
-              <a href="#services">Services</a>
-              <a href="#how">How it Works?</a>
-              <a href="#features">Features</a>
-              <a href="#compliance">Compliance</a>
-            </nav>
-          </header>
+          <Header scrolled={true} actionButtonDisable />
           {/* ========================== Main Section ========================== */}
           <main
             className={Styles.mainContent}
@@ -216,20 +199,7 @@ const SignupScreen = () => {
     <>
       <div className={Styles.authContainer}>
         {/* ========================== Header Section ========================== */}
-        <header className={`${Styles.header} ${isScrolled ? Styles.scrolled : ''}`}>
-          <div onClick={() => navigate('/')} className={Styles.logo}>
-            <img src="/assets/images/falcon-logo.jpg" alt="Falcon" />
-            <span className={Styles.logoSpan}>Falcon</span>
-          </div>
-          <nav className={Styles.nav}>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#how">How it Works?</a>
-            <a href="#features">Features</a>
-            <a href="#compliance">Compliance</a>
-          </nav>
-        </header>
-
+        <Header scrolled={true} actionButtonDisable />
         {/* ========================== Main Section ========================== */}
         <main className={Styles.mainContent}>
           <section className={`${Styles.formSection} ${Styles.fadeIn}`} onScroll={handleScroll}>

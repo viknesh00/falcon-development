@@ -142,3 +142,28 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.loginButton {
+  background: #238555;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 21px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.loginButton:active {
+  transform: translateY(0);
+}
+
+.loginButton:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

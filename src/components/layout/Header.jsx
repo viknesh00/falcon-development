@@ -3,6 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import { FiMenu, FiX } from 'react-icons/fi';
 
+/**
+ * Header Component
+ * ----------------
+ * A responsive application header with:
+ * - Scroll-based styling
+ * - Mobile hamburger navigation
+ * - Section-based smooth scrolling
+ * - Optional external scroll state control
+ *
+ * @param {Object} props
+ * @param {boolean} [props.scrolled] - Forces the header into scrolled state (overrides auto scroll)
+ * @param {boolean} [props.actionButtonDisable=false] - Hides Sign in / Register buttons
+ */
 const Header = ({ scrolled: forceScrolled, actionButtonDisable = false }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(forceScrolled || false);
