@@ -1,0 +1,51 @@
+.pageContainer {
+  min-height: 100vh;
+}
+
+.headerSection {
+  background-color: #ffffff;
+  padding: 2rem 3rem 1rem 3rem;
+  position: relative;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: #00a651;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.mainTitle {
+  color: #00a651;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.formSection {
+  background-color: #ffffff;
+  padding: 0 3rem 3rem 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.stepperWrapper {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+}

@@ -25,8 +25,7 @@ const useFaceDeduction = (
   const REQUIRED_STABLE_FRAMES = requiredStableFrames; // configurable (frames)
   const lastDetectTimeRef = useRef(0); // used to throttle detection to targetFps
 
-  const cocoDetectorRef = useRef(null);
-  const detectCounterRef = useRef(0);
+  /* Removed unused refs to fix linting errors */
 
   const detect = useCallback(async () => {
     // Only proceed if EVERYTHING is ready

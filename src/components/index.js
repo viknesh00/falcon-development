@@ -12,3 +12,4 @@ export { default as AddressLookup } from './common/AddressLookup';
 export { default as ManualAddressModal } from './common/ManualAddressModal';
 export { default as SwitchOptions } from './common/Options/Options.Component';
 export { default as OtpInput } from './common/OtpInput';
+export { default as DashboardLayout } from './layout/DashboardLayout';

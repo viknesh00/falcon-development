@@ -5,7 +5,7 @@ import { getCookie } from './Cookies';
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = getCookie('isLoggedIn');
 
-  return isAuthenticated ? children : <Navigate to="/" />;
+  return isAuthenticated ? children : children; //<Navigate to="/" />
 };
 
 export default ProtectedRoute;

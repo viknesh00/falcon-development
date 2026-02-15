@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.css';
+import './styles/Header.css';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 /**

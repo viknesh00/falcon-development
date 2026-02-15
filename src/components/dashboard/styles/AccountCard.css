@@ -1,0 +1,136 @@
+.account-card {
+  background: var(--white, #ffffff);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+  border: 1px solid #d1cfcf;
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.account-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-icon-placeholder {
+  color: var(--primary, #0f4c3a);
+  font-size: 20px;
+}
+
+.account-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark, #0b1f19);
+}
+
+.account-arrow {
+  color: var(--primary, #0f4c3a);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.detail-item {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  gap: 4px;
+}
+
+.detail-item .value {
+  color: var(--dark, #0b1f19);
+  font-weight: 500;
+}
+
+.balance-section {
+  margin-bottom: 24px;
+}
+
+.balance-label {
+  font-size: 14px;
+  color: #8899a6;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.balance-amount {
+  font-family: var(--font-main, 'Urbanist', sans-serif);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--success, #28a745); /* Green color as per UI */
+  margin: 0;
+}
+
+.visibility-btn {
+  background: #f0f2f5;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  cursor: pointer;
+}
+
+.account-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px; /* Rounded pill shape */
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.action-btn.primary {
+  background-color: var(--success, #28a745);
+  color: white;
+  border: none;
+}
+
+.action-btn.primary:hover {
+  background-color: #218838;
+}
+
+.action-btn.outline {
+  background-color: white;
+  color: var(--success, #28a745);
+  border: 1px solid var(--success, #28a745);
+}
+
+.action-btn.outline:hover {
+  background-color: #f0fff4;
+}

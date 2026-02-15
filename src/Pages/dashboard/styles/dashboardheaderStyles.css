@@ -1,0 +1,117 @@
+.dash-header {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 100px;
+  border-bottom: 1px solid #d7d5d5;
+  width: 90%;
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.search-bar-wrapper {
+  flex: 1;
+  max-width: 60%;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8899a6;
+  font-size: 18px;
+}
+
+.search-bar input {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px 12px 44px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 12px;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary);
+}
+
+.search-bar input::placeholder {
+  color: #8899a6;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--dark);
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-btn span.label {
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--error, #e02424);
+  color: var(--white);
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.user-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}

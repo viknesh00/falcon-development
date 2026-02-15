@@ -8,11 +8,9 @@ import {
   FaGooglePlay,
   FaApple,
 } from 'react-icons/fa';
-import './Footer.css';
+import './styles/Footer.css';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -24,16 +22,16 @@ const Footer = () => {
           </div>
 
           <div className="socials">
-            <a href="#" aria-label="Facebook">
+            <a href="/" aria-label="Facebook">
               <FaFacebook />
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="/" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="/" aria-label="Instagram">
               <FaInstagram />
             </a>
-            <a href="#" aria-label="Twitter">
+            <a href="/" aria-label="Twitter">
               <FaTwitter />
             </a>
           </div>
@@ -43,29 +41,29 @@ const Footer = () => {
         <div className="footer-links">
           <div>
             <h4>Home</h4>
-            <a>About</a>
-            <a>How it works</a>
-            <a>Features</a>
-            <a>Pricing</a>
-            <a>Testimonials</a>
-            <a>FAQ’s</a>
+            <Link to="/">About</Link>
+            <Link to="/">How it works</Link>
+            <Link to="/">Features</Link>
+            <Link to="/">Pricing</Link>
+            <Link to="/">Testimonials</Link>
+            <Link to="/">FAQ’s</Link>
           </div>
 
           <div>
             <h4>Wallet</h4>
-            <a>Financing</a>
-            <a>Credit monitor</a>
-            <a>Payments</a>
+            <Link to="/">Financing</Link>
+            <Link to="/">Credit monitor</Link>
+            <Link to="/">Payments</Link>
           </div>
 
           <div>
             <h4>Legal & Compliance & Support</h4>
-            <a>Shariah compliance</a>
-            <a>Privacy policy</a>
-            <a>Terms of service</a>
-            <a>Complaints process</a>
-            <a>Contact Us</a>
-            <a>Help centre</a>
+            <Link to="/">Shariah compliance</Link>
+            <Link to="/">Privacy policy</Link>
+            <Link to="/">Terms of service</Link>
+            <Link to="/">Complaints process</Link>
+            <Link to="/">Contact Us</Link>
+            <Link to="/">Help centre</Link>
           </div>
         </div>
 
@@ -99,7 +97,7 @@ const Footer = () => {
           Shariah-compliant financial services. No interest charged. Terms apply.
         </p>
 
-        <a>Terms of Services</a>
+        <Link to="/">Terms of Services</Link>
       </div>
     </footer>
   );
