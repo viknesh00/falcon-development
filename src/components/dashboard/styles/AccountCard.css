@@ -74,10 +74,9 @@
 }
 
 .balance-amount {
-  font-family: var(--font-main, 'Urbanist', sans-serif);
   font-size: 36px;
   font-weight: 700;
-  color: var(--success, #28a745); /* Green color as per UI */
+  color: var(--success, #28a745);
   margin: 0;
 }
 
@@ -107,7 +106,7 @@
   justify-content: center;
   gap: 8px;
   padding: 12px 20px;
-  border-radius: 999px; /* Rounded pill shape */
+  border-radius: 999px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;

@@ -13,3 +13,6 @@ export { default as ManualAddressModal } from './common/ManualAddressModal';
 export { default as SwitchOptions } from './common/Options/Options.Component';
 export { default as OtpInput } from './common/OtpInput';
 export { default as DashboardLayout } from './layout/DashboardLayout';
+export { default as LoanStatusCard } from './Loans/LoansStatusCard';
+export { default as ActiveFinanceCard } from './Loans/ActiveFinanceCard';
+export { default as LoanApplicationProgress } from './Loans/LoanApplicationProgress';

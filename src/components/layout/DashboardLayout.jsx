@@ -5,10 +5,12 @@ import RightSidebar from './RightSidebar';
 import DashboardHeader from '../../Pages/dashboard/helper/DashboardHeader';
 import './styles/DashboardLayout.css';
 
+import Footer from './Footer';
+
 const DashboardLayout = () => {
   return (
-    <div>
-      <section className="dashboard-layout-container">
+    <div className="layout-root">
+      <div className="dashboard-layout-container">
         <Sidebar />
         <main className="main-content">
           <DashboardHeader />
@@ -17,7 +19,8 @@ const DashboardLayout = () => {
           </div>
         </main>
         <RightSidebar />
-      </section>
+      </div>
+      <Footer />
     </div>
   );
 };

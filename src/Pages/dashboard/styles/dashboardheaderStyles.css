@@ -42,7 +42,7 @@
 }
 
 .search-bar input:focus {
-  border-color: var(--primary);
+  border-color: var(--accent);
 }
 
 .search-bar input::placeholder {
@@ -53,9 +53,11 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  justify-content: center;
+  align-self: center;
 }
 
-.action-buttons {
+.action-button {
   display: flex;
   gap: 16px;
 }
@@ -67,20 +69,22 @@
   font-size: 20px;
   cursor: pointer;
   position: relative;
-  padding: 8px;
+  /* padding: 8px; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
 }
 
 .icon-btn img {
-  width: 24px;
-  height: 24px;
+  /* width: 24px;
+  height: 24px; */
 }
 
 .icon-btn span.label {
   font-size: 10px;
   margin-top: 4px;
+  color: var(--dark);
 }
 
 .badge {
@@ -113,5 +117,4 @@
 
 .user-icon {
   font-size: 20px;
-  margin-bottom: 4px;
 }

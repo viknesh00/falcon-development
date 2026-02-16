@@ -1,12 +1,12 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import InputField from '../../components/common/InputField';
 import Dropdown from '../../components/common/Dropdown';
 import DatePicker from '../../components/common/DatePicker';
 import Button from '../../components/common/Button';
 import AddressLookup from '../../components/common/AddressLookup';
-import { loanFormConfig } from './loanFormConfig';
+import { loanFormConfig } from '../../config/loanFormConfig';
 import { IoArrowBack } from 'react-icons/io5';
 import PageStyles from './styles/LoanApplication.module.css';
 import { Link } from 'react-router-dom';

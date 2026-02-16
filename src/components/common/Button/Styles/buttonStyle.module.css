@@ -11,6 +11,7 @@
   border: 2px solid transparent;
   font-size: 16px;
   outline: none;
+  font-family: var(--font-main);
 }
 
 .button:focus-visible {
@@ -25,7 +26,7 @@
 
 /* PRIMARY VARIANT */
 .primary {
-  background-color: #1d9b5e;
+  background-color: var(--accent);
   color: white;
   border: none;
 }
@@ -42,7 +43,7 @@
   background-color: #1d9b5e;
   border-color: #5df2aa;
   border-width: 3px;
-  padding: 11px 23px; /* Adjust padding for border width */
+  padding: 11px 23px;
 }
 
 .primary:disabled {

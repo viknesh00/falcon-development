@@ -1,8 +1,11 @@
-import Home from './landingPage/Home';
-import Dashboard from './dashboard/Dashboard';
-import SignupScreen from './auth/Signup-Screen';
-import SignInScreen from './auth/SignIn-Screen/index';
-import LoanScreen from './Loans/LoanScreen';
-import LoanApplication from './Loans/LoanApplicarion';
-
-export { Home, Dashboard, SignupScreen, SignInScreen, LoanScreen, LoanApplication };
+export { default as Home } from './landingPage/Home';
+export { default as Dashboard } from './dashboard/Dashboard';
+export { default as SignupScreen } from './auth/Signup-Screen';
+export { default as SignInScreen } from './auth/SignIn-Screen/index';
+export { default as LoanScreen } from './Loans/LoanScreen';
+export { default as LoanApplication } from './Loans/LoanApplicarion';
+export { default as WalletScreen } from './Wallet/WalletScreen';
+export { default as TransactionScreen } from './Transactions/TransactionScreen';
+export { default as AccountScreen } from './Account/AccountScreen';
+export { default as SettingScreen } from './Settings/index';
+export { default as SupportScreen } from './Support';

@@ -1,0 +1,71 @@
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 108px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  min-width: 306px;
+  border: 1px solid transparent;
+}
+
+/* Variant Styles */
+.outstanding {
+  background-color: #ffeaea;
+  border: 1px solid #ffcccc;
+}
+
+.outstanding .title {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.outstanding .value {
+  color: #ff4d4f;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.active,
+.applied,
+.closed {
+  background-color: #f0fffa;
+  border: 1px solid #d9f7e5;
+}
+
+.active .title,
+.applied .title,
+.closed .title {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.active .value,
+.applied .value,
+.closed .value {
+  color: #00a86b; /* Green text */
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  margin-right: 0.5rem;
+}
+
+.description {
+  color: #888;
+  font-size: 0.8rem;
+  margin: 0;
+  align-self: flex-end; /* Align to bottom of value container if needed */
+  padding-bottom: 4px;
+}
+
+.valueContainer {
+  display: flex;
+  align-items: baseline;
+}

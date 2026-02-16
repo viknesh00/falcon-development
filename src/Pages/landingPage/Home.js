@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
   const securityCards = [
     {
-      icon: '/assets/images/checklist.png', // directly use URL
+      icon: '/assets/images/checklist.png',
       description: 'We operate under FCA and PRA guidelines for Collective Investment Schemes.',
     },
     {

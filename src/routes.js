@@ -1,8 +1,19 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import ProtectedRoute from './api/ProtectedRoute';
-import Layout from './components/layout/Layout';
-import { Home, SignupScreen, Dashboard, SignInScreen, LoanScreen, LoanApplication } from './Pages';
+import {
+  Home,
+  SignupScreen,
+  Dashboard,
+  SignInScreen,
+  LoanScreen,
+  LoanApplication,
+  WalletScreen,
+  TransactionScreen,
+  AccountScreen,
+  SettingScreen,
+  SupportScreen,
+} from './Pages';
 import { DashboardLayout } from './components';
 
 const routes = [
@@ -19,11 +30,11 @@ const routes = [
     children: [
       { path: '/dashboard', element: <Dashboard /> },
       { path: '/loans', element: <LoanScreen /> },
-      { path: '/wallet', element: <LoanScreen /> },
-      { path: '/transactions', element: <LoanScreen /> },
-      { path: '/account', element: <LoanScreen /> },
-      { path: '/settings', element: <LoanScreen /> },
-      { path: '/support', element: <LoanScreen /> },
+      { path: '/wallet', element: <WalletScreen /> },
+      { path: '/transactions', element: <TransactionScreen /> },
+      { path: '/account', element: <AccountScreen /> },
+      { path: '/settings', element: <SettingScreen /> },
+      { path: '/support', element: <SupportScreen /> },
       { path: '/loan/loan-application', element: <LoanApplication /> },
     ],
   },
