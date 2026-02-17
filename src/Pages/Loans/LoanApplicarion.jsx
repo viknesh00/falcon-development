@@ -11,15 +11,28 @@ import { IoArrowBack } from 'react-icons/io5';
 import PageStyles from './styles/LoanApplication.module.css';
 import { Link } from 'react-router-dom';
 import { StepIndicator } from '../../components';
+import EstimatedFinanceSummary from './EstimatedFinanceSummary';
+import { UploadIcon } from '../../assets';
+import ApplicationSubmittedModal from './ApplicationSubmittedModal';
 
 const LoanApplication = () => {
   const [currentStep, setCurrentStep] = React.useState(0);
+  const [showFinanceSummary, setShowFinanceSummary] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const initialValues = {};
   loanFormConfig.forEach((section) => {
-    section.fields.forEach((field) => {
-      initialValues[field.name] = '';
-    });
+    if (section.groups) {
+      section.groups.forEach((group) => {
+        group.fields.forEach((field) => {
+          initialValues[field.name] = '';
+        });
+      });
+    } else {
+      section.fields.forEach((field) => {
+        initialValues[field.name] = '';
+      });
+    }
   });
 
   const isLastStep = currentStep === loanFormConfig.length - 1;
@@ -27,6 +40,7 @@ const LoanApplication = () => {
   const handleSubmit = (values, { setSubmitting }) => {
     if (isLastStep) {
       console.log('Form Submitted:', values);
+      setShowModal(true);
       setSubmitting(false);
     } else {
       setCurrentStep(currentStep + 1);
@@ -42,14 +56,22 @@ const LoanApplication = () => {
 
   const currentSection = loanFormConfig[currentStep];
 
-  const currentStepValidationSchema = Yup.object().shape(
-    currentSection.fields.reduce((acc, field) => {
-      if (field.required) {
-        acc[field.name] = Yup.string().required(`${field.label} is required`);
-      }
-      return acc;
-    }, {})
-  );
+  const buildValidationSchema = (section) => {
+    const fields = section.groups
+      ? section.groups.flatMap((group) => group.fields)
+      : section.fields;
+
+    return Yup.object().shape(
+      fields.reduce((acc, field) => {
+        if (field.required) {
+          acc[field.name] = Yup.string().required(`${field.label} is required`);
+        }
+        return acc;
+      }, {})
+    );
+  };
+
+  const currentStepValidationSchema = buildValidationSchema(currentSection);
 
   return (
     <div className={PageStyles.pageContainer}>
@@ -75,127 +97,162 @@ const LoanApplication = () => {
         >
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting }) => (
             <Form>
-              <div style={{ marginBottom: '2rem' }}>
+              <div className={PageStyles.sectionWrapper}>
                 <h3 className={PageStyles.sectionTitle}>{currentSection.sectionTitle}</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                  {currentSection.fields.map((field) => {
-                    const commonProps = {
-                      key: field.name,
-                      name: field.name,
-                      placeholder: field.placeholder,
-                      error: errors[field.name],
-                      touched: touched[field.name],
-                      style: { flex: field.width === 'half' ? '1 1 45%' : '1 1 100%' },
-                    };
 
-                    // Wrapper for layout - logic moved here but structure remains
-                    const wrapperStyle = {
-                      flex: field.width === 'half' ? '1 1 calc(50% - 1rem)' : '1 1 100%',
-                      maxWidth: field.width === 'half' ? 'calc(50% - 1rem)' : '100%',
-                    };
+                {(currentSection.groups || [{ title: null, fields: currentSection.fields }]).map(
+                  (group, groupIndex) => (
+                    <div key={groupIndex} className={PageStyles.fieldGroup}>
+                      {group.title && (
+                        <h4 className={PageStyles.groupTitle}>
+                          {group.title.includes('(') ? (
+                            <>
+                              {group.title.split('(')[0]}
+                              <span className={PageStyles.bracketText}>
+                                ({group.title.split('(')[1]}
+                              </span>
+                            </>
+                          ) : (
+                            group.title
+                          )}
+                        </h4>
+                      )}
 
-                    if (field.type === 'dropdown') {
-                      return (
-                        <div key={field.name} style={wrapperStyle}>
-                          <label
-                            style={{
-                              display: 'block',
-                              marginBottom: '0.5rem',
-                              fontSize: '0.9rem',
-                              color: '#333',
-                            }}
-                          >
-                            {field.label}{' '}
-                            {field.required && <span style={{ color: 'red' }}>*</span>}
-                          </label>
-                          <Dropdown
-                            {...commonProps}
-                            options={field.options}
-                            value={values[field.name]}
-                            onChange={(val) => setFieldValue(field.name, val)}
-                            onBlur={handleBlur}
-                          />
-                        </div>
-                      );
-                    }
+                      <div className={PageStyles.fieldsGrid}>
+                        {group.fields.map((field) => {
+                          const isHalf = field.width === 'half';
 
-                    if (field.type === 'date') {
-                      return (
-                        <div key={field.name} style={wrapperStyle}>
-                          <label
-                            style={{
-                              display: 'block',
-                              marginBottom: '0.5rem',
-                              fontSize: '0.9rem',
-                              color: '#333',
-                            }}
-                          >
-                            {field.label}{' '}
-                            {field.required && <span style={{ color: 'red' }}>*</span>}
-                          </label>
-                          <DatePicker
-                            {...commonProps}
-                            value={values[field.name]}
-                            onChange={(name, val) => setFieldValue(name, val)}
-                            setFieldTouched={() => {}}
-                          />
-                        </div>
-                      );
-                    }
+                          return (
+                            <div
+                              key={field.name}
+                              className={`${PageStyles.fieldWrapper} ${
+                                isHalf ? PageStyles.fieldHalf : PageStyles.fieldFull
+                              }`}
+                            >
+                              <label className={PageStyles.fieldLabel}>
+                                {field.label}
+                                {field.required && <span className={PageStyles.required}> *</span>}
+                              </label>
 
-                    if (field.type === 'addressLookup') {
-                      return (
-                        <div key={field.name} style={wrapperStyle}>
-                          <label
-                            style={{
-                              display: 'block',
-                              marginBottom: '0.5rem',
-                              fontSize: '0.9rem',
-                              color: '#333',
-                            }}
-                          >
-                            {field.label}{' '}
-                            {field.required && <span style={{ color: 'red' }}>*</span>}
-                          </label>
-                          <AddressLookup
-                            {...commonProps}
-                            value={values[field.name]}
-                            onAddressSelect={(address) => {
-                              setFieldValue('postalCode', address.postalCode);
-                              setFieldValue(
-                                'selectedAddress',
-                                `${address.buildingAddress ? address.buildingAddress + ', ' : ''}${address.street}, ${address.city}`
-                              );
-                              setFieldValue('houseStreet', address.street);
-                              setFieldValue('locality', address.city);
-                              setFieldValue('country', address.country);
-                            }}
-                            onManualEntry={(val) => setFieldValue(field.name, val)}
-                          />
-                        </div>
-                      );
-                    }
+                              {field.type === 'dropdown' && (
+                                <Dropdown
+                                  name={field.name}
+                                  options={field.options}
+                                  value={values[field.name]}
+                                  error={errors[field.name]}
+                                  touched={touched[field.name]}
+                                  onChange={(val) => setFieldValue(field.name, val)}
+                                  onBlur={handleBlur}
+                                />
+                              )}
 
-                    return (
-                      <div key={field.name} style={wrapperStyle}>
-                        <label
-                          style={{
-                            display: 'block',
-                            marginBottom: '0.5rem',
-                            fontSize: '0.9rem',
-                            color: '#333',
-                          }}
-                        >
-                          {field.label} {field.required && <span style={{ color: 'red' }}>*</span>}
-                        </label>
-                        <InputField {...commonProps} type={field.type} activeField={null} />
+                              {field.type === 'date' && (
+                                <DatePicker
+                                  name={field.name}
+                                  value={values[field.name]}
+                                  error={errors[field.name]}
+                                  touched={touched[field.name]}
+                                  onChange={(name, val) => setFieldValue(name, val)}
+                                  setFieldTouched={() => {}}
+                                />
+                              )}
+
+                              {field.type === 'addressLookup' && (
+                                <AddressLookup
+                                  name={field.name}
+                                  value={values[field.name]}
+                                  error={errors[field.name]}
+                                  touched={touched[field.name]}
+                                  onAddressSelect={(address) => {
+                                    setFieldValue('postalCode', address.postalCode);
+                                    setFieldValue(
+                                      'selectedAddress',
+                                      `${address.buildingAddress ? address.buildingAddress + ', ' : ''}${address.street}, ${address.city}`
+                                    );
+                                    setFieldValue('houseStreet', address.street);
+                                    setFieldValue('locality', address.city);
+                                    setFieldValue('country', address.country);
+                                  }}
+                                  onManualEntry={(val) => setFieldValue(field.name, val)}
+                                />
+                              )}
+                              {field.type === 'checkbox' && (
+                                <label className={PageStyles.checkboxWrapper}>
+                                  <input
+                                    type="checkbox"
+                                    name={field.name}
+                                    checked={values[field.name] || false}
+                                    onChange={(e) => {
+                                      setFieldValue(field.name, e.target.checked);
+                                    }}
+                                  />
+
+                                  <span className={PageStyles.checkboxLabel}>{field.label}</span>
+                                </label>
+                              )}
+
+                              {field.type === 'file' && (
+                                <div className={PageStyles.fileUploadWrapper}>
+                                  <label className={PageStyles.fileUploadBox}>
+                                    <input
+                                      type="file"
+                                      name={field.name}
+                                      className={PageStyles.fileInput}
+                                      onChange={(event) => {
+                                        setFieldValue(field.name, event.currentTarget.files[0]);
+                                      }}
+                                    />
+
+                                    <div className={PageStyles.fileUploadContent}>
+                                      <span className={PageStyles.filePlaceholder}>
+                                        {values[field.name]?.name || field.label}
+                                      </span>
+
+                                      <div className={PageStyles.iconWrapper}>
+                                        <img src={UploadIcon} alt="" className={PageStyles.icon} />
+                                      </div>
+                                    </div>
+                                  </label>
+
+                                  {errors[field.name] && touched[field.name] && (
+                                    <div className={PageStyles.errorText}>{errors[field.name]}</div>
+                                  )}
+                                </div>
+                              )}
+
+                              {!['dropdown', 'date', 'addressLookup', 'checkbox', 'file'].includes(
+                                field.type
+                              ) && (
+                                <>
+                                  <InputField
+                                    name={field.name}
+                                    type={field.type}
+                                    placeholder={field.placeholder}
+                                    error={errors[field.name]}
+                                    touched={touched[field.name]}
+                                  />
+
+                                  {/* helper text always visible */}
+                                  {field.helperText && (
+                                    <div
+                                      className={PageStyles.helperText}
+                                      onClick={() => setShowFinanceSummary(true)}
+                                    >
+                                      {field.helperText}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  )
+                )}
               </div>
 
-              <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'space-between' }}>
+              <div className={PageStyles.formFooter}>
                 {currentStep > 0 && (
                   <Button
                     type="button"
@@ -206,7 +263,8 @@ const LoanApplication = () => {
                     Back
                   </Button>
                 )}
-                <div style={{ marginLeft: 'auto' }}>
+
+                <div className={PageStyles.submitWrapper}>
                   <Button
                     type="submit"
                     variant="primary"
@@ -221,6 +279,11 @@ const LoanApplication = () => {
           )}
         </Formik>
       </section>
+      {showModal && <ApplicationSubmittedModal onClose={() => setShowModal(false)} />}
+
+      {showFinanceSummary && (
+        <EstimatedFinanceSummary onClose={() => setShowFinanceSummary(false)} />
+      )}
     </div>
   );
 };

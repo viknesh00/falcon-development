@@ -24,6 +24,18 @@ const DatePicker = ({ name, value, onChange, setFieldTouched, error, touched, pl
   const [viewDate, setViewDate] = useState(new Date());
   const [view, setView] = useState('days'); // 'days', 'months', 'years'
   const containerRef = useRef(null);
+  const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    if (value) {
+      const date = moment(value, 'YYYY-MM-DD', true);
+      if (date.isValid()) {
+        setInputValue(date.format('D MMMM YYYY'));
+      }
+    } else {
+      setInputValue('');
+    }
+  }, [value]);
 
   // Close when clicking outside
   useEffect(() => {
@@ -185,9 +197,23 @@ const DatePicker = ({ name, value, onChange, setFieldTouched, error, touched, pl
       >
         <div className={Styles.inputLeft}>
           <img src={CalendarIcon} alt="" className={Styles.leftIcon} />
-          <span className={value ? Styles.inputText : Styles.placeholder}>
-            {formatDisplayValue() || placeholder || 'Select Date'}
-          </span>
+          <input
+            type="text"
+            value={inputValue}
+            placeholder="DD MMMM YYYY"
+            className={Styles.dateInput}
+            onChange={(e) => {
+              const val = e.target.value;
+              setInputValue(val);
+
+              const parsedDate = moment(val, 'D MMMM YYYY', true);
+
+              if (parsedDate.isValid()) {
+                onChange(name, parsedDate.format('YYYY-MM-DD'));
+              }
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
 
         <div className={Styles.rightIcon}>

@@ -1,0 +1,142 @@
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+}
+
+/* PANEL */
+.panel {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+  width: 360px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
+  animation: slideFadeIn 0.25s ease-out;
+}
+
+.icon,
+.reactIconWrapper {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+}
+
+.inputWrapper:focus-within .icon,
+.inputWrapper:focus-within .reactIconWrapper {
+  color: #48bb78;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(20px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1fa463;
+  line-height: 1.3;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #777;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 14px 0 18px;
+}
+
+/* SECTIONS */
+.section {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.success {
+  color: #1fa463;
+}
+
+.statusLabel {
+  font-size: 12px;
+  color: #666;
+}
+
+.statusValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* TIME BLOCK */
+.timeBlock {
+  margin-bottom: 20px;
+}
+
+.timeLabel {
+  font-size: 12px;
+  color: #666;
+}
+
+.timeValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* BUTTON */
+.trackBtn {
+  width: 100%;
+  height: 44px;
+  background: #1fa463;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.trackBtn:hover {
+  background: #188b55;
+}

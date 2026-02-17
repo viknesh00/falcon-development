@@ -1,6 +1,15 @@
+/* =========================
+   PAGE LAYOUT
+========================= */
+
 .pageContainer {
   min-height: 100vh;
+  background-color: #ffffff;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .headerSection {
   background-color: #ffffff;
@@ -11,17 +20,23 @@
 .backLink {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   color: #00a651;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 1.5rem;
-  gap: 0.5rem;
   cursor: pointer;
 }
 
 .backLink:hover {
   text-decoration: underline;
+}
+
+.stepperWrapper {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
 }
 
 .mainTitle {
@@ -30,6 +45,10 @@
   font-weight: 700;
   margin-bottom: 2rem;
 }
+
+/* =========================
+   FORM SECTION
+========================= */
 
 .formSection {
   background-color: #ffffff;
@@ -40,12 +59,185 @@
   font-size: 1.25rem;
   font-weight: 600;
   color: #2d3748;
-  margin-bottom: 1.5rem;
-  margin-top: 1rem;
+  margin: 1rem 0 1.5rem;
 }
 
-.stepperWrapper {
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
+/* =========================
+   FIELD GROUPS
+========================= */
+
+.fieldGroup {
+  margin-bottom: 2.5rem;
+}
+
+.groupTitle {
+  color: #1d9b5e;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bracketText {
+  color: #000; /* black */
+  font-weight: 400;
+}
+
+/* =========================
+   FIELD GRID
+========================= */
+
+.fieldsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Half width field */
+.fieldHalf {
+  flex: 1 1 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+}
+
+/* Full width field */
+.fieldFull {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+/* =========================
+   LABELS
+========================= */
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.required {
+  color: red;
+}
+
+.helperText {
+  font-size: 12px;
+  color: #1d9b5e;
+  margin-top: 4px;
+  text-align: right;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.helperText:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.fileUploadWrapper {
+  width: 100%;
+}
+
+.fileUploadBox {
+  display: block;
+  border: 1px solid #d9e1e7;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  background: #f9fbfc;
+}
+
+.fileUploadContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filePlaceholder {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.uploadIcon {
+  color: #16a34a;
+  font-size: 18px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0px;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+  color: #374151;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.icon,
+.reactIconWrapper {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+}
+
+.inputWrapper:focus-within .icon,
+.inputWrapper:focus-within .reactIconWrapper {
+  color: #48bb78;
+}
+
+/* =========================
+   FOOTER BUTTONS
+========================= */
+
+.formFooter {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submitWrapper {
+  margin-left: auto;
+}
+
+/* =========================
+   RESPONSIVE (OPTIONAL)
+========================= */
+
+@media (max-width: 768px) {
+  .headerSection,
+  .formSection {
+    padding: 1.5rem;
+  }
+
+  .stepperWrapper {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .fieldHalf {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
