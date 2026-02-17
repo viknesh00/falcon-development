@@ -24,6 +24,7 @@ export { default as CoinIcon } from './icons/coin-icon.svg';
 export { default as StatementIcon } from './icons/book-mark-icon.svg';
 export { default as PlusCircule } from './icons/plus-circle.svg';
 export { default as ArrowRightIcon } from './icons/arrow-narrow-right.svg';
+export { default as CloseIcon } from './icons/Close_Icon.svg';
 
 // Images
 export { default as SignUpLoading } from './icons/loding.gif';
