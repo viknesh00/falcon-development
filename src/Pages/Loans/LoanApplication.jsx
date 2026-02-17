@@ -188,7 +188,40 @@ const LoanApplication = () => {
                         >
                           {field.label} {field.required && <span style={{ color: 'red' }}>*</span>}
                         </label>
-                        <InputField {...commonProps} type={field.type} activeField={null} />
+                        <InputField
+                          {...commonProps}
+                          type={field.type}
+                          activeField={null}
+                          onKeyDown={(e) => {
+                            if (field.type === 'number') {
+                              // Allow navigation keys: backspace, delete, tab, escape, enter, arrows
+                              if (
+                                [
+                                  'Backspace',
+                                  'Delete',
+                                  'Tab',
+                                  'Escape',
+                                  'Enter',
+                                  'ArrowLeft',
+                                  'ArrowRight',
+                                  'ArrowUp',
+                                  'ArrowDown',
+                                  'Home',
+                                  'End',
+                                ].includes(e.key) ||
+                                // Allow: Ctrl+A, Command+A, Ctrl+C, Ctrl+V, etc.
+                                e.ctrlKey ||
+                                e.metaKey
+                              ) {
+                                return;
+                              }
+                              // Allow numbers and decimal point
+                              if (!/^[0-9.]$/.test(e.key)) {
+                                e.preventDefault();
+                              }
+                            }
+                          }}
+                        />
                       </div>
                     );
                   })}

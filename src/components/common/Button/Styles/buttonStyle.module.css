@@ -56,7 +56,8 @@
 .secondary {
   background-color: transparent !important;
   color: #1d9b5e !important;
-  border: 2px solid #1d9b5e !important;
+  border: 1px solid #1d9b5e !important;
+  font-weight: 400 !important;
 }
 
 .secondary:hover:not(:disabled) {
@@ -67,14 +68,6 @@
 .secondary:active:not(:disabled) {
   background-color: #b9ffdd !important;
   color: #1d9b5e !important;
-}
-
-.secondary:focus:not(:disabled) {
-  background-color: #9af7ca !important;
-  color: #1d9b5e !important;
-  border-color: #5df2aa !important;
-  border-width: 3px;
-  padding: 11px 23px; /* Adjust padding for border width */
 }
 
 .secondary:disabled {

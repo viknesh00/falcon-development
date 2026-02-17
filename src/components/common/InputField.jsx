@@ -23,6 +23,7 @@ const InputField = ({
   onToggleVirtualKeyboard,
   showVirtualKeyboard,
   required = false,
+  onKeyDown,
 }) => (
   <div className={Styles.formGroup}>
     <div className={`${Styles.inputWrapper} ${error && touched ? Styles.error : ''}`}>
@@ -43,6 +44,7 @@ const InputField = ({
         className={Styles.input}
         readOnly={useVirtualKeyboard && showVirtualKeyboard}
         onFocus={() => setActiveField && setActiveField(name)}
+        onKeyDown={onKeyDown}
         style={{
           placeholderColor: '#FFFFFFB2',
           // Note: placeholderColor isn't a valid CSS property in JS/React usually,

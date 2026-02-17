@@ -1,0 +1,43 @@
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 9999; */
+  backdrop-filter: blur(2px);
+}
+
+.loading-balls {
+  display: flex;
+  gap: 10px;
+}
+
+.loading-ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #1d9b5e;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.loading-ball:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-ball:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}

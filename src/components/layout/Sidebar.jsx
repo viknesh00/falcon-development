@@ -22,7 +22,13 @@ import './styles/Sidebar.css';
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isActive = (path) => location.pathname === path;
+
+  const isActive = (path) => {
+    if (path === '/loans') {
+      return location.pathname.startsWith('/loan');
+    }
+    return location.pathname === path;
+  };
 
   const mainMenuItems = [
     { name: 'Home', path: '/dashboard', iconActive: HomeActive, iconInactive: HomeInactive },

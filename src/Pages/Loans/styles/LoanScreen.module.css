@@ -20,18 +20,6 @@
   margin: 0;
 }
 
-.button {
-  font-size: 1rem;
-  border-radius: 100px;
-  padding: 0.8rem 2rem;
-}
-
-.button p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-
 .cardsContainer {
   display: flex;
   gap: 1.5rem;
@@ -50,6 +38,11 @@
   margin-bottom: 1rem;
 }
 
+.financeApplicationTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
 .activeFinancesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

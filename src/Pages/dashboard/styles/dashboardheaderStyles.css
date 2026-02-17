@@ -26,8 +26,12 @@
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #8899a6;
   font-size: 18px;
+}
+
+.search-bar img {
+  width: 20px;
+  height: 20px;
 }
 
 .search-bar input {

@@ -16,3 +16,5 @@ export { default as DashboardLayout } from './layout/DashboardLayout';
 export { default as LoanStatusCard } from './Loans/LoansStatusCard';
 export { default as ActiveFinanceCard } from './Loans/ActiveFinanceCard';
 export { default as LoanApplicationProgress } from './Loans/LoanApplicationProgress';
+export { default as DonutChart } from './common/DonutChart';
+export { default as Table } from './common/Table';

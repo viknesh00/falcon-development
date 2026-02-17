@@ -1,0 +1,82 @@
+.container {
+  width: 100%;
+}
+.tableContainer {
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f5f7f9;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5d6b75;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 20px 16px;
+  font-size: 14px;
+  color: var(--dark, #0b1f19);
+  font-weight: 500;
+  border-bottom: 1px solid #e0e0e0;
+  background: white;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.headerContainer {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark, #0b1f19);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #8899a6;
+}
+
+.loadingContainer,
+.emptyContainer {
+  padding: 40px;
+  text-align: center;
+  color: #5d6b75;
+  background: white;
+}
+
+/* Cell specific styles can be passed via className or style prop, but providing some defaults */
+.cellText {
+  color: var(--dark, #0b1f19);
+}
+
+.cellSubText {
+  font-size: 12px;
+  color: #8899a6;
+  margin-top: 4px;
+}

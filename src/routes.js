@@ -13,6 +13,7 @@ import {
   AccountScreen,
   SettingScreen,
   SupportScreen,
+  LoanDetailsScreen,
 } from './Pages';
 import { DashboardLayout } from './components';
 
@@ -36,6 +37,7 @@ const routes = [
       { path: '/settings', element: <SettingScreen /> },
       { path: '/support', element: <SupportScreen /> },
       { path: '/loan/loan-application', element: <LoanApplication /> },
+      { path: '/loan/:id', element: <LoanDetailsScreen /> },
     ],
   },
   { path: '*', element: <Navigate to="/" /> },

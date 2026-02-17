@@ -77,7 +77,7 @@ export const loanFormConfig = [
       {
         name: 'contact',
         label: 'Contact',
-        type: 'text',
+        type: 'number',
         placeholder: 'Enter contact number',
         required: true,
         width: 'half',
@@ -140,7 +140,7 @@ export const loanFormConfig = [
       {
         name: 'propertyValue',
         label: 'Property Value',
-        type: 'text',
+        type: 'number',
         placeholder: '£0.00',
         required: true,
         width: 'half',
@@ -148,7 +148,7 @@ export const loanFormConfig = [
       {
         name: 'requestedAmount',
         label: 'Requested Finance Amount',
-        type: 'text',
+        type: 'number',
         placeholder: '£0.00',
         required: true,
         width: 'half',
@@ -156,7 +156,7 @@ export const loanFormConfig = [
       {
         name: 'depositPaid',
         label: 'Deposit Paid',
-        type: 'text',
+        type: 'number',
         placeholder: '£0.00',
         required: true,
         width: 'half',
@@ -201,7 +201,7 @@ export const loanFormConfig = [
       {
         name: 'monthlyExpenses',
         label: 'Your Monthly Expenses',
-        type: 'text',
+        type: 'number',
         placeholder: '£0.00',
         required: false,
         width: 'half',
@@ -209,7 +209,7 @@ export const loanFormConfig = [
       {
         name: 'repaymentAmount',
         label: 'Your preferred Repayment Amount',
-        type: 'text',
+        type: 'number',
         placeholder: '£0.00',
         required: false,
         width: 'half',

@@ -9,18 +9,17 @@ export class LoanScreenHelper {
 
   onLoanStatusClick(id) {
     console.log(`Loan Status Card Clicked: ${id}`);
-    // Future: navigate to loan details
-    // this.navigate(\`/loans/\${id}\`);
+    this.navigate(`/loan/${id}`);
   }
 
   onActiveFinanceClick(index) {
     console.log(`Active Finance Card Clicked: ${index}`);
-    // Future: navigate to finance details
+    this.navigate(`/loan/${index}`);
   }
 
   onTrackApplicationClick(id) {
     console.log(`Track Application Clicked: ${id}`);
     // Future: navigate to application tracking
-    // this.navigate(\`/loans/track/\${id}\`);
+    // this.navigate(`/loans/track/${id}`);
   }
 }

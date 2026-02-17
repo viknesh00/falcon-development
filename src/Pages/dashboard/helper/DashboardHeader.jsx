@@ -1,13 +1,26 @@
-import { AccountIcon, NotificationIcon, SearchGrayIcon } from '../../../assets';
+import { useState } from 'react';
+import { AccountIcon, NotificationIcon, SearchGrayIcon, SearchIcon } from '../../../assets';
 import '../styles/dashboardheaderStyles.css';
 
 const DashboardHeader = (params) => {
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
   return (
     <header className="dash-header">
       <div className="search-bar-wrapper">
         <div className="search-bar">
-          <img src={SearchGrayIcon} className="search-icon" />
-          <input type="text" className="search-input" placeholder="Search" />
+          <img
+            src={isSearchActive ? SearchIcon : SearchGrayIcon}
+            className="search-icon"
+            alt="Search"
+          />
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search"
+            onFocus={() => setIsSearchActive(true)}
+            onBlur={() => setIsSearchActive(false)}
+          />
         </div>
       </div>
 

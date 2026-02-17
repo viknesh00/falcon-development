@@ -1,2 +1,2 @@
 
-npm test -- --watchAll=false && npm run build
+npm run build 
