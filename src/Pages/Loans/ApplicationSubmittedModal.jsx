@@ -60,7 +60,9 @@ const ApplicationSubmittedModal = ({ onClose }) => {
           <div className={styles.timeValue}>5–7 Working Days</div>
         </div>
 
-        <Button>Track Application Status</Button>
+        <Button style={{ width: '100%' }} onClick={onClose}>
+          Track Application Status
+        </Button>
       </div>
     </div>
   );

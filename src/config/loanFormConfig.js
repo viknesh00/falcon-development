@@ -3,7 +3,7 @@ export const loanFormConfig = [
     sectionTitle: '1. Applicant Details',
     groups: [
       {
-        title: null, // no subtitle for first group
+        title: null,
         fields: [
           {
             name: 'firstName',

@@ -40,7 +40,9 @@ const EstimatedFinanceSummary = ({ onClose }) => {
           <div className={styles.value}>60</div>
         </div>
 
-        <Button onClick={onClose}>OK</Button>
+        <Button style={{ width: '100%' }} onClick={onClose}>
+          OK
+        </Button>
       </div>
     </div>
   );

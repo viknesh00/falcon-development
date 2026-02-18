@@ -143,6 +143,7 @@ const LoanApplication = () => {
                                   touched={touched[field.name]}
                                   onChange={(val) => setFieldValue(field.name, val)}
                                   onBlur={handleBlur}
+                                  placeholder={field.placeholder}
                                 />
                               )}
 
@@ -158,23 +159,28 @@ const LoanApplication = () => {
                               )}
 
                               {field.type === 'addressLookup' && (
-                                <AddressLookup
-                                  name={field.name}
-                                  value={values[field.name]}
-                                  error={errors[field.name]}
-                                  touched={touched[field.name]}
-                                  onAddressSelect={(address) => {
-                                    setFieldValue('postalCode', address.postalCode);
-                                    setFieldValue(
-                                      'selectedAddress',
-                                      `${address.buildingAddress ? address.buildingAddress + ', ' : ''}${address.street}, ${address.city}`
-                                    );
-                                    setFieldValue('houseStreet', address.street);
-                                    setFieldValue('locality', address.city);
-                                    setFieldValue('country', address.country);
-                                  }}
-                                  onManualEntry={(val) => setFieldValue(field.name, val)}
-                                />
+                                <>
+                                  <AddressLookup
+                                    name={field.name}
+                                    value={values[field.name]}
+                                    error={errors[field.name] ? true : false}
+                                    touched={touched[field.name]}
+                                    onAddressSelect={(address) => {
+                                      setFieldValue('postalCode', address.postalCode);
+                                      setFieldValue(
+                                        'selectedAddress',
+                                        `${address.buildingAddress ? address.buildingAddress + ', ' : ''}${address.street}, ${address.city}`
+                                      );
+                                      setFieldValue('houseStreet', address.street);
+                                      setFieldValue('locality', address.city);
+                                      setFieldValue('country', address.country);
+                                    }}
+                                    onManualEntry={(val) => setFieldValue(field.name, val)}
+                                  />
+                                  {errors[field.name] && touched[field.name] && (
+                                    <div className={PageStyles.errorText}>{errors[field.name]}</div>
+                                  )}
+                                </>
                               )}
                               {field.type === 'checkbox' && (
                                 <label className={PageStyles.checkboxWrapper}>
