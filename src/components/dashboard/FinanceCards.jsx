@@ -4,31 +4,19 @@ import './styles/FinanceCards.css';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 
-const FinanceCards = () => {
+const FinanceCards = ({ data }) => {
   const navigate = useNavigate();
-  const products = [
-    {
-      id: 1,
-      title: 'Qard Hasan',
-      subtitle: 'No Interest',
-      image: QardHasan,
-      bgClass: 'green-gradient',
-    },
-    {
-      id: 2,
-      title: 'Business Micro Finance',
-      subtitle: 'No Interest',
-      image: BusinessMicroFinance,
-      bgClass: 'blue-gradient',
-    },
-    {
-      id: 3,
-      title: 'Car Finance (Ijarah)',
-      subtitle: 'No Interest',
-      image: CarFinance,
-      bgClass: 'red-gradient',
-    },
-  ];
+
+  // Map string types from JSON to imported images
+  const imageMap = {
+    QardHasan: QardHasan,
+    BusinessMicroFinance: BusinessMicroFinance,
+    CarFinance: CarFinance,
+  };
+
+  // Fallback if data is missing
+  const eligibilityLimit = data?.eligibilityLimit || 0;
+  const products = data?.products || [];
 
   return (
     <div className="finance-section">
@@ -37,14 +25,17 @@ const FinanceCards = () => {
           <h3>Apply for Shariah-Compliant Finance</h3>
           <div className="finance-limit">
             <span>Eligible up to:</span>
-            <span className="limit-amount">£50,000</span>
+            <span className="limit-amount">{eligibilityLimit}</span>
           </div>
         </div>
 
         <div className="finance-grid">
           {products.map((product) => (
             <div key={product.id} className="finance-card">
-              <div className="finance-card-bg" style={{ backgroundImage: `url(${product.image})` }}>
+              <div
+                className="finance-card-bg"
+                style={{ backgroundImage: `url(${imageMap[product.type] || product.image})` }}
+              >
                 <div className="overlay"></div>
                 <div className="card-content">
                   <h3>{product.title}</h3>

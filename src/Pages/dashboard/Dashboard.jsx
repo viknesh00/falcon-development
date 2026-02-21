@@ -2,23 +2,25 @@ import AccountCard from '../../components/dashboard/AccountCard';
 import TransactionTable from '../../components/dashboard/TransactionTable';
 import FinanceCards from '../../components/dashboard/FinanceCards';
 import LoanActiveCard from '../../components/dashboard/LoanActiveCard';
+import { loanData } from '../../data/loanData';
+import { LoanScreenHelper } from '../Loans/helper/LoanScreenHelper';
 import './styles/Dashboard.css';
 
 const Dashboard = () => {
+  const helper = new LoanScreenHelper(null);
+  const accountDetails = helper.getAccountDetails();
+  const transactions = helper.getTransactions();
+  const financeData = helper.getFinanceData();
+
+  const rawActiveLoan = loanData.dashboardActiveLoan;
   const activeLoan = {
-    title: 'Home Purchase Plan (Murabaha)',
-    financeAmount: '£85,000',
-    totalPayable: '£85,000',
-    repaymentProgress: {
-      completedDues: 3,
-      totalDues: 7,
-    },
+    ...rawActiveLoan,
+    financeAmount: LoanScreenHelper.formatCurrency(rawActiveLoan.financeAmount),
+    totalPayable: LoanScreenHelper.formatCurrency(rawActiveLoan.totalPayable),
     nextInstallment: {
-      amount: '£1,572.50',
-      dueDate: '05 March 2026',
-      remaining: 4,
+      ...rawActiveLoan.nextInstallment,
+      amount: LoanScreenHelper.formatCurrency(rawActiveLoan.nextInstallment.amount),
     },
-    autoDebitEnabled: true,
   };
 
   return (
@@ -34,12 +36,12 @@ const Dashboard = () => {
 
       <div className="dashboard-grid-layout">
         <div className="main-cards-column">
-          <AccountCard />
-          <TransactionTable />
+          <AccountCard data={accountDetails} />
+          <TransactionTable data={transactions} />
         </div>
 
         <div className="side-cards-column">
-          <FinanceCards />
+          <FinanceCards data={financeData} />
           <LoanActiveCard data={activeLoan} />
         </div>
       </div>

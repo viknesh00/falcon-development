@@ -5,6 +5,7 @@ import { ArrowRightIcon } from '../../assets';
 import { Button, DonutChart } from '../../components';
 import DynamicTable from '../../components/common/Table';
 import LoanDetailsHelper from './helper/LoanDetailScreen.helper';
+import { LoanScreenHelper } from './helper/LoanScreenHelper';
 import Switch from '../../components/common/Switch';
 
 const LoanDetailScreen = () => {
@@ -22,31 +23,28 @@ const LoanDetailScreen = () => {
     setHistory(hist);
   }, []);
 
-  const formatCurrency = (amount) => {
-    return `£${amount.toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
-  };
-
   const columns = [
     { header: 'Details of Transaction', key: 'transactionDetails' },
-    { header: 'Installment Date', key: 'date' },
+    {
+      header: 'Installment Date',
+      key: 'date',
+      render: (row) => LoanScreenHelper.formatDate(row.date),
+    },
     { header: 'Transaction Id', key: 'transactionId' },
     {
       header: 'EMI Amount',
       key: 'emiAmount',
-      render: (row) => formatCurrency(row.emiAmount),
+      render: (row) => LoanScreenHelper.formatCurrency(row.emiAmount),
     },
     {
       header: 'Total Repaid Amount',
       key: 'totalRepaid',
-      render: (row) => formatCurrency(row.totalRepaid),
+      render: (row) => LoanScreenHelper.formatCurrency(row.totalRepaid),
     },
     {
       header: 'Remaining Amount',
       key: 'remaining',
-      render: (row) => formatCurrency(row.remaining),
+      render: (row) => LoanScreenHelper.formatCurrency(row.remaining),
     },
   ];
 
@@ -64,7 +62,7 @@ const LoanDetailScreen = () => {
 
         <div className={Style.headerTitle}>
           <h2>{loanData.title}</h2>
-          <h1 className={Style.loanAmount}>{formatCurrency(loanData.amount)}</h1>
+          <h1 className={Style.loanAmount}>{LoanScreenHelper.formatCurrency(loanData.amount)}</h1>
         </div>
       </div>
 
@@ -72,7 +70,9 @@ const LoanDetailScreen = () => {
       <div className={Style.loanSummary}>
         <div className={Style.installmentBox}>
           <span className={Style.installmentLabel}>Installment Amount</span>
-          <div className={Style.installmentValue}>{formatCurrency(loanData.installmentAmount)}</div>
+          <div className={Style.installmentValue}>
+            {LoanScreenHelper.formatCurrency(loanData.installmentAmount)}
+          </div>
         </div>
 
         <div className={Style.amountBreakdown}>
@@ -80,14 +80,14 @@ const LoanDetailScreen = () => {
             <div className={`${Style.legendDot} ${Style.greenDot}`}></div>
             <div className={Style.amountLabel}>Repaid Amount</div>
             <div className={`${Style.amountValue} ${Style.repaidValue}`}>
-              {formatCurrency(loanData.repaidAmount)}
+              {LoanScreenHelper.formatCurrency(loanData.repaidAmount)}
             </div>
           </div>
           <div className={Style.amountRow}>
             <div className={`${Style.legendDot} ${Style.redDot}`}></div>
             <div className={Style.amountLabel}>Remaining Balance</div>
             <div className={`${Style.amountValue} ${Style.remainingValue}`}>
-              {formatCurrency(loanData.remainingBalance)}
+              {LoanScreenHelper.formatCurrency(loanData.remainingBalance)}
             </div>
           </div>
         </div>
@@ -104,8 +104,9 @@ const LoanDetailScreen = () => {
       </div>
 
       <div className={Style.dates}>
-        Next Instalment : {loanData.nextInstallmentDate} ({loanData.remainingInstallments}Remaining)
-        · Closing Date:{loanData.closingDate}
+        Next Instalment : {LoanScreenHelper.formatDate(loanData.nextInstallmentDate)} (
+        {loanData.remainingInstallments} Remaining) · Closing Date:{' '}
+        {LoanScreenHelper.formatDate(loanData.closingDate)}
       </div>
 
       <hr style={{ margin: '2rem 0', border: '1px solid #D7D5D5' }} />
@@ -114,7 +115,9 @@ const LoanDetailScreen = () => {
       <div className={Style.detailsGrid}>
         <div className={Style.detailItem}>
           <span className={Style.detailLabel}>Disbursement Date</span>
-          <span className={Style.detailValue}>{loanData.disbursementDate}</span>
+          <span className={Style.detailValue}>
+            {LoanScreenHelper.formatDate(loanData.disbursementDate)}
+          </span>
         </div>
         <div className={Style.detailItem}>
           <span className={Style.detailLabel}>Total Repayments</span>

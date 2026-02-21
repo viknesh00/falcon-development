@@ -5,117 +5,15 @@ import LoanScreenStyles from './styles/LoanScreen.module.css';
 import LoansStatusCard from '../../components/Loans/LoansStatusCard';
 import { LoanScreenHelper } from './helper/LoanScreenHelper';
 
-// JSON Data for the cards
-const loansStatusData = [
-  {
-    id: 1,
-    title: 'Outstanding Balance',
-    value: '£78,430.55',
-    description: '',
-    variant: 'outstanding',
-  },
-  {
-    id: 2,
-    title: 'Active Loans',
-    value: '2',
-    description: '1 Home, 1 Car',
-    variant: 'active',
-  },
-  {
-    id: 3,
-    title: 'Applied Loans',
-    value: '2',
-    description: '1 Under Review/ 1 Not Submitted',
-    variant: 'applied',
-  },
-  {
-    id: 4,
-    title: 'Closed Loans',
-    value: '3',
-    description: 'No delayed payments',
-    variant: 'closed',
-  },
-];
-
-const ActiveFinanceCardData = [
-  {
-    title: 'Home Purchase Plan',
-    amount: 7043055,
-    dues: [
-      {
-        dueLabel: 'Remaining',
-        dueAmount: 500,
-      },
-      {
-        dueLabel: 'Monthly',
-        dueAmount: 500,
-      },
-      {
-        dueLabel: 'Next Due',
-        date: new Date().toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }),
-      },
-    ],
-  },
-  {
-    title: 'Car Loan',
-    amount: 7043055,
-    dues: [
-      {
-        dueLabel: 'Remaining',
-        dueAmount: 500,
-      },
-      {
-        dueLabel: 'Monthly',
-        dueAmount: 500,
-      },
-      {
-        dueLabel: 'Next Due',
-        date: new Date().toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }),
-      },
-    ],
-  },
-];
-
-const ActiveFinanceApplicationData = [
-  {
-    id: 1,
-    title: 'Home Purchase Plan (Murabaha)',
-    amount: 85000,
-    submittedOn: '2026-02-10',
-    decisionTime: { min: 5, max: 7, unit: 'Days' },
-    steps: [
-      { label: 'Application Submitted', status: 'completed' },
-      { label: 'Documents Verified', status: 'completed' },
-      { label: 'Shariah Review', status: 'active' },
-      { label: 'Final Approval', status: 'pending' },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Home Purchase Plan (Murabaha)',
-    amount: 85000,
-    submittedOn: '2026-02-10',
-    decisionTime: { min: 5, max: 7, unit: 'Days' },
-    steps: [
-      { label: 'Application Submitted', status: 'completed' },
-      { label: 'Documents Verified', status: 'completed' },
-      { label: 'Shariah Review', status: 'completed' },
-      { label: 'Final Approval', status: 'pending' },
-    ],
-  },
-];
-
 const LoanScreen = () => {
   const navigate = useNavigate();
   const helper = useMemo(() => new LoanScreenHelper(navigate), [navigate]);
+
+  const loansStatusData = helper.getLoanStatusData();
+  const ActiveFinanceCardData = helper.getActiveFinanceData();
+  const ActiveFinanceApplicationData = helper.getActiveApplicationData();
+  const availableLoanAmount = helper.getAvailableLoanAmount();
+  const userBalance = helper.getUserBalance();
 
   return (
     <section className={LoanScreenStyles.container}>
@@ -125,6 +23,48 @@ const LoanScreen = () => {
         <Button variant="primary" onClick={() => helper.onApplyNewClick()}>
           <p>Apply New</p>
         </Button>
+      </div>
+
+      {/* Available Loan Limit Section */}
+      <div
+        style={{
+          backgroundColor: '#f4f6f8',
+          padding: '1.5rem',
+          borderRadius: '12px',
+          marginBottom: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.5rem',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ margin: 0, color: '#2c3e50' }}>Available Loan Limit</h3>
+          <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#27ae60' }}>
+            {LoanScreenHelper.formatCurrency(availableLoanAmount)}
+          </span>
+        </div>
+        <p style={{ margin: 0, color: '#7f8c8d', fontSize: '0.9rem' }}>
+          Based on 80% of your total balance ({LoanScreenHelper.formatCurrency(userBalance)})
+        </p>
+        <div
+          style={{
+            width: '100%',
+            height: '10px',
+            backgroundColor: '#e0e0e0',
+            borderRadius: '5px',
+            marginTop: '0.5rem',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              width: '80%',
+              height: '100%',
+              backgroundColor: '#27ae60',
+              borderRadius: '5px',
+            }}
+          />
+        </div>
       </div>
 
       {/* status cards */}

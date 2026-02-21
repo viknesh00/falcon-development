@@ -14,6 +14,7 @@ import { StepIndicator } from '../../components';
 import EstimatedFinanceSummary from './EstimatedFinanceSummary';
 import { UploadIcon } from '../../assets';
 import ApplicationSubmittedModal from './ApplicationSubmittedModal';
+import { loanData } from '../../data/loanData';
 
 const LoanApplication = () => {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -285,10 +286,18 @@ const LoanApplication = () => {
           )}
         </Formik>
       </section>
-      {showModal && <ApplicationSubmittedModal onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <ApplicationSubmittedModal
+          onClose={() => setShowModal(false)}
+          data={loanData.newApplicationData}
+        />
+      )}
 
       {showFinanceSummary && (
-        <EstimatedFinanceSummary onClose={() => setShowFinanceSummary(false)} />
+        <EstimatedFinanceSummary
+          onClose={() => setShowFinanceSummary(false)}
+          data={loanData.newApplicationData}
+        />
       )}
     </div>
   );

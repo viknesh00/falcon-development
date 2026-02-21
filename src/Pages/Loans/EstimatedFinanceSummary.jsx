@@ -1,8 +1,17 @@
 import { CloseIcon } from '../../assets';
 import { Button } from '../../components';
 import styles from './styles/EstimatedFinanceSummary.module.css';
+import { LoanScreenHelper } from './helper/LoanScreenHelper';
 
-const EstimatedFinanceSummary = ({ onClose }) => {
+const EstimatedFinanceSummary = ({ onClose, data }) => {
+  // Fallback data
+  const {
+    bankPurchasePrice = 0,
+    totalSalePrice = 0,
+    estimatedMonthlyInstalment = 0,
+    totalInstalments = 0,
+  } = data || {};
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
@@ -22,22 +31,24 @@ const EstimatedFinanceSummary = ({ onClose }) => {
 
         <div className={styles.row}>
           <div className={styles.label}>Bank Purchase Price</div>
-          <div className={styles.value}>£85,000</div>
+          <div className={styles.value}>{LoanScreenHelper.formatCurrency(bankPurchasePrice)}</div>
         </div>
 
         <div className={styles.row}>
           <div className={styles.label}>Total Sale Price (Payable)</div>
-          <div className={styles.value}>£85,000</div>
+          <div className={styles.value}>{LoanScreenHelper.formatCurrency(totalSalePrice)}</div>
         </div>
 
         <div className={styles.row}>
           <div className={styles.label}>Estimated Monthly Instalment</div>
-          <div className={styles.value}>£1,572.50</div>
+          <div className={styles.value}>
+            {LoanScreenHelper.formatCurrency(estimatedMonthlyInstalment)}
+          </div>
         </div>
 
         <div className={styles.row}>
           <div className={styles.label}>Total Instalments</div>
-          <div className={styles.value}>60</div>
+          <div className={styles.value}>{totalInstalments}</div>
         </div>
 
         <Button style={{ width: '100%' }} onClick={onClose}>

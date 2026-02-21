@@ -3,16 +3,17 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { ArrowRightIcon, CoinHand, CoinIcon, PlusCircule, StatementIcon } from '../../assets';
 import './styles/AccountCard.css';
 
-const AccountCard = () => {
+const AccountCard = ({ data }) => {
   const [showAccountDetails, setShowAccountDetails] = useState(false);
   const [showBalance, setShowBalance] = useState(true);
 
-  const account = {
-    type: 'Personal Current Account',
-    sortCode: '20-45-89',
-    accountNumber: '4583 4583 4583',
-    balance: '35,000',
-    currency: '€',
+  // Fallback if data is not provided yet
+  const account = data || {
+    type: 'Loading...',
+    sortCode: '',
+    accountNumber: '',
+    balance: 0,
+    currency: '',
   };
 
   const toggleAccountDetails = () => setShowAccountDetails(!showAccountDetails);
@@ -69,7 +70,9 @@ const AccountCard = () => {
         <span className="balance-label">Available Balance</span>
         <div className="balance-row">
           <h2 className="balance-amount">
-            {showBalance ? `${account.currency} ${account.balance}` : `${account.currency} ***`}
+            {showBalance
+              ? `${account.currency} ${account.balance.toLocaleString()}`
+              : `${account.currency} ***`}
           </h2>
           <button className="visibility-btn" onClick={toggleBalance}>
             {showBalance ? <FiEye /> : <FiEyeOff />}
