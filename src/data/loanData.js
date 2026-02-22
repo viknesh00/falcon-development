@@ -162,7 +162,7 @@ export const loanData = {
     },
   ],
   financeData: {
-    eligibilityLimit: 50000,
+    eligibilityLimit: 28000,
     products: [
       {
         id: 1,
