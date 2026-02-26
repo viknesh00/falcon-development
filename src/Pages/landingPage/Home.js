@@ -70,7 +70,7 @@ const Home = () => {
               {/* LEFT */}
               <div className="stat left top">
                 <span>Total balance</span>
-                <strong>€9,647.00</strong>
+                <strong>£9,647.00</strong>
               </div>
 
               <div className="stat left bottom">
@@ -89,7 +89,7 @@ const Home = () => {
 
                 <div className="input">
                   <span>LOAN AMOUNT</span>
-                  <small>€10,589.78</small>
+                  <small>£10,589.78</small>
                 </div>
 
                 <button className="submit">SUBMIT</button>
@@ -98,7 +98,7 @@ const Home = () => {
               {/* RIGHT */}
               <div className="stat right top">
                 <span>Loan balance</span>
-                <strong>€234.98K</strong>
+                <strong>£234.98K</strong>
               </div>
 
               <div className="stat right bottom">

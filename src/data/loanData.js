@@ -125,7 +125,7 @@ export const loanData = {
     sortCode: '20-45-89',
     accountNumber: '4583 4583 4583',
     balance: 35000,
-    currency: '€',
+    currency: '£',
   },
   transactions: [
     {
