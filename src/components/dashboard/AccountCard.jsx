@@ -79,21 +79,7 @@ const AccountCard = ({ data }) => {
           </button>
         </div>
       </div>
-
-      <div className="account-actions">
-        <button className="action-btn primary">
-          <img src={PlusCircule} alt="Add Money" />
-          Add Money
-        </button>
-        <button className="action-btn outline">
-          <img src={CoinIcon} alt="Transfer Funds" />
-          Transfer Funds
-        </button>
-        <button className="action-btn outline">
-          <img src={StatementIcon} alt="View Statement" />
-          View Statement
-        </button>
-      </div>
+      {/* Action buttons hidden as per MVP requirement */}
     </div>
   );
 };
