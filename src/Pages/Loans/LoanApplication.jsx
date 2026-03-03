@@ -65,7 +65,37 @@ const LoanApplication = () => {
     return Yup.object().shape(
       fields.reduce((acc, field) => {
         if (field.required) {
-          acc[field.name] = Yup.string().required(`${field.label} is required`);
+          switch (field.type) {
+            case 'number':
+              acc[field.name] = Yup.number()
+                .typeError(`${field.label} must be a number`)
+                .required(`${field.label} is required`)
+                .positive(`${field.label} must be greater than 0`);
+              break;
+
+            case 'email':
+              acc[field.name] = Yup.string()
+                .email('Enter a valid email')
+                .required(`${field.label} is required`);
+              break;
+
+            case 'tel':
+              acc[field.name] = Yup.string()
+                .matches(/^[0-9+ ]+$/, 'Enter a valid phone number')
+                .required(`${field.label} is required`);
+              break;
+
+            case 'date':
+              acc[field.name] = Yup.date().required(`${field.label} is required`);
+              break;
+
+            case 'file':
+              acc[field.name] = Yup.mixed().required(`${field.label} is required`);
+              break;
+
+            default:
+              acc[field.name] = Yup.string().required(`${field.label} is required`);
+          }
         }
         return acc;
       }, {})

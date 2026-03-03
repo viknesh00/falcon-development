@@ -12,8 +12,6 @@ const LoanScreen = () => {
   const loansStatusData = helper.getLoanStatusData();
   const ActiveFinanceCardData = helper.getActiveFinanceData();
   const ActiveFinanceApplicationData = helper.getActiveApplicationData();
-  const availableLoanAmount = helper.getAvailableLoanAmount();
-  const userBalance = helper.getUserBalance();
 
   return (
     <section className={LoanScreenStyles.container}>
@@ -25,47 +23,7 @@ const LoanScreen = () => {
         </Button>
       </div>
 
-      {/* Available Loan Limit Section */}
-      <div
-        style={{
-          backgroundColor: '#f4f6f8',
-          padding: '1.5rem',
-          borderRadius: '12px',
-          marginBottom: '2rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ margin: 0, color: '#2c3e50' }}>Available Loan Limit</h3>
-          <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#27ae60' }}>
-            {LoanScreenHelper.formatCurrency(availableLoanAmount)}
-          </span>
-        </div>
-        <p style={{ margin: 0, color: '#7f8c8d', fontSize: '0.9rem' }}>
-          Based on 80% of your total balance ({LoanScreenHelper.formatCurrency(userBalance)})
-        </p>
-        <div
-          style={{
-            width: '100%',
-            height: '10px',
-            backgroundColor: '#e0e0e0',
-            borderRadius: '5px',
-            marginTop: '0.5rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              width: '80%',
-              height: '100%',
-              backgroundColor: '#27ae60',
-              borderRadius: '5px',
-            }}
-          />
-        </div>
-      </div>
+      {/* Loan Limit section removed as per MVP requirement */}
 
       {/* status cards */}
       <div className={LoanScreenStyles.cardsContainer}>
