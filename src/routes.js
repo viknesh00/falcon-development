@@ -16,6 +16,7 @@ import {
   LoanDetailsScreen,
 } from './Pages';
 import { DashboardLayout } from './components';
+import LoanStatus from './Pages/Loans/LoanStatus';
 
 const routes = [
   { path: '/', element: <Home /> },
@@ -38,6 +39,7 @@ const routes = [
       { path: '/support', element: <SupportScreen /> },
       { path: '/loan/loan-application', element: <LoanApplication /> },
       { path: '/loan/:id', element: <LoanDetailsScreen /> },
+      { path: '/track-application', element: <LoanStatus /> },
     ],
   },
   { path: '*', element: <Navigate to="/" /> },

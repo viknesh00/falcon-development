@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './styles/LoanApplicationProgress.module.css';
 import Button from '../common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const LoanApplicationProgress = ({ data, onTrackClick }) => {
+  const navigate = useNavigate();
   const {
     title = '',
     amount = 0,
@@ -74,7 +76,7 @@ const LoanApplicationProgress = ({ data, onTrackClick }) => {
       <Button
         variant="primary"
         style={{ width: '100%' }}
-        onClick={() => onTrackClick && onTrackClick()}
+        onClick={() => navigate('/track-application')}
       >
         Track Application
       </Button>
