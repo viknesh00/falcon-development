@@ -1,0 +1,206 @@
+export const invoiceUploadConfig = [
+  {
+    sectionTitle: '1. Select Merchant',
+    groups: [
+      {
+        title: null,
+        fields: [
+          {
+            name: 'invoiceDocument',
+            label: 'Upload Invoice Document',
+            type: 'fileUpload',
+            placeholder: 'Click to upload or drag and drop',
+            helperText: 'PDF, PNG, JPG (max. 10MB)',
+            required: true,
+            width: 'half',
+            accept: ['.pdf', '.png', '.jpg', '.jpeg'],
+            maxSize: 10,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: '1. Add Merchant',
+    groups: [
+      {
+        title: null,
+        fields: [
+          {
+            name: 'merchantName',
+            label: 'Merchant Name',
+            type: 'text',
+            placeholder: 'Enter merchant name',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'businessRegistrationNumber',
+            label: 'Business Registration Number',
+            type: 'text',
+            placeholder: 'Enter registration number',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'industry',
+            label: 'Industry',
+            type: 'dropdown',
+            placeholder: 'Select industry',
+            options: ['Food Supply', 'Retail', 'Manufacturing', 'Logistics', 'Technology'],
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'contactPerson',
+            label: 'Contact Person',
+            type: 'text',
+            placeholder: 'Enter contact person',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'phoneNumber',
+            label: 'Phone Number',
+            type: 'tel',
+            placeholder: '+44 0000 000000',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'email',
+            label: 'Email',
+            type: 'email',
+            placeholder: 'Enter email address',
+            required: true,
+            width: 'half',
+          },
+        ],
+      },
+      {
+        title: 'Business Address',
+        fields: [
+          {
+            name: 'postalCode',
+            label: 'Postal Code',
+            type: 'text',
+            placeholder: 'Enter postal code',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'selectedAddress',
+            label: 'Select Your Address',
+            type: 'addressLookup',
+            placeholder: 'Search address',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'houseStreet',
+            label: 'Building number and Street',
+            type: 'text',
+            placeholder: 'Enter building and street',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'locality',
+            label: 'Locality (Post Town)',
+            type: 'text',
+            placeholder: 'Enter locality',
+            required: true,
+            width: 'half',
+          },
+          {
+            name: 'country',
+            label: 'Country',
+            type: 'text',
+            placeholder: 'Enter country',
+            required: true,
+            width: 'half',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: '2. Loan Configuration',
+    type: 'loanConfiguration',
+    summary: {
+      invoiceAmount: 12000,
+      markupPercent: 8,
+      serviceFee: 150,
+    },
+    groups: [
+      {
+        title: null,
+        fields: [
+          {
+            name: 'requestedAmount',
+            label: 'Requested Financing Amount',
+            type: 'slider',
+            min: 5000,
+            max: 35000,
+            step: 500,
+            width: 'full',
+            required: true,
+          },
+          {
+            name: 'loanTenure',
+            label: 'Loan Tenure',
+            type: 'dropdown',
+            placeholder: 'Select tenure',
+            options: ['1 Month', '2 Months', '3 Months', '6 Months'],
+            width: 'full',
+            required: true,
+          },
+          {
+            name: 'markup',
+            label: 'Markup 8% (Auto Generated)',
+            type: 'number',
+            width: 'half',
+            readonly: true,
+          },
+          {
+            name: 'serviceFee',
+            label: 'Service Fee (Auto Generated)',
+            type: 'number',
+            width: 'half',
+            readonly: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: '3. Application Preview',
+    type: 'preview',
+    groups: [],
+    previewSections: [
+      {
+        title: 'Invoice Details',
+        fields: [
+          { label: 'Merchant Name', key: 'merchantName' },
+          { label: 'Invoice Number', key: 'invoiceNumber' },
+          { label: 'Invoice Amount', key: 'invoiceAmount', prefix: '€' },
+          { label: 'Due Date', key: 'dueDate' },
+        ],
+      },
+      {
+        title: 'Loan Details',
+        fields: [
+          { label: 'Loan Amount', key: 'requestedAmount', prefix: '€' },
+          { label: 'Tenure', key: 'loanTenure' },
+          { label: 'Markup (8%)', key: 'markup', prefix: '€' },
+          { label: 'Processing Fee', key: 'serviceFee', prefix: '€' },
+        ],
+        total: {
+          label: 'Total Payable',
+          keys: ['requestedAmount', 'markup', 'serviceFee'],
+          prefix: '€',
+        },
+      },
+    ],
+  },
+];
