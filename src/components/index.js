@@ -18,3 +18,4 @@ export { default as ActiveFinanceCard } from './Loans/ActiveFinanceCard';
 export { default as LoanApplicationProgress } from './Loans/LoanApplicationProgress';
 export { default as DonutChart } from './common/DonutChart';
 export { default as Table } from './common/Table';
+export { default as AddAccountCard } from './dashboard/AddAccountCard';

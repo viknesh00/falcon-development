@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+}
+
+.accountSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-self: center;
+}
+
+.title {
+  text-align: start;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,144 @@
+.backIcon img {
+  rotate: 180deg;
+}
+
+.backIcon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 20px;
+  margin-bottom: 40px;
+}
+
+.backIcon span {
+  color: var(--accent);
+}
+
+.backIcon:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldHalf {
+  grid-column: span 1;
+}
+
+.fieldFull {
+  grid-column: span 2;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.required {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.errorMessage {
+  color: #e53e3e;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 4px;
+  font-weight: 500;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.submitButton {
+  min-width: 300px;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(72, 187, 120, 0.2);
+}
+
+.submitButton:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldFull {
+    grid-column: span 1;
+  }
+
+  .buttonContainer {
+    justify-content: center;
+  }
+
+  .submitButton {
+    min-width: unset;
+    width: 100%;
+  }
+}

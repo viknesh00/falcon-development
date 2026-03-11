@@ -5,8 +5,18 @@ import LoanActiveCard from '../../components/dashboard/LoanActiveCard';
 import { loanData } from '../../data/loanData';
 import { LoanScreenHelper } from '../Loans/helper/LoanScreenHelper';
 import './styles/Dashboard.css';
+import { useState } from 'react';
+import AddAccount from './AddAccount';
+
+/**
+ * @typedef {Object} UserState
+ * @property {boolean} accounts - Indicates whether the user has existing accounts or not.
+ * **/
 
 const Dashboard = () => {
+  /** @type {UserState} */
+  const [accounts, setAccounts] = useState(false);
+
   const helper = new LoanScreenHelper(null);
   const accountDetails = helper.getAccountDetails();
   const transactions = helper.getTransactions();
@@ -22,6 +32,11 @@ const Dashboard = () => {
       amount: LoanScreenHelper.formatCurrency(rawActiveLoan.nextInstallment.amount),
     },
   };
+
+  // If user has no accounts, show AddAccount component
+  if (!accounts) {
+    return <AddAccount />;
+  }
 
   return (
     <div className="dashboard-content-wrapper">

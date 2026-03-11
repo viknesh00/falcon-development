@@ -1,0 +1,48 @@
+.cardContainer {
+  padding: 20px 0px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 400px;
+  min-width: 470px;
+}
+
+.cardContainer:hover {
+  border: 1px solid #1d9b5e;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cardContainer:active {
+  border: 1px solid #1d9b5e;
+  cursor: pointer;
+  transition: all 0.2s;
+  transform: scale(0.98);
+}
+
+.iconWrapper {
+  background-color: #f2fff9;
+  padding: 40px;
+  border-radius: 50%;
+}
+
+.iconWrapper img {
+  width: 100px;
+  height: 100px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.discription {
+  max-width: 300px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+}

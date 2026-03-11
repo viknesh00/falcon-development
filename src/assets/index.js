@@ -25,6 +25,7 @@ export { default as StatementIcon } from './icons/book-mark-icon.svg';
 export { default as PlusCircule } from './icons/plus-circle.svg';
 export { default as ArrowRightIcon } from './icons/arrow-narrow-right.svg';
 export { default as CloseIcon } from './icons/Close_Icon.svg';
+export { default as BankIcon } from './icons/Bank.svg';
 
 // Images
 export { default as SignUpLoading } from './icons/loding.gif';

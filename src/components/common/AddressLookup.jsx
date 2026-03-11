@@ -60,7 +60,17 @@ const fetchAddresses = async (term) => {
   }
 };
 
-const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value, disabled }) => {
+const AddressLookup = ({
+  onAddressSelect,
+  onManualEntry,
+  error,
+  touched,
+  value,
+  disabled,
+  diableIcon = false,
+  placeholder,
+  isFullAddress = false,
+}) => {
   const [searchTerm, setSearchTerm] = useState(value || '');
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState([]);
@@ -225,14 +235,27 @@ const AddressLookup = ({ onAddressSelect, onManualEntry, error, touched, value, 
         }}
         className={`${Styles.inputContainer} ${error && touched ? Styles.errorBorder : ''}`}
       >
-        <div className={Styles.iconWrapper}>
-          <img src={SearchIcon} alt="" className={Styles.icon} />
-        </div>
+        {!diableIcon && (
+          <div className={Styles.iconWrapper}>
+            <img src={SearchIcon} alt="" className={Styles.icon} />
+          </div>
+        )}
+
         <input
           type="text"
           className={Styles.input}
-          placeholder="Search"
-          value={searchTerm}
+          placeholder={placeholder ? `${placeholder}` : `Search`}
+          value={
+            isFullAddress
+              ? `${
+                  results.map((addr, idx) =>
+                    [addr.buildingAddress, addr.street, addr.city, addr.postalCode]
+                      .filter(Boolean)
+                      .join(', ')
+                  ) || searchTerm
+                }`
+              : searchTerm
+          }
           onChange={handleSearch}
           onFocus={() => !disabled && setIsOpen(true)}
           disabled={disabled}
