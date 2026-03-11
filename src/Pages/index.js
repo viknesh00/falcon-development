@@ -11,3 +11,6 @@ export { default as SettingScreen } from './Settings/index';
 export { default as SupportScreen } from './Support';
 export { default as LoanDetailsScreen } from './Loans/LoanDetailScreen';
 export { default as AddAccountFormScreen } from './dashboard/AddAccountFormScreen';
+export { default as LoanApplyScreen } from './Loans/LoanApply';
+export { default as LoanInvoiceFinancing } from './Loans/LoanInvoiceFinancing';
+export { default as ApplicationSuccess } from './Loans/ApplicationSuccess';

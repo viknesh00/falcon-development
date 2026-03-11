@@ -26,6 +26,10 @@ export { default as PlusCircule } from './icons/plus-circle.svg';
 export { default as ArrowRightIcon } from './icons/arrow-narrow-right.svg';
 export { default as CloseIcon } from './icons/Close_Icon.svg';
 export { default as BankIcon } from './icons/Bank.svg';
+export { default as UserLoanIcon } from './icons/user-loan.svg';
+export { default as BillIcon } from './icons/bill.svg';
+export { default as Edit } from './icons/edit.svg';
+export { default as Check } from './icons/check.svg';
 
 // Images
 export { default as SignUpLoading } from './icons/loding.gif';

@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 620px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 40px 36px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #1d9b5e;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.infoBox {
+  background: #bcd9cc;
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.infoItem span {
+  font-size: 12px;
+  color: #4b5563;
+  margin-bottom: 3px;
+}
+
+.infoItem strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.nextSteps {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.nextSteps h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.nextSteps ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.nextSteps li {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.trackBtn {
+  width: 100%;
+  background: #1f8f5a;
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.trackBtn:hover {
+  background: #16794b;
+}

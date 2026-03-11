@@ -1,0 +1,28 @@
+.uploadBox {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background: #fafafa;
+  transition: 0.2s;
+}
+
+.uploadBox:hover {
+  border-color: #1f8f5f;
+}
+
+.icon {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-weight: 500;
+  color: #666;
+}
+
+.subText {
+  font-size: 12px;
+  color: #999;
+}

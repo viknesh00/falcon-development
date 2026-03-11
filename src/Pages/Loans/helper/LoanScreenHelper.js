@@ -9,6 +9,10 @@ export class LoanScreenHelper {
     this.navigate('/loan/loan-application');
   }
 
+  onApplyLoan() {
+    this.navigate('/loan/loan-apply');
+  }
+
   onLoanStatusClick(id) {
     console.log(`Loan Status Card Clicked: ${id}`);
     this.navigate(`/loan/${id}`);

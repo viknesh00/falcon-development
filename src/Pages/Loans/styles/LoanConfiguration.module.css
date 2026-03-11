@@ -1,0 +1,148 @@
+/* ===== Loan Layout ===== */
+
+.loanWrapper {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.loanLeft {
+  flex: 2;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+}
+
+.loanSummary {
+  flex: 1;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  height: fit-content;
+}
+
+/* ===== Labels ===== */
+
+.loanLeft label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ===== Slider ===== */
+
+.slider {
+  width: 100%;
+  margin: 20px 0 10px 0;
+  appearance: none;
+  height: 6px;
+  border-radius: 10px;
+  background: #e4e7ec;
+  outline: none;
+}
+
+/* slider thumb */
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #17b26a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #17b26a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===== Slider Labels ===== */
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 22px;
+}
+
+/* ===== Loan Tenure ===== */
+
+.tenureWrapper {
+  margin-top: 16px;
+}
+
+/* ===== Fees Row ===== */
+
+.feeRow {
+  display: flex;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.feeRow div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.feeRow input {
+  margin-top: 6px;
+  height: 42px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background: #f9fafb;
+  font-size: 14px;
+}
+
+/* ===== Total Repayment Box ===== */
+
+.totalBox {
+  margin-top: 24px;
+  background: #d1fadf;
+  border: 1px solid #17b26a;
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.totalBox strong {
+  font-size: 16px;
+}
+
+/* ===== Summary Card ===== */
+
+.loanSummary h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.summaryTotal {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 15px;
+}

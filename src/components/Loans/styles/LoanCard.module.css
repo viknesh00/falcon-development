@@ -1,0 +1,54 @@
+.card {
+  width: 220px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.icon,
+.reactIconWrapper {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+}
+
+.inputWrapper:focus-within .icon,
+.inputWrapper:focus-within .reactIconWrapper {
+  color: #48bb78;
+}
+
+.iconCircle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #c3e8d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.button {
+  background: #1f8f5f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}

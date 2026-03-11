@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.titlesection {
+  margin-bottom: 32px;
+}
+
+.maintitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--dark, #0b1f19);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #0b1f19;
+  font-weight: 600;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+}
