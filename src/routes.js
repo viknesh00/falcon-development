@@ -31,7 +31,7 @@ const routes = [
     ),
     children: [
       { path: '/dashboard', element: <Dashboard /> },
-      { path: '/addbankaccount', element: <AddAccountFormScreen /> },
+      { path: '/dashboard/addbankaccount', element: <AddAccountFormScreen /> },
       { path: '/loans', element: <LoanScreen /> },
       { path: '/wallet', element: <WalletScreen /> },
       { path: '/transactions', element: <TransactionScreen /> },

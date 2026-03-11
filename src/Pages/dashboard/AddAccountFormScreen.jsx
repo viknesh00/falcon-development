@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { ArrowRightIcon } from '../../assets';
 import Styles from './styles/AddAccountForm.module.css';
 import { ADD_ACCOUNT_FORM_CONFIG } from '../../config/addBankAccountFormConfig';
@@ -89,7 +89,7 @@ const AddAccountFormScreen = () => {
       >
         {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting }) => {
           return (
-            <form className={Styles.form}>
+            <Form className={Styles.form}>
               {ADD_ACCOUNT_FORM_CONFIG.sections.map((section, sectionIndex) => (
                 <div key={sectionIndex} className={Styles.section}>
                   {section.title && <h2 className={Styles.sectionTitle}>{section.title}</h2>}
@@ -121,7 +121,7 @@ const AddAccountFormScreen = () => {
                                 setFieldValue('locality', addr.city || '');
                                 setFieldValue('country', addr.country || 'United Kingdom');
                               }}
-                              error={errors[field.name]}
+                              // error={errors[field.name]}
                               touched={touched[field.name]}
                               diableIcon
                               isFullAddress={true}
@@ -155,11 +155,16 @@ const AddAccountFormScreen = () => {
               ))}
 
               <div className={Styles.buttonContainer}>
-                <Button type="submit" disabled={isSubmitting} className={Styles.submitButton}>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={isSubmitting}
+                  className={Styles.submitButton}
+                >
                   Submit
                 </Button>
               </div>
-            </form>
+            </Form>
           );
         }}
       </Formik>

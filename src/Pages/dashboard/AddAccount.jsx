@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const AddAccount = () => {
   const navigation = useNavigate();
   const handleAddAccount = () => {
-    navigation('/addbankaccount');
+    navigation('/dashboard/addbankaccount');
   };
   return (
     <div className={Styles.container}>
