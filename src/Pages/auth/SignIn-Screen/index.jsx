@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './styles/SignIn.module.css';
 import { Formik } from 'formik';
 import { Button, InputField, PhoneInputField, SwitchOptions } from '../../../components';
@@ -16,6 +16,7 @@ const SignInScreen = () => {
     mobile: '',
     password: '',
   });
+
   const [selectedOption, setSelectedOption] = React.useState('personal');
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const navigation = useNavigate();
@@ -24,7 +25,13 @@ const SignInScreen = () => {
   const [step, setStep] = React.useState('credentials');
 
   if (step === 'otp') {
-    return <OtpScreen onBack={() => setStep('credentials')} />;
+    return (
+      <OtpScreen
+        email={initialValues.email}
+        mobileNumber={initialValues.mobile}
+        onBack={() => setStep('credentials')}
+      />
+    );
   }
 
   return (
