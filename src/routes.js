@@ -19,6 +19,7 @@ import {
   ApplicationSuccess,
 } from './Pages';
 import { DashboardLayout } from './components';
+import LoanStatus from './Pages/Loans/LoanStatus';
 
 const routes = [
   { path: '/', element: <Home /> },
@@ -44,6 +45,7 @@ const routes = [
       { path: '/loan/invoice-financing', element: <LoanInvoiceFinancing /> },
       { path: '/loan/application-success', element: <ApplicationSuccess /> },
       { path: '/loan/:id', element: <LoanDetailsScreen /> },
+      { path: '/track-application', element: <LoanStatus /> },
     ],
   },
   { path: '*', element: <Navigate to="/" /> },
