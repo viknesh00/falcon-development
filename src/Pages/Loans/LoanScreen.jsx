@@ -18,7 +18,7 @@ const LoanScreen = () => {
       {/* title */}
       <div className={LoanScreenStyles.titleContainer}>
         <h1>Your Loans</h1>
-        <Button variant="primary" onClick={() => helper.onApplyNewClick()}>
+        <Button variant="primary" onClick={() => helper.onApplyLoan()}>
           <p>Apply New</p>
         </Button>
       </div>

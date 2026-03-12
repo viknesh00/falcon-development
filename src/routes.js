@@ -14,6 +14,9 @@ import {
   SettingScreen,
   SupportScreen,
   LoanDetailsScreen,
+  LoanApplyScreen,
+  LoanInvoiceFinancing,
+  ApplicationSuccess,
 } from './Pages';
 import { DashboardLayout } from './components';
 import LoanStatus from './Pages/Loans/LoanStatus';
@@ -38,6 +41,9 @@ const routes = [
       { path: '/settings', element: <SettingScreen /> },
       { path: '/support', element: <SupportScreen /> },
       { path: '/loan/loan-application', element: <LoanApplication /> },
+      { path: '/loan/loan-apply', element: <LoanApplyScreen /> },
+      { path: '/loan/invoice-financing', element: <LoanInvoiceFinancing /> },
+      { path: '/loan/application-success', element: <ApplicationSuccess /> },
       { path: '/loan/:id', element: <LoanDetailsScreen /> },
       { path: '/track-application', element: <LoanStatus /> },
     ],
