@@ -8,6 +8,6 @@ export class LoanCardHelper {
   };
 
   onPersonalLoanClick = () => {
-    this.navigate('/loan/personal-loan');
+    this.navigate('/loan/loan-application');
   };
 }

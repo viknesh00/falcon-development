@@ -47,7 +47,7 @@ const routes = [
       { path: '/loan/invoice-financing', element: <LoanInvoiceFinancing /> },
       { path: '/loan/application-success', element: <ApplicationSuccess /> },
       { path: '/loan/:id', element: <LoanDetailsScreen /> },
-      { path: '/track-application', element: <LoanStatus /> },
+      { path: '/loan/track-application', element: <LoanStatus /> },
     ],
   },
   { path: '*', element: <Navigate to="/" /> },

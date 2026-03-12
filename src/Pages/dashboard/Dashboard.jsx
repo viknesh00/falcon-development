@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   // If user has no accounts, show AddAccount component
   if (!accounts) {
-    return <AddAccount />;
+    return <AddAccount onClose={() => setAccounts(true)} />;
   }
 
   return (

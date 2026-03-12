@@ -26,6 +26,18 @@ const Sidebar = () => {
   const isActive = (path) => {
     if (path === '/loans') {
       return location.pathname.startsWith('/loan');
+    } else if (path === '/dashboard') {
+      return location.pathname.startsWith('/dashboard');
+    } else if (path === '/account') {
+      return location.pathname.startsWith('/account');
+    } else if (path === '/transactions') {
+      return location.pathname.startsWith('/transactions');
+    } else if (path === '/wallet') {
+      return location.pathname.startsWith('/wallet');
+    } else if (path === '/settings') {
+      return location.pathname.startsWith('/settings');
+    } else if (path === '/support') {
+      return location.pathname.startsWith('/support');
     }
     return location.pathname === path;
   };

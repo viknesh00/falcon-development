@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #a0aec0;
+  /* color: #a0aec0; */
 }
 
 .inputWrapper:focus-within .icon,
@@ -32,15 +32,15 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: #c3e8d6;
+  background: #f2fff9 !important;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
+  border: 1px solid #c3e8d6;
 }
 
 .button {
-  background: #1f8f5f;
   color: #fff;
   border: none;
   padding: 10px 20px;
