@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import SignupScreen from '../Pages/auth/Signup-Screen';
+import SignupPage from '../domains/auth/presentation/pages/SignupPage';
 
 // Mock child components to avoid deep rendering issues and isolate the page test
 jest.mock('../components/index', () => ({
@@ -16,7 +16,7 @@ jest.mock('../components/index', () => ({
   AddressLookup: () => <div data-testid="address-lookup">AddressLookup</div>,
 }));
 
-jest.mock('../config/formConfig', () => ({
+jest.mock('../domains/auth/application/config/formConfig', () => ({
   getInitialValues: () => ({
     email: '',
     mobileNumber: '',
@@ -33,10 +33,10 @@ jest.mock('../config/formConfig', () => ({
   },
 }));
 
-test('renders SignupScreen page', () => {
+test('renders SignupPage', () => {
   render(
     <BrowserRouter>
-      <SignupScreen />
+      <SignupPage />
     </BrowserRouter>
   );
 

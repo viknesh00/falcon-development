@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import SignInScreen from '../Pages/auth/SignIn-Screen';
+import SignInPage from '../domains/auth/presentation/pages/SignInPage';
 
 // Mock child components
 jest.mock('../components/index', () => ({
@@ -27,10 +27,10 @@ jest.mock('../Pages/auth/SignIn-Screen/OtpScreen', () => {
   };
 });
 
-test('renders SignInScreen page', () => {
+test('renders SignInPage', () => {
   render(
     <BrowserRouter>
-      <SignInScreen />
+      <SignInPage />
     </BrowserRouter>
   );
 

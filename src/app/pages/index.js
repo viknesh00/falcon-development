@@ -1,0 +1,16 @@
+export { default as Home } from '../../domains/landing/pages/landingPage/Home';
+export { default as Dashboard } from '../../domains/dashboard/pages/Dashboard';
+export { default as SignupPage } from '../../domains/auth/presentation/pages/SignupPage';
+export { default as SignInPage } from '../../domains/auth/presentation/pages/SignInPage';
+export { default as LoanScreen } from '../../domains/loans/presentation/pages/LoanScreen';
+export { default as LoanApplication } from '../../domains/loans/presentation/pages/LoanApplication';
+export { default as WalletScreen } from '../../domains/wallet/pages/WalletScreen';
+export { default as TransactionScreen } from '../../domains/transactions/pages/TransactionScreen';
+export { default as AccountScreen } from '../../domains/accounts/presentation/pages/AccountScreen';
+export { default as SettingScreen } from '../../domains/settings/pages/index';
+export { default as SupportScreen } from '../../domains/support/pages/index';
+export { default as LoanDetailsScreen } from '../../domains/loans/presentation/pages/LoanDetailScreen';
+export { default as AddAccountFormScreen } from '../../domains/dashboard/pages/AddAccountFormScreen';
+export { default as LoanApplyScreen } from '../../domains/loans/presentation/pages/LoanApply';
+export { default as LoanInvoiceFinancing } from '../../domains/loans/presentation/pages/LoanInvoiceFinancing';
+export { default as ApplicationSuccess } from '../../domains/loans/presentation/pages/ApplicationSuccess';
