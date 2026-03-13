@@ -1,0 +1,131 @@
+.profilecontainer {
+  background: #f3f4f6;
+  min-height: 100vh;
+  padding: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.profileheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.profileheader h1 {
+  font-size: 24px;
+}
+
+.editbtn {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+  background: #1f8f5a;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.editbtn:hover {
+  background: #166c42;
+}
+
+.editIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.profilelayout {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 25px;
+}
+
+/* LEFT CARD */
+
+.profilecard {
+  position: relative; /* important */
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.photocontainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.photocircle {
+  width: 150px;
+  height: 150px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.editProfileIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  filter: invert(44%) sepia(59%) saturate(418%) hue-rotate(102deg) brightness(95%) contrast(92%);
+}
+
+.profileemail {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.profilephone {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* RIGHT CARD */
+
+.detailscard {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.detailsgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 35px;
+  column-gap: 40px;
+}
+
+.detailitem {
+  display: flex;
+  gap: 12px;
+}
+
+.greenline {
+  width: 4px;
+  height: 35px;
+  background: #1f8f5a;
+  border-radius: 2px;
+}
+
+.label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.value {
+  font-weight: 600;
+  color: #111827;
+}

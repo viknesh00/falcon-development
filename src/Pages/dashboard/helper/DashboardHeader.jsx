@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AccountIcon, NotificationIcon, SearchGrayIcon, SearchIcon } from '../../../assets';
 import '../styles/dashboardheaderStyles.css';
 
 const DashboardHeader = (params) => {
+  const navigate = useNavigate();
   const [isSearchActive, setIsSearchActive] = useState(false);
+
+  const goToProfile = () => {
+    navigate('/profile');
+  };
 
   return (
     <header className="dash-header">
@@ -34,7 +41,7 @@ const DashboardHeader = (params) => {
         </div>
 
         <div className="profile-section">
-          <div className="icon-btn" title="Profile">
+          <div className="icon-btn" title="Profile" onClick={goToProfile}>
             <img src={AccountIcon} alt="Profile" />
             <span className="label">Dhineshkumar</span>
           </div>
