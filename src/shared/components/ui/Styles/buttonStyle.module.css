@@ -21,7 +21,6 @@
   outline: 3px solid #5df2aa;
   outline-offset: 2px;
 }
-
 /* ─── Sizes ────────────────────────────────────────────
    All sizes use pill-consistent padding ratios.
    Focus states compensate by subtracting 1px on each
@@ -78,7 +77,6 @@
 }
 
 /* ─── Variants ─────────────────────────────────────── */
-
 /* PRIMARY */
 .primary {
   background-color: var(--accent);
@@ -209,7 +207,6 @@
   cursor: not-allowed !important;
   opacity: 0.6 !important;
 }
-
 /* ─── Modifiers ────────────────────────────────────── */
 .fullWidth {
   width: 100%;
@@ -250,7 +247,6 @@
   cursor: not-allowed !important;
   opacity: 0.6 !important;
 }
-
 .loading {
   cursor: wait !important;
   pointer-events: none;
@@ -264,12 +260,10 @@
   align-items: center;
   flex-shrink: 0;
 }
-
 .label {
   display: inline-flex;
   align-items: center;
 }
-
 /* ─── Spinner ──────────────────────────────────────── */
 .spinner {
   display: inline-block;
@@ -294,7 +288,6 @@
     padding: 5px 12px !important;
     font-size: 11px !important;
   }
-
   .sm {
     padding: 8px 14px !important;
     font-size: 13px !important;
